@@ -6,6 +6,11 @@ load the following context into your system prompt or as a project-level instruc
 ## Infrastructure Root
 PATH: /project/workspace
 
+## Supported Providers
+- Anthropic (Claude)
+- Google (Gemini)
+- OpenAI (GPT)
+
 ## How to use Skills
 The infrastructure has specialized skills in `/project/workspace/skills/`.
 Each skill contains a `SKILL.md` file describing its capabilities.

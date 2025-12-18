@@ -24,6 +24,7 @@ def main():
     tests = [
         ("CLI Bridge (list)", [PAI_BIN, "list"]),
         ("CLI Bridge (info)", [PAI_BIN, "info", "Memory"]),
+        ("API Key Check", [os.path.join(PAI_ROOT, "bin", "pai-check")]),
         ("Memory (store)", [PAI_BIN, "run", "Memory", "store", "Testing PAI 1.0"]),
         ("Memory (search)", [PAI_BIN, "run", "Memory", "search", "Testing"]),
         ("Guardian (check)", [PAI_BIN, "run", "Guardian", "check"]),

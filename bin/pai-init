@@ -58,17 +58,48 @@ def setup_identity():
     print(f"Identity confirmed. Welcome, {user_name}. I am {da_name}.")
     return user_name, da_name
 
+def validate_key(key, provider):
+    if not key:
+        return True
+    if provider == "Anthropic" and not key.startswith("sk-ant-"):
+        print(f" [!] Warning: {provider} key usually starts with 'sk-ant-'.")
+    elif provider == "OpenAI" and not key.startswith("sk-"):
+        print(f" [!] Warning: {provider} key usually starts with 'sk-'.")
+    elif provider == "Google Gemini" and len(key) < 30:
+        print(f" [!] Warning: {provider} key seems too short.")
+    return True
+
 def setup_vault():
     print("\n--- Phase 2: The Vault (Secrets) ---")
     print("Paste your API keys below. They will be stored in your local .env file.")
     
-    anthropic = getpass.getpass("Anthropic API Key (Enter to skip): ")
-    openai = getpass.getpass("OpenAI API Key (Enter to skip): ")
+    anthropic = getpass.getpass("Anthropic API Key (Enter to skip): ").strip()
+    validate_key(anthropic, "Anthropic")
+    
+    openai = getpass.getpass("OpenAI API Key (Enter to skip): ").strip()
+    validate_key(openai, "OpenAI")
+
+    gemini = getpass.getpass("Google Gemini API Key (Enter to skip): ").strip()
+    validate_key(gemini, "Google Gemini")
     
     env_path = os.path.join(PAI_ROOT, ".env")
+    
+    # Read existing keys to avoid duplicates
+    existing_keys = {}
+    if os.path.exists(env_path):
+        with open(env_path, "r") as f:
+            for line in f:
+                if "=" in line:
+                    k, v = line.split("=", 1)
+                    existing_keys[k.strip()] = v.strip()
+
     with open(env_path, "a") as f:
-        if anthropic: f.write(f"ANTHROPIC_API_KEY={anthropic}\n")
-        if openai: f.write(f"OPENAI_API_KEY={openai}\n")
+        if anthropic and "ANTHROPIC_API_KEY" not in existing_keys:
+            f.write(f"ANTHROPIC_API_KEY={anthropic}\n")
+        if openai and "OPENAI_API_KEY" not in existing_keys:
+            f.write(f"OPENAI_API_KEY={openai}\n")
+        if gemini and "GOOGLE_API_KEY" not in existing_keys:
+            f.write(f"GOOGLE_API_KEY={gemini}\n")
     
     print("Secrets secured in .env.")
 

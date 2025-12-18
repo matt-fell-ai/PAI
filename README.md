@@ -31,6 +31,8 @@
 
 PAI is not just a chatbot. It is a **Personal Operating System** designed to augment human intelligence and generate revenue. Built on the principle that **Scaffolding > Model**, PAI provides a universal bridge between you and any AI stack (Droid, Gemini, Claude, Codex).
 
+It supports leading models from **Anthropic (Claude)**, **Google (Gemini)**, and **OpenAI (GPT)**, giving you the flexibility to choose the best intelligence for the task.
+
 It remembers your work, builds its own tools, proactively suggests your next steps, and executes parallel business workflows to help you thrive in the post-corporate world.
 
 <br/>
