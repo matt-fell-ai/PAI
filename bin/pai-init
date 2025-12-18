@@ -81,6 +81,10 @@ def setup_vault():
 
     gemini = getpass.getpass("Google Gemini API Key (Enter to skip): ").strip()
     validate_key(gemini, "Google Gemini")
+
+    print("\n--- Phase 2.5: Local Models (Ollama) ---")
+    ollama_url = get_input("Ollama Host URL", "http://localhost:11434")
+    ollama_model = get_input("Ollama Default Model", "llama3")
     
     env_path = os.path.join(PAI_ROOT, ".env")
     
@@ -100,8 +104,12 @@ def setup_vault():
             f.write(f"OPENAI_API_KEY={openai}\n")
         if gemini and "GOOGLE_API_KEY" not in existing_keys:
             f.write(f"GOOGLE_API_KEY={gemini}\n")
+        if "OLLAMA_HOST" not in existing_keys:
+            f.write(f"OLLAMA_HOST={ollama_url}\n")
+        if "OLLAMA_MODEL" not in existing_keys:
+            f.write(f"OLLAMA_MODEL={ollama_model}\n")
     
-    print("Secrets secured in .env.")
+    print("Secrets and Local Config secured in .env.")
 
 def setup_bridge():
     print("\n--- Phase 3: Universal Bridge ---")

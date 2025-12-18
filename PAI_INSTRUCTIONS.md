@@ -10,6 +10,7 @@ PATH: /project/workspace
 - Anthropic (Claude)
 - Google (Gemini)
 - OpenAI (GPT)
+- Ollama (Self-hosted Local Models)
 
 ## How to use Skills
 The infrastructure has specialized skills in `/project/workspace/skills/`.

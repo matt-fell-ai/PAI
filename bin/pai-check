@@ -11,7 +11,7 @@ def check_keys():
         print(" [!] Error: .env file missing. Run 'bin/pai-init' first.")
         return
 
-    keys_to_check = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GOOGLE_API_KEY", "ELEVENLABS_API_KEY"]
+    keys_to_check = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GOOGLE_API_KEY", "ELEVENLABS_API_KEY", "OLLAMA_HOST"]
     found_keys = {}
     with open(env_path, "r") as f:
         for line in f:
@@ -22,8 +22,21 @@ def check_keys():
     for k in keys_to_check:
         if k in found_keys:
             val = found_keys[k]
-            masked = val[:6] + "..." + val[-4:] if len(val) > 10 else "***"
-            print(f" [OK] {k}: {masked}")
+            if k == "OLLAMA_HOST":
+                print(f" [OK] {k}: {val}")
+                # Optional health check for Ollama
+                import subprocess
+                try:
+                    res = subprocess.run(["curl", "-s", f"{val}/api/tags"], capture_output=True, timeout=2)
+                    if res.returncode == 0:
+                        print(f"      -> Ollama Service: ONLINE")
+                    else:
+                        print(f"      -> Ollama Service: UNREACHABLE")
+                except:
+                    print(f"      -> Ollama Service: UNREACHABLE")
+            else:
+                masked = val[:6] + "..." + val[-4:] if len(val) > 10 else "***"
+                print(f" [OK] {k}: {masked}")
         else:
             print(f" [MISSING] {k}")
 
