@@ -21,7 +21,7 @@
 
 <br/>
 
-[**User Guide**](USER_GUIDE.md) · [**Instructions**](PAI_INSTRUCTIONS.md) · [**Contract**](PAI_CONTRACT.md) · [**Test Suite**](#-verification)
+[**User Guide**](USER_GUIDE.md) · [**Instructions**](PAI_INSTRUCTIONS.md) · [**Test Suite**](#-verification)
 
 ---
 
@@ -42,7 +42,7 @@ It remembers your work, builds its own tools, proactively suggests your next ste
 PAI is now platform-agnostic. Use the `bin/pai` CLI to interact with your system from any terminal or AI environment.
 
 ```bash
-./bin/pai list                     # See all 34 amazing skills
+./bin/pai list                     # See all 35+ amazing skills
 ./bin/pai run Memory search "X"    # Search your Second Brain
 ./bin/pai run Swarm parallel       # Launch parallel AI agents
 ```
@@ -104,7 +104,7 @@ Run the visual heartbeat of your PAI to see your system thinking in real-time.
 
 ## ✅ Verification
 
-Run the robust test suite to ensure all 34 modules are 100% operational in your environment.
+Run the robust test suite to ensure all 39 modules are 100% operational in your environment.
 ```bash
 ./bin/pai-test
 ```

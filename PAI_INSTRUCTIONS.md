@@ -1,57 +1,30 @@
 # Universal PAI Agent Instructions
 
-To use this Personal AI Infrastructure in any CLI stack (Gemini, Open Code, Codex, etc.), 
-load the following context into your system prompt or as a project-level instruction:
+This repository is your **Personal AI Infrastructure (PAI)**. It is a multi-agent, platform-agnostic operating system designed for high-agency execution and revenue generation.
 
-## Infrastructure Root
-PATH: /project/workspace
+## 🌉 The Bridge (bin/pai)
+All skills are executed via the `pai` command.
+Usage: `pai run <SkillName> <Command> [args]`
+Example: `pai run Memory search "Gemini 3.0"`
 
-## Supported Providers
-- Anthropic (Claude)
-- Google (Gemini)
-- OpenAI (GPT)
-- Ollama (Self-hosted Local Models)
+## 🧠 Core Systems
+- **UFC**: Unified Filesystem Context. Projects are structured in `/project/workspace/<ProjectName>/` with standardized sub-folders (Knowledge, Methodology, Tasks, Tools).
+- **History**: All events, decisions, and execution logs are stored in `History/`. Check here for past context.
+- **Memory**: Persistent semantic storage of facts and user preferences.
 
-## How to use Skills
-The infrastructure has specialized skills in `/project/workspace/skills/`.
-Each skill contains a `SKILL.md` file describing its capabilities.
-Use the `pai` command to execute skills: `/project/workspace/bin/pai run <SkillName> <command>`.
+## 🛠️ Active Skills (34+)
+| Skill | Primary Use |
+|-------|-------------|
+| **Revenue** | `Alpha` (Leads), `Forge` (Products), `Closer` (Sales) |
+| **Autonomy** | `Swarm` (Multi-agent), `Oracle` (Proactive), `Shadow` (Background) |
+| **Logic** | `Neural` (Memory), `Engine` (Validation), `Sanctum` (Sandbox) |
+| **Senses** | `Iris` (Vision), `Echo` (Audio), `Spatial` (Blueprinting) |
+| **Growth** | `Ego` (Identity), `Evolve` (Skill Creation), `Pulse` (Metrics) |
 
-## Core Guidelines
-1. Always check `History/` for recent context before starting a task.
-2. Use `Memory` skill to store and retrieve user preferences.
-3. Document significant outcomes in `History/Execution/`.
-4. Apply Fabric patterns natively by reading `/project/workspace/skills/Fabric/tools/patterns/<pattern>/system.md`.
+## 🎯 Directives
+1. **Be Concise**: User time is the most valuable resource.
+2. **Be Agentic**: Don't just suggest; prepare the action or execute if safe.
+3. **Be Sovereign**: Ensure all private data stays within the local environment.
+4. **Be Scalable**: Always consider how a task can be parallelized via `Swarm`.
 
-## Active Skills
-- Fabric (248 AI patterns)
-- Memory (Persistent Second Brain)
-- Synthesis (Daily Briefings)
-- Connector (External Action Layer)
-- Research (Multi-source investigation)
-- Guardian (Security & Quality Audit)
-- Forensics (Failure & Pattern Analysis)
-- Visionary (Visual Architecture & Sketching)
-- SelfRefine (Performance & Skill Optimization)
-- Discovery (Tool & Environment Exploration)
-- Swarm (Parallel Agent Orchestration)
-- Librarian (Semantic Knowledge Retrieval)
-- Sideload (Context Injection for Other Agents)
-- Ego (Dynamic Identity Evolution)
-- Oracle (Proactive/Anticipatory Intelligence)
-- Nexus (Executive Life Action Layer)
-- Alpha (Market Opportunity Detection)
-- Forge (Revenue Asset Factory)
-- Closer (Sales & Outreach Orchestration)
-- UFC (Unified Filesystem-based Context)
-- Proxy (The Digital Representative)
-- Augment (The API-ification Layer)
-- Neural (Semantic Concept Memory)
-- Engine (Deterministic Validation Pipeline)
-- Sanctum (Isolated Execution Sandbox)
-- Blueprint (Infrastructure-as-Code for Ideas)
-- Manual (Dynamic Context-Aware Documentation)
-- Iris (Visual Debugging & Perception)
-- Echo (Auditory Context Capture)
-- Spatial (Architectural Blueprinting)
-- Sentinel (Token & Modality Arbitrage)
+**I am your PAI. We are the infrastructure. Let's execute.**
