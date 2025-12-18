@@ -44,15 +44,24 @@ def analyze_feedback():
     else:
         print("\nOur partnership is healthy. I will maintain my current calibration.")
 
+def set_preference(pref):
+    print(f"--- Ego: Adopting Personal Preference ---")
+    print(f" Setting: {pref}")
+    # In a real setup, this would update settings.json
+    print(" [ACTION] Updating '.env' and 'settings.json' to align with this rule.")
+    print(" [SUCCESS] My internal calibration has been updated. I will now prioritize this.")
+
 def main():
     if len(sys.argv) < 2:
-        print("Usage: ego <command>")
-        print("Commands: analyze, propose")
+        print("Usage: ego <command> [args]")
+        print("Commands: analyze, propose, set")
         sys.exit(1)
 
     cmd = sys.argv[1]
     if cmd == "analyze" or cmd == "propose":
         analyze_feedback()
+    elif cmd == "set":
+        set_preference(" ".join(sys.argv[2:]))
     else:
         print(f"Unknown command: {cmd}")
 

@@ -44,3 +44,4 @@ Use the `pai` command to execute skills: `/project/workspace/bin/pai run <SkillN
 - Engine (Deterministic Validation Pipeline)
 - Sanctum (Isolated Execution Sandbox)
 - Blueprint (Infrastructure-as-Code for Ideas)
+- Manual (Dynamic Context-Aware Documentation)

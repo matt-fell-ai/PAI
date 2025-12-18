@@ -43,6 +43,7 @@ bin/pai run SkillName CommandName [args]
 | **Engine** | "validate code", "run gates" | Use `Engine` skill |
 | **Sanctum** | "run isolated", "sandbox" | Use `Sanctum` skill |
 | **Blueprint** | "launch project", "business setup" | Use `Blueprint` skill |
+| **Manual** | "how to", "guided help" | Use `Manual` skill |
 
 ## Examples
 

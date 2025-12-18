@@ -53,6 +53,9 @@ def main():
         ("Engine (validate)", [PAI_BIN, "run", "Engine", "validate", "bin/pai"]),
         ("Sanctum (run)", [PAI_BIN, "run", "Sanctum", "run", "bin/pai"]),
         ("Blueprint (launch)", [PAI_BIN, "run", "Blueprint", "launch", "Test Business"]),
+        ("Manual (how-to)", [PAI_BIN, "run", "Manual", "how-to", "Revenue"]),
+        ("Pulse (web)", [PAI_BIN, "run", "Pulse", "web"]),
+        ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
     ]
 
     passed = 0
