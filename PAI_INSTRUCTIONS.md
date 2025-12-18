@@ -51,3 +51,7 @@ Use the `pai` command to execute skills: `/project/workspace/bin/pai run <SkillN
 - Sanctum (Isolated Execution Sandbox)
 - Blueprint (Infrastructure-as-Code for Ideas)
 - Manual (Dynamic Context-Aware Documentation)
+- Iris (Visual Debugging & Perception)
+- Echo (Auditory Context Capture)
+- Spatial (Architectural Blueprinting)
+- Sentinel (Token & Modality Arbitrage)

@@ -13,6 +13,9 @@ def print_banner():
     =========================================
     I am your PAI Digital Assistant. Let's get
     your infrastructure set up for 2026.
+    
+    [INFRA] Now powered by Gemini 3.0 Pro
+    [MODES] Standard | Deep Think | Vision High
     """)
 
 def get_input(prompt, default=None):

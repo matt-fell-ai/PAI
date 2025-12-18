@@ -56,6 +56,10 @@ def main():
         ("Blueprint (launch)", [PAI_BIN, "run", "Blueprint", "launch", "Test Business"]),
         ("Manual (how-to)", [PAI_BIN, "run", "Manual", "how-to", "Revenue"]),
         ("Pulse (web)", [PAI_BIN, "run", "Pulse", "web"]),
+        ("Iris (debug)", [PAI_BIN, "run", "Iris", "debug", "test.png"]),
+        ("Echo (ingest)", [PAI_BIN, "run", "Echo", "ingest", "test.mp3"]),
+        ("Spatial (blueprint)", [PAI_BIN, "run", "Spatial", "blueprint", "test.jpg"]),
+        ("Sentinel (status)", [PAI_BIN, "run", "Sentinel"]),
         ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
     ]
 

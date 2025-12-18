@@ -46,6 +46,13 @@ These skills make the PAI "Self-Correction" and "High-Speed" infrastructure.
 *   **Sanctum** runs dangerous or new code in a safe "sandbox" to protect you.
 *   **Blueprint** builds the entire folder structure for a new business idea in seconds.
 
+### 8. The Modality Suite (Iris, Echo, Spatial, Sentinel)
+This gives your PAI "Eyes" and "Ears" to understand the real world.
+*   **Iris** "sees" UI bugs and design files to help you debug perfectly.
+*   **Echo** "listens" to your meetings and notes to extract tasks and project goals.
+*   **Spatial** turns your hand-drawn sketches into actual project code.
+*   **Sentinel** ensures you don't overspend on these high-powered multimodal models.
+
 ---
 
 ## How to Get Started (The Easy Way)
