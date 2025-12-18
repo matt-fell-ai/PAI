@@ -62,6 +62,12 @@ private/
 secrets/
 credentials/
 
+# PAI Local Memory & History
+History/
+memory.json
+*.html
+.claude/agent-sessions.json
+
 # PAI Update System (sideloading)
 .claude/pai_updates/
 .claude/pai_backups/
