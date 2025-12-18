@@ -4,25 +4,80 @@ import sys
 import subprocess
 import json
 
+# Colors
+class Colors:
+    HEADER = '\033[95m'
+    BLUE = '\033[94m'
+    CYAN = '\033[96m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    RED = '\033[91m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    ENDC = '\033[0m'
+
 PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SKILLS_DIR = os.path.join(PAI_ROOT, "skills")
 
+def print_logo():
+    print(f"""{Colors.CYAN}{Colors.BOLD}
+    ██████╗  █████╗ ██╗
+    ██╔══██╗██╔══██╗██║
+    ██████╔╝███████║██║
+    ██╔═══╝ ██╔══██║██║
+    ██║     ██║  ██║██║
+    ╚═╝     ╚═╝  ╚═╝╚═╝{Colors.ENDC}
+    {Colors.BLUE}Universal Infrastructure CLI{Colors.ENDC}
+    """)
+
 def list_skills():
-    print("Available PAI Skills:")
-    for item in os.listdir(SKILLS_DIR):
+    print(f"{Colors.BOLD}{Colors.GREEN}Available PAI Skills:{Colors.ENDC}")
+    skills = []
+    for item in sorted(os.listdir(SKILLS_DIR)):
         if os.path.isdir(os.path.join(SKILLS_DIR, item)):
-            print(f" - {item}")
+            desc = ""
+            skill_md = os.path.join(SKILLS_DIR, item, "SKILL.md")
+            if os.path.exists(skill_md):
+                with open(skill_md, 'r') as f:
+                    for line in f:
+                        if line.startswith("description:"):
+                            desc = line.replace("description:", "").strip()
+                            if "USE WHEN" in desc:
+                                desc = desc.split("USE WHEN")[0].strip()
+                            break
+            skills.append((item, desc))
+    
+    for name, desc in skills:
+        print(f"  {Colors.BOLD}{Colors.YELLOW}{name:<15}{Colors.ENDC} {desc}")
 
 def get_skill_path(skill_name):
-    path = os.path.join(SKILLS_DIR, skill_name)
-    if os.path.isdir(path):
-        return path
+    # Case insensitive search
+    for item in os.listdir(SKILLS_DIR):
+        if item.lower() == skill_name.lower() and os.path.isdir(os.path.join(SKILLS_DIR, item)):
+            return os.path.join(SKILLS_DIR, item)
     return None
+
+def show_help():
+    print_logo()
+    print(f"{Colors.BOLD}USAGE:{Colors.ENDC}")
+    print(f"  pai <skill> <command> [args]")
+    print(f"  pai <command> [args]\n")
+    print(f"{Colors.BOLD}COMMANDS:{Colors.ENDC}")
+    print(f"  {Colors.GREEN}list{Colors.ENDC}              List all available skills")
+    print(f"  {Colors.GREEN}info <skill>{Colors.ENDC}      Show detailed information for a skill")
+    print(f"  {Colors.GREEN}run <skill> <cmd>{Colors.ENDC}  Run a specific skill command")
+    print(f"  {Colors.GREEN}check{Colors.ENDC}             Run a health check on your environment")
+    print(f"  {Colors.GREEN}init{Colors.ENDC}              Launch the onboarding wizard\n")
+    print(f"{Colors.BOLD}EXAMPLES:{Colors.ENDC}")
+    print(f"  pai run Memory search 'Gemini 3.0'")
+    print(f"  pai check")
+    print(f"  pai Manual help\n")
+    list_skills()
 
 def run_skill(skill_name, args):
     skill_path = get_skill_path(skill_name)
     if not skill_path:
-        print(f"Error: Skill '{skill_name}' not found.")
+        print(f"{Colors.RED}Error: Skill '{skill_name}' not found.{Colors.ENDC}")
         sys.exit(1)
     
     # Check for a tool with the command name
@@ -40,10 +95,11 @@ def run_skill(skill_name, args):
                 tool_path += ".py"
             else:
                 # Try skills/<skill>/tools/<skill_name>.py or .sh
-                skill_tool_base = os.path.join(skill_path, "tools", skill_name.lower())
+                skill_dir_name = os.path.basename(skill_path)
+                skill_tool_base = os.path.join(skill_path, "tools", skill_dir_name.lower())
                 if os.path.exists(skill_tool_base + ".py"):
                     tool_path = skill_tool_base + ".py"
-                    cmd_args = [command] + cmd_args # Re-insert command as first arg
+                    cmd_args = [command] + cmd_args 
                 elif os.path.exists(skill_tool_base + ".sh"):
                     tool_path = skill_tool_base + ".sh"
                     cmd_args = [command] + cmd_args
@@ -51,24 +107,21 @@ def run_skill(skill_name, args):
                     tool_path = None
         
         if tool_path:
-            # Execute the tool
             try:
-                # NEW: Emitting observability event for non-Claude environments
                 emit_event(skill_name, command, cmd_args)
-                
                 if tool_path.endswith(".py"):
                     subprocess.run([sys.executable, tool_path] + cmd_args, check=True)
                 else:
                     subprocess.run([tool_path] + cmd_args, check=True)
             except subprocess.CalledProcessError as e:
-                print(f"Error executing tool: {e}")
+                print(f"{Colors.RED}Error executing tool: {e}{Colors.ENDC}")
                 sys.exit(e.returncode)
         else:
-            print(f"Error: Command '{command}' not found in skill '{skill_name}' tools.")
+            print(f"{Colors.RED}Error: Command '{command}' not found in skill '{skill_name}' tools.{Colors.ENDC}")
             sys.exit(1)
     else:
         # No command, show skill info
-        print(f"Skill: {skill_name}")
+        print(f"{Colors.BOLD}{Colors.CYAN}Skill: {skill_name}{Colors.ENDC}")
         skill_md = os.path.join(skill_path, "SKILL.md")
         if os.path.exists(skill_md):
             with open(skill_md, 'r') as f:
@@ -77,11 +130,10 @@ def run_skill(skill_name, args):
             print("No SKILL.md found.")
 
 def emit_event(skill, command, args):
-    """Logs events to the UOCS History system so the Observability Dashboard can see them."""
     import time
     from datetime import datetime
     
-    pst_now = datetime.now().isoformat() # Simplified PST
+    pst_now = datetime.now().isoformat()
     event = {
         "source_app": "pai-bridge",
         "session_id": os.environ.get("PAI_SESSION_ID", "bridge-session"),
@@ -95,7 +147,6 @@ def emit_event(skill, command, args):
         "timestamp_pst": pst_now
     }
     
-    # Locate today's log file
     now = datetime.now()
     year_month = now.strftime("%Y-%m")
     year_month_day = now.strftime("%Y-%m-%d")
@@ -106,37 +157,40 @@ def emit_event(skill, command, args):
     try:
         with open(log_file, "a") as f:
             f.write(json.dumps(event) + "\n")
-    except Exception as e:
-        pass # Silently fail
+    except:
+        pass
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: pai <command> [args]")
-        print("Commands:")
-        print("  list              List all skills")
-        print("  run <skill> <cmd> Run a skill command")
-        print("  info <skill>      Show skill info")
-        sys.exit(1)
+        show_help()
+        sys.exit(0)
 
     cmd = sys.argv[1]
-    if cmd == "list":
+    if cmd == "list" or cmd == "--list" or cmd == "-l":
         list_skills()
-    elif cmd == "run":
-        if len(sys.argv) < 3:
-            print("Usage: pai run <skill> <cmd> [args]")
-            sys.exit(1)
-        run_skill(sys.argv[2], sys.argv[3:])
     elif cmd == "info":
         if len(sys.argv) < 3:
-            print("Usage: pai info <skill>")
+            print(f"{Colors.RED}Usage: pai info <skill>{Colors.ENDC}")
             sys.exit(1)
         run_skill(sys.argv[2], [])
+    elif cmd == "run":
+        if len(sys.argv) < 3:
+            print(f"{Colors.RED}Usage: pai run <skill> <cmd> [args]{Colors.ENDC}")
+            sys.exit(1)
+        run_skill(sys.argv[2], sys.argv[3:])
+    elif cmd == "check":
+        subprocess.run([os.path.join(PAI_ROOT, "bin", "pai-check")])
+    elif cmd == "init":
+        subprocess.run([os.path.join(PAI_ROOT, "bin", "pai-init")])
+    elif cmd == "help" or cmd == "--help" or cmd == "-h":
+        show_help()
     else:
         # Default to run if command matches a skill
         if get_skill_path(cmd):
             run_skill(cmd, sys.argv[2:])
         else:
-            print(f"Unknown command: {cmd}")
+            print(f"{Colors.RED}Unknown command or skill: {cmd}{Colors.ENDC}")
+            print(f"Try {Colors.BOLD}pai help{Colors.ENDC} for usage.")
             sys.exit(1)
 
 if __name__ == "__main__":

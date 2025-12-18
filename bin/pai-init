@@ -76,22 +76,7 @@ def setup_vault():
     print("\n--- Phase 2: The Vault (Secrets) ---")
     print("Paste your API keys below. They will be stored in your local .env file.")
     
-    anthropic = getpass.getpass("Anthropic API Key (Enter to skip): ").strip()
-    validate_key(anthropic, "Anthropic")
-    
-    openai = getpass.getpass("OpenAI API Key (Enter to skip): ").strip()
-    validate_key(openai, "OpenAI")
-
-    gemini = getpass.getpass("Google Gemini API Key (Enter to skip): ").strip()
-    validate_key(gemini, "Google Gemini")
-
-    print("\n--- Phase 2.5: Local Models (Ollama) ---")
-    ollama_url = get_input("Ollama Host URL", "http://localhost:11434")
-    ollama_model = get_input("Ollama Default Model", "llama3")
-    
     env_path = os.path.join(PAI_ROOT, ".env")
-    
-    # Read existing keys to avoid duplicates
     existing_keys = {}
     if os.path.exists(env_path):
         with open(env_path, "r") as f:
@@ -100,13 +85,63 @@ def setup_vault():
                     k, v = line.split("=", 1)
                     existing_keys[k.strip()] = v.strip()
 
+    # Anthropic
+    anthropic = getpass.getpass("Anthropic API Key (Enter to skip): ").strip()
+    anthropic_model = "claude-3-5-sonnet-latest"
+    if anthropic:
+        validate_key(anthropic, "Anthropic")
+        print("Select default Anthropic model:")
+        print(" 1) Claude 3.5 Sonnet (Balanced)")
+        print(" 2) Claude 3.5 Haiku (Fast)")
+        print(" 3) Claude 3 Opus (Deep)")
+        choice = get_input("Choice", "1")
+        if choice == "2": anthropic_model = "claude-3-5-haiku-latest"
+        elif choice == "3": anthropic_model = "claude-3-opus-latest"
+
+    # OpenAI
+    openai = getpass.getpass("OpenAI API Key (Enter to skip): ").strip()
+    openai_model = "gpt-4o"
+    if openai:
+        validate_key(openai, "OpenAI")
+        print("Select default OpenAI model:")
+        print(" 1) GPT-4o (Standard)")
+        print(" 2) GPT-4o-mini (Fast)")
+        print(" 3) o1-preview (Advanced Reasoning)")
+        choice = get_input("Choice", "1")
+        if choice == "2": openai_model = "gpt-4o-mini"
+        elif choice == "3": openai_model = "o1-preview"
+
+    # Gemini
+    gemini = getpass.getpass("Google Gemini API Key (Enter to skip): ").strip()
+    gemini_model = "gemini-3.0-pro"
+    if gemini:
+        validate_key(gemini, "Google Gemini")
+        print("Select default Gemini model:")
+        print(" 1) Gemini 3.0 Pro (Thinking)")
+        print(" 2) Gemini 1.5 Pro")
+        print(" 3) Gemini 1.5 Flash (Fast)")
+        choice = get_input("Choice", "1")
+        if choice == "2": gemini_model = "gemini-1.5-pro"
+        elif choice == "3": gemini_model = "gemini-1.5-flash"
+
+    print("\n--- Phase 2.5: Local Models (Ollama) ---")
+    ollama_url = get_input("Ollama Host URL", "http://localhost:11434")
+    ollama_model = get_input("Ollama Default Model", "llama3")
+    
     with open(env_path, "a") as f:
-        if anthropic and "ANTHROPIC_API_KEY" not in existing_keys:
-            f.write(f"ANTHROPIC_API_KEY={anthropic}\n")
-        if openai and "OPENAI_API_KEY" not in existing_keys:
-            f.write(f"OPENAI_API_KEY={openai}\n")
-        if gemini and "GOOGLE_API_KEY" not in existing_keys:
-            f.write(f"GOOGLE_API_KEY={gemini}\n")
+        if anthropic:
+            if "ANTHROPIC_API_KEY" not in existing_keys:
+                f.write(f"ANTHROPIC_API_KEY={anthropic}\n")
+            f.write(f"ANTHROPIC_MODEL={anthropic_model}\n")
+        if openai:
+            if "OPENAI_API_KEY" not in existing_keys:
+                f.write(f"OPENAI_API_KEY={openai}\n")
+            f.write(f"OPENAI_MODEL={openai_model}\n")
+        if gemini:
+            if "GOOGLE_API_KEY" not in existing_keys:
+                f.write(f"GOOGLE_API_KEY={gemini}\n")
+            f.write(f"GEMINI_MODEL={gemini_model}\n")
+        
         if "OLLAMA_HOST" not in existing_keys:
             f.write(f"OLLAMA_HOST={ollama_url}\n")
         if "OLLAMA_MODEL" not in existing_keys:
