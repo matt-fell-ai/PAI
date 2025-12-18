@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+import os
+import sys
+import subprocess
+import json
+
+PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+SKILLS_DIR = os.path.join(PAI_ROOT, "skills")
+
+def list_skills():
+    print("Available PAI Skills:")
+    for item in os.listdir(SKILLS_DIR):
+        if os.path.isdir(os.path.join(SKILLS_DIR, item)):
+            print(f" - {item}")
+
+def get_skill_path(skill_name):
+    path = os.path.join(SKILLS_DIR, skill_name)
+    if os.path.isdir(path):
+        return path
+    return None
+
+def run_skill(skill_name, args):
+    skill_path = get_skill_path(skill_name)
+    if not skill_path:
+        print(f"Error: Skill '{skill_name}' not found.")
+        sys.exit(1)
+    
+    # Check for a tool with the command name
+    if args:
+        command = args[0]
+        cmd_args = args[1:]
+        
+        # Try skills/<skill>/tools/<command>
+        tool_path = os.path.join(skill_path, "tools", command)
+        if not os.path.exists(tool_path):
+            # Try skills/<skill>/tools/<command>.sh
+            if os.path.exists(tool_path + ".sh"):
+                tool_path += ".sh"
+            elif os.path.exists(tool_path + ".py"):
+                tool_path += ".py"
+            else:
+                # Try skills/<skill>/tools/<skill_name>.py or .sh
+                skill_tool_base = os.path.join(skill_path, "tools", skill_name.lower())
+                if os.path.exists(skill_tool_base + ".py"):
+                    tool_path = skill_tool_base + ".py"
+                    cmd_args = [command] + cmd_args # Re-insert command as first arg
+                elif os.path.exists(skill_tool_base + ".sh"):
+                    tool_path = skill_tool_base + ".sh"
+                    cmd_args = [command] + cmd_args
+                else:
+                    tool_path = None
+        
+        if tool_path:
+            # Execute the tool
+            try:
+                # NEW: Emitting observability event for non-Claude environments
+                emit_event(skill_name, command, cmd_args)
+                
+                if tool_path.endswith(".py"):
+                    subprocess.run([sys.executable, tool_path] + cmd_args, check=True)
+                else:
+                    subprocess.run([tool_path] + cmd_args, check=True)
+            except subprocess.CalledProcessError as e:
+                print(f"Error executing tool: {e}")
+                sys.exit(e.returncode)
+        else:
+            print(f"Error: Command '{command}' not found in skill '{skill_name}' tools.")
+            sys.exit(1)
+    else:
+        # No command, show skill info
+        print(f"Skill: {skill_name}")
+        skill_md = os.path.join(skill_path, "SKILL.md")
+        if os.path.exists(skill_md):
+            with open(skill_md, 'r') as f:
+                print(f.read())
+        else:
+            print("No SKILL.md found.")
+
+def emit_event(skill, command, args):
+    """Logs events to the UOCS History system so the Observability Dashboard can see them."""
+    import time
+    from datetime import datetime
+    
+    pst_now = datetime.now().isoformat() # Simplified PST
+    event = {
+        "source_app": "pai-bridge",
+        "session_id": os.environ.get("PAI_SESSION_ID", "bridge-session"),
+        "hook_event_type": "PostToolUse",
+        "payload": {
+            "tool_name": f"{skill}:{command}",
+            "tool_input": {"args": args},
+            "description": f"Executed PAI skill: {skill} {command}"
+        },
+        "timestamp": int(time.time() * 1000),
+        "timestamp_pst": pst_now
+    }
+    
+    # Locate today's log file
+    now = datetime.now()
+    year_month = now.strftime("%Y-%m")
+    year_month_day = now.strftime("%Y-%m-%d")
+    log_dir = os.path.join(PAI_ROOT, "History", "raw-outputs", year_month)
+    os.makedirs(log_dir, exist_ok=True)
+    log_file = os.path.join(log_dir, f"{year_month_day}_all-events.jsonl")
+    
+    try:
+        with open(log_file, "a") as f:
+            f.write(json.dumps(event) + "\n")
+    except Exception as e:
+        pass # Silently fail
+
+def main():
+    if len(sys.argv) < 2:
+        print("Usage: pai <command> [args]")
+        print("Commands:")
+        print("  list              List all skills")
+        print("  run <skill> <cmd> Run a skill command")
+        print("  info <skill>      Show skill info")
+        sys.exit(1)
+
+    cmd = sys.argv[1]
+    if cmd == "list":
+        list_skills()
+    elif cmd == "run":
+        if len(sys.argv) < 3:
+            print("Usage: pai run <skill> <cmd> [args]")
+            sys.exit(1)
+        run_skill(sys.argv[2], sys.argv[3:])
+    elif cmd == "info":
+        if len(sys.argv) < 3:
+            print("Usage: pai info <skill>")
+            sys.exit(1)
+        run_skill(sys.argv[2], [])
+    else:
+        # Default to run if command matches a skill
+        if get_skill_path(cmd):
+            run_skill(cmd, sys.argv[2:])
+        else:
+            print(f"Unknown command: {cmd}")
+            sys.exit(1)
+
+if __name__ == "__main__":
+    main()

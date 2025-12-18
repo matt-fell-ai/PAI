@@ -127,19 +127,24 @@ description: Complete blog workflow. USE WHEN user mentions doing anything with 
 
 ## Directory Structure
 
-Every skill follows this structure:
+Every skill follows this structure in the root `skills/` directory:
 
 ```
-SkillName/                    # TitleCase directory name
-├── SKILL.md                  # Main skill file (always uppercase)
-├── ReferenceDoc.md           # Optional: Reference docs (TitleCase)
-├── tools/                    # CLI tools (ALWAYS present, even if empty)
-│   ├── ToolName.ts           # TypeScript CLI tool (TitleCase)
-│   └── ToolName.help.md      # Tool documentation (TitleCase)
-└── workflows/
-    ├── Create.md             # Work execution workflow (TitleCase)
-    └── Update.md             # Work execution workflow (TitleCase)
+skills/
+└── SkillName/                    # TitleCase directory name
+    ├── SKILL.md                  # Main skill file (always uppercase)
+    ├── ReferenceDoc.md           # Optional: Reference docs (TitleCase)
+    ├── tools/                    # CLI tools (ALWAYS present, even if empty)
+    │   ├── ToolName.py           # Universal CLI tool (Python or TS)
+    │   └── ToolName.help.md      # Tool documentation (TitleCase)
+    └── workflows/
+        ├── Create.md             # Work execution workflow (TitleCase)
+        └── Update.md             # Work execution workflow (TitleCase)
 ```
+
+**Bridge Integration:**
+- For **Claude Code**: The root `skills/` is symlinked to `.claude/skills/`.
+- For **Other CLIs**: Use `bin/pai run SkillName ToolName` to execute tools.
 
 ---
 

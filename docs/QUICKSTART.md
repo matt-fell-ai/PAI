@@ -9,7 +9,42 @@
 Choose your platform:
 
 <details>
-<summary><strong>macOS</strong></summary>
+<summary><strong>🤖 Universal / Droid / Other CLIs</strong></summary>
+
+<br/>
+
+### 1. Clone PAI
+
+```bash
+git clone https://github.com/danielmiessler/Personal_AI_Infrastructure.git ~/PAI
+cd ~/PAI
+```
+
+### 2. Initialize the Universal Bridge
+
+```bash
+./bin/pai-init
+```
+
+This script:
+- Checks for dependencies (Python, Git, Bun)
+- Generates `PAI_INSTRUCTIONS.md` (for your AI's context)
+- Sets up the `.env` file
+
+### 3. Usage with Droid (Factory)
+
+If you use Factory's Droid CLI, you can directly use the provided adapter:
+- Point your Droid to `.factory/droids/PAI.md`
+- Or copy the content of `PAI_INSTRUCTIONS.md` to your Droid's custom instructions.
+
+### 4. Usage with Other CLIs (Gemini, Open Code, etc.)
+
+Simply load the `PAI_INSTRUCTIONS.md` into the project context. This tells the AI how to use the `bin/pai` CLI and where to find skills.
+
+</details>
+
+<details>
+<summary><strong>🍎 macOS (Claude Code)</strong></summary>
 
 ### 1. Clone PAI
 

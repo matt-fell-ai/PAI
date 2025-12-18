@@ -55,7 +55,7 @@ That's what PAI is. It's the foundation for building a Personal AI System that u
 
 ## What is PAI?
 
-PAI (Personal AI Infrastructure) is an open-source template for building your own AI-powered operating system. It's currently built on [Claude Code](https://claude.ai/code), but designed to be platform-independent — the architecture, skills, and workflows are structured so future migrations to other AI platforms are straightforward.
+PAI (Personal AI Infrastructure) is an open-source template for building your own AI-powered operating system. It is **platform-agnostic** — designed to work seamlessly across **Claude Code, Droid, Open Code, Codex, and Gemini**. The architecture, skills, and workflows are bridged by a universal CLI layer, ensuring your AI identity and knowledge stay with you regardless of the tool you use.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/pai-infrastructure.png">
@@ -65,9 +65,9 @@ PAI (Personal AI Infrastructure) is an open-source template for building your ow
 
 | Component | Description |
 |-----------|-------------|
-| **Skills** | Self-contained AI capabilities with routing, workflows, and documentation |
-| **Agents** | Specialized AI personalities for different tasks (engineer, researcher, designer) |
-| **Hooks** | Event-driven automation that captures work and manages state |
+| **Skills** | Universal AI capabilities bridged by the `pai` CLI |
+| **Agents** | Specialized AI personalities (Engineer, Researcher, Guardian) |
+| **Bridge** | `bin/pai` - The universal interface for any AI stack |
 | **History** | Automatic documentation system (UOCS) that captures everything |
 
 > [!TIP]
@@ -75,15 +75,17 @@ PAI (Personal AI Infrastructure) is an open-source template for building your ow
 
 <br/>
 
-## What's New in v0.9.0
+## What's New in v1.0.0 (Universal Release)
 
-Big updates! PAI is now fully **platform-agnostic** — your AI identity, your system.
+Big updates! PAI is now fully **platform-agnostic** and "1000x" more capable.
 
 | Feature | Description |
 |---------|-------------|
-| 📊 **Observability Dashboard** | Real-time agent monitoring with live charts |
-| 🎭 **Genericized Identity** | Configure your DA name, it flows everywhere |
-| ⚙️ **Better Configuration** | Clear docs for all environment variables |
+| 🌉 **Universal CLI Bridge** | Use `bin/pai` to run skills in any CLI environment |
+| 🧠 **Memory Skill** | Persistent long-term memory (Second Brain) |
+| 🛡️ **Guardian Skill** | Automated security, linting, and architectural alignment |
+| 📊 **Synthesis Skill** | Automated daily/weekly briefings from your history |
+| 🎭 **Droid Adapter** | Full support for Factory's Droid ecosystem |
 
 👉 [**See full changelog**](#-updates)
 
@@ -95,7 +97,34 @@ Big updates! PAI is now fully **platform-agnostic** — your AI identity, your s
 Choose your platform:
 
 <details>
-<summary><strong>🍎 macOS</strong></summary>
+<summary><strong>🤖 Universal / Droid / Other CLIs</strong></summary>
+
+<br/>
+
+**1. Clone PAI**
+```bash
+git clone https://github.com/danielmiessler/Personal_AI_Infrastructure.git ~/PAI
+cd ~/PAI
+```
+
+**2. Initialize Universal Bridge**
+```bash
+./bin/pai-init
+```
+
+**3. Load Context**
+Load `PAI_INSTRUCTIONS.md` into your AI's system prompt or project context.
+
+**4. Use the CLI**
+```bash
+./bin/pai list
+./bin/pai run Memory store "I prefer TypeScript for core logic."
+```
+
+</details>
+
+<details>
+<summary><strong>🍎 macOS (Claude Code)</strong></summary>
 
 <br/>
 

@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+import os
+import sys
+import subprocess
+
+PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PAI_BIN = os.path.join(PAI_ROOT, "bin", "pai")
+
+def run_test(name, command):
+    print(f"Testing {name}...", end=" ", flush=True)
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, check=True)
+        print("✅ PASS")
+        return True
+    except subprocess.CalledProcessError as e:
+        print("❌ FAIL")
+        print(f"  Command: {' '.join(command)}")
+        print(f"  Error: {e.stderr or e.stdout}")
+        return False
+
+def main():
+    print("=== PAI Universal Skill Test Suite ===\n")
+    
+    tests = [
+        ("CLI Bridge (list)", [PAI_BIN, "list"]),
+        ("CLI Bridge (info)", [PAI_BIN, "info", "Memory"]),
+        ("Memory (store)", [PAI_BIN, "run", "Memory", "store", "Testing PAI 1.0"]),
+        ("Memory (search)", [PAI_BIN, "run", "Memory", "search", "Testing"]),
+        ("Guardian (check)", [PAI_BIN, "run", "Guardian", "check"]),
+        ("Forensics (debug)", [PAI_BIN, "run", "Forensics", "debug"]),
+        ("Visionary (sketch)", [PAI_BIN, "run", "Visionary", "sketch", "Test Arch"]),
+        ("Synthesis (daily)", [PAI_BIN, "run", "Synthesis", "daily"]),
+        ("Connector (check)", [PAI_BIN, "run", "Connector", "check"]),
+        ("SelfRefine (audit)", [PAI_BIN, "run", "SelfRefine", "audit"]),
+        ("Discovery (scan)", [PAI_BIN, "run", "Discovery", "scan"]),
+        ("Swarm (parallel)", [PAI_BIN, "run", "Swarm", "parallel", "--task", "Test Task", "--agents", "Agent1,Agent2"]),
+        ("Librarian (search)", [PAI_BIN, "run", "Librarian", "search", "PAI"]),
+        ("Sideload (skill)", [PAI_BIN, "run", "Sideload", "skill", "Memory"]),
+        ("Ego (analyze)", [PAI_BIN, "run", "Ego", "analyze"]),
+        ("Oracle (suggest)", [PAI_BIN, "run", "Oracle", "suggest"]),
+        ("Nexus (focus)", [PAI_BIN, "run", "Nexus", "focus"]),
+        ("Alpha (leads)", [PAI_BIN, "run", "Alpha", "leads", "AI"]),
+        ("Forge (magnet)", [PAI_BIN, "run", "Forge", "magnet", "AI PDF"]),
+        ("Closer (pitch)", [PAI_BIN, "run", "Closer", "pitch", "--lead", "John", "--product", "Bot"]),
+        ("Vibe (generate)", [PAI_BIN, "run", "Vibe", "generate", "Test Vibe"]),
+        ("Sovereign (audit)", [PAI_BIN, "run", "Sovereign", "audit"]),
+        ("Evolve (create)", [PAI_BIN, "run", "Evolve", "create", "NewSkill"]),
+        ("Refactor (apply)", [PAI_BIN, "run", "Refactor", "apply"]),
+        ("UFC (scaffold)", [PAI_BIN, "run", "UFC", "scaffold", "Test Project"]),
+        ("Proxy (represent)", [PAI_BIN, "run", "Proxy", "represent", "--topic", "AI"]),
+        ("Augment (api)", [PAI_BIN, "run", "Augment", "api", "--url", "http://test.com"]),
+    ]
+
+    passed = 0
+    for name, cmd in tests:
+        if run_test(name, cmd):
+            passed += 1
+
+    print(f"\nResults: {passed}/{len(tests)} tests passed.")
+    
+    if passed < len(tests):
+        sys.exit(1)
+    else:
+        print("All core PAI systems are operational.")
+
+if __name__ == "__main__":
+    main()

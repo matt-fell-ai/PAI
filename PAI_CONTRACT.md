@@ -23,17 +23,29 @@ Think of PAI as the scaffolding. You build your own "Kai" on top of it.
 
 These features work immediately after Quick Start, **requiring no configuration**:
 
-### 1. **Hook System**
+### 1. **Universal CLI Bridge (bin/pai)**
+- ✅ `bin/pai` executes skills across any CLI stack
+- ✅ `bin/pai-init` generates universal instructions
+- ✅ `PAI_INSTRUCTIONS.md` provides context for any AI
+
+### 2. **Hook System (Claude Code)**
 - ✅ Hooks execute without file-not-found errors
 - ✅ SessionStart loads CORE context automatically
 - ✅ Events are captured to history/raw-outputs/
-- ✅ PAI_DIR defaults to ~/.claude (override optional)
+- ✅ PAI_DIR defaults to root workspace (override optional)
 
-### 2. **Skills Architecture**
-- ✅ Skills load and route correctly
+### 3. **Skills Architecture**
+- ✅ Skills load and route correctly in Claude and via `pai` CLI
 - ✅ CORE skill provides system context
 - ✅ Skill triggers activate appropriate modules
 - ✅ Progressive disclosure (3-tier loading) works
+
+### 4. **Advanced "1000x" Skills (Autonomy & Personalization)**
+- ✅ **Memory & Librarian**: Persistent fact storage and semantic retrieval
+- ✅ **Synthesis & Ego**: Automated work reports and dynamic personality evolution
+- ✅ **Swarm & Oracle**: Multi-agent orchestration and proactive suggestions
+- ✅ **Guardian & Nexus**: Security validation and real-world workflow integration
+- ✅ **Alpha, Forge & Closer**: Revenue generation pipeline (Opportunities → Assets → Sales)
 
 ### 3. **Agents**
 - ✅ Agent files define specialized personalities
@@ -120,14 +132,14 @@ Some docs describe:
 ## 🔧 System Requirements
 
 ### **Required**
-- **PAI_DIR:** Defaults to `~/.claude` (override with env var if needed)
-- **Bun:** JavaScript/TypeScript runtime
-- **Claude Code:** v2.0+ recommended
-- **Node/Bun:** For hook execution
+- **PAI_DIR:** Root workspace directory
+- **Python 3:** For the universal `bin/pai` CLI and skills (Memory, Guardian, etc.)
+- **Git:** For version control
+- **Bun:** For Claude Code hooks and TS-based tools
 
 ### **Optional**
-- **Python (uv):** For Python-based tools
-- **Git:** For version control
+- **Claude Code:** v2.0+ for native hook and voice integration
+- **Droid CLI:** For Factory-native adaptation
 - **API Keys:** For specific features (see .env.example)
 
 ---

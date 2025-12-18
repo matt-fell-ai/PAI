@@ -1,28 +1,44 @@
 ---
 name: CORE
-description: PAI (Personal AI Infrastructure) - Your AI system core. AUTO-LOADS at session start. USE WHEN any session begins OR user asks about PAI identity, response format, stack preferences, security protocols, or delegation patterns.
+description: PAI (Personal AI Infrastructure) - Your AI system core. Platform-agnostic and bridge-enabled. AUTO-LOADS at session start. USE WHEN any session begins OR user asks about PAI identity, response format, stack preferences, security protocols, or delegation patterns.
 ---
 
 # CORE - Personal AI Infrastructure
 
-**Auto-loads at session start.** This skill defines your PAI's identity, mandatory response format, and core operating principles.
+**Auto-loads at session start.** This skill defines your PAI's identity, mandatory response format, and core operating principles. It is the heart of the universal bridge between all AI stacks.
 
-## Workflow Routing
+## Universal Bridge (bin/pai)
 
-**When executing a workflow, call the notification script via Bash:**
+PAI is now platform-agnostic. Use the `bin/pai` CLI to run skills in any environment:
 
 ```bash
-${PAI_DIR}/tools/skill-workflow-notification WorkflowName CORE
+bin/pai run SkillName CommandName [args]
 ```
-
-This emits the notification AND enables dashboards to detect workflow activations.
 
 | Action | Trigger | Behavior |
 |--------|---------|----------|
-| **CLI Creation** | "create a CLI", "build command-line tool" | Use `system-createcli` skill |
+| **CLI Creation** | "create a CLI", "build command-line tool" | Use `CreateCLI` skill |
 | **Git** | "push changes", "commit to repo" | Run git workflow |
-| **Delegation** | "use parallel interns", "parallelize" | Deploy parallel agents |
-| **Merge** | "merge conflict", "complex decision" | Use /plan mode |
+| **Memory** | "remember this", "search my brain" | Use `Memory` skill |
+| **Forensics** | "why did it fail", "debug this" | Use `Forensics` skill |
+| **Synthesis** | "summarize my day", "daily report" | Use `Synthesis` skill |
+| **Visionary** | "sketch this", "mermaid diagram" | Use `Visionary` skill |
+| **Guardian** | "check security", "lint code" | Use `Guardian` skill |
+| **Connector** | "check slack", "sync github" | Use `Connector` skill |
+| **SelfRefine** | "improve system", "optimize tool" | Use `SelfRefine` skill |
+| **Discovery** | "scan environment", "find tool" | Use `Discovery` skill |
+| **Swarm** | "parallel task", "delegate work" | Use `Swarm` skill |
+| **Librarian** | "search knowledge", "context" | Use `Librarian` skill |
+| **Sideload** | "inject context", "skill essence" | Use `Sideload` skill |
+| **Ego** | "who are you", "update personality" | Use `Ego` skill |
+| **Oracle** | "what should we do", "next steps" | Use `Oracle` skill |
+| **Nexus** | "focus mode", "trigger webhook" | Use `Nexus` skill |
+| **Alpha** | "find leads", "market trends" | Use `Alpha` skill |
+| **Forge** | "create product", "batch content" | Use `Forge` skill |
+| **Closer** | "draft pitch", "send proposal" | Use `Closer` skill |
+| **UFC** | "scaffold project", "enforce structure" | Use `UFC` skill |
+| **Proxy** | "speak for me", "represent user" | Use `Proxy` skill |
+| **Augment** | "turn into API", "wrap url" | Use `Augment` skill |
 
 ## Examples
 
@@ -143,7 +159,7 @@ description: [What it does]. USE WHEN [intent triggers using OR]. [Capabilities]
 
 ## Stack Preferences (Always Active)
 
-- **TypeScript > Python** - Use TypeScript unless explicitly approved
+- **TypeScript & Python** - Use TypeScript for core infra and Python for data/AI CLI tools.
 - **Package managers:** bun for JS/TS (NOT npm/yarn/pnpm), uv for Python (NOT pip)
 - **Markdown > HTML:** NEVER use HTML tags for basic content. HTML ONLY for custom components.
 - **Markdown > XML:** NEVER use XML-style tags in prompts. Use markdown headers instead.

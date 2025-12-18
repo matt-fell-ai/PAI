@@ -207,13 +207,22 @@ Kai can:
 
 Skills are more than documentation - they are active orchestrators:
 
-- **Self-activating:** Trigger automatically based on user request
+- **Universal:** Accessible via `bin/pai` CLI across all AI stacks (Droid, Gemini, etc.)
+- **Self-activating:** Trigger automatically based on user request (in Claude Code)
 - **Self-contained:** Package all context, workflows, and assets
 - **Composable:** Can call other skills and agents
 - **Evolvable:** Easy to add, modify, or deprecate
 - **Discoverable:** Natural language routing to right skill
 
-**Key Takeaway:** Skills are how Kai scales - each new domain gets its own skill, maintaining organization as the system grows.
+**Key Takeaway:** Skills are how PAI scales - each new domain gets its own skill, maintaining organization as the system grows.
+
+### 9. Platform Agnosticism
+
+**Your AI infrastructure should not be a prisoner of a single vendor.**
+
+PAI is designed to be the "thin layer" between you and any Large Language Model. By centering all capabilities in the `skills/` directory and bridging them with a universal Python/Bash CLI (`bin/pai`), the infrastructure can be "sideloaded" into any agentic environment (Droid, Open Code, Codex) without rewrite.
+
+**Key Takeaway:** Build skills as independent CLI tools first, then adapt them to specific AI platforms via lightweight bridges.
 
 ---
 

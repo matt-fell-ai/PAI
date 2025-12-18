@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+import os
+import sys
+import subprocess
+
+PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+def check_deps():
+    print("Checking dependencies...")
+    deps = ["git", "python3", "bun"]
+    for dep in deps:
+        if subprocess.run(["which", dep], capture_output=True).returncode == 0:
+            print(f" [OK] {dep}")
+        else:
+            print(f" [MISSING] {dep}")
+
+def setup_env():
+    env_path = os.path.join(PAI_ROOT, ".claude", ".env")
+    example_path = os.path.join(PAI_ROOT, ".claude", ".env.example")
+    if not os.path.exists(env_path) and os.path.exists(example_path):
+        print("Creating .env from .env.example...")
+        import shutil
+        shutil.copy(example_path, env_path)
+    else:
+        print(".env already exists or .env.example missing.")
+
+def generate_universal_instructions():
+    print("Generating universal agent instructions (PAI_INSTRUCTIONS.md)...")
+    content = f"""# Universal PAI Agent Instructions
+
+To use this Personal AI Infrastructure in any CLI stack (Gemini, Open Code, Codex, etc.), 
+load the following context into your system prompt or as a project-level instruction:
+
+## Infrastructure Root
+PATH: {PAI_ROOT}
+
+## How to use Skills
+The infrastructure has specialized skills in `{PAI_ROOT}/skills/`.
+Each skill contains a `SKILL.md` file describing its capabilities.
+Use the `pai` command to execute skills: `{PAI_ROOT}/bin/pai run <SkillName> <command>`.
+
+## Core Guidelines
+1. Always check `History/` for recent context before starting a task.
+2. Use `Memory` skill to store and retrieve user preferences.
+3. Document significant outcomes in `History/Execution/`.
+4. Apply Fabric patterns natively by reading `{PAI_ROOT}/skills/Fabric/tools/patterns/<pattern>/system.md`.
+
+## Active Skills
+- Fabric (248 AI patterns)
+- Memory (Persistent Second Brain)
+- Synthesis (Daily Briefings)
+- Connector (External Action Layer)
+- Research (Multi-source investigation)
+"""
+    with open(os.path.join(PAI_ROOT, "PAI_INSTRUCTIONS.md"), 'w') as f:
+        f.write(content)
+
+def main():
+    print("=== PAI Universal Initialization ===")
+    check_deps()
+    setup_env()
+    generate_universal_instructions()
+    print("\nInitialization complete.")
+    print(f"You can now run '{PAI_ROOT}/bin/pai list' to see available skills.")
+
+if __name__ == "__main__":
+    main()
