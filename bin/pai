@@ -74,6 +74,15 @@ def show_help():
     print(f"  pai Manual help\n")
     list_skills()
 
+def show_skill_info(skill_name, skill_path):
+    print(f"{Colors.BOLD}{Colors.CYAN}Skill: {skill_name}{Colors.ENDC}")
+    skill_md = os.path.join(skill_path, "SKILL.md")
+    if os.path.exists(skill_md):
+        with open(skill_md, 'r') as f:
+            print(f.read())
+    else:
+        print("No SKILL.md found.")
+
 def run_skill(skill_name, args):
     skill_path = get_skill_path(skill_name)
     if not skill_path:
@@ -85,6 +94,14 @@ def run_skill(skill_name, args):
         command = args[0]
         cmd_args = args[1:]
         
+        # AMAZING: If the user is asking for help or info, just show it
+        is_help = any(h in command.lower() for h in ["help", "info", "--help", "-h"])
+        is_question = any(q in command.lower() for q in ["?", "what", "how", "why", "who", "where", "when"])
+        
+        if is_help or is_question:
+            show_skill_info(skill_name, skill_path)
+            return
+
         # Try skills/<skill>/tools/<command>
         tool_path = os.path.join(skill_path, "tools", command)
         if not os.path.exists(tool_path):
@@ -114,20 +131,17 @@ def run_skill(skill_name, args):
                 else:
                     subprocess.run([tool_path] + cmd_args, check=True)
             except subprocess.CalledProcessError as e:
-                print(f"{Colors.RED}Error executing tool: {e}{Colors.ENDC}")
+                # If the tool fails, suggest checking info
+                print(f"\n{Colors.YELLOW}TIP: It looks like '{command}' might not be the right command for {skill_name}.{Colors.ENDC}")
+                print(f"{Colors.YELLOW}Try running 'pai info {skill_name}' to see available commands.{Colors.ENDC}")
                 sys.exit(e.returncode)
         else:
             print(f"{Colors.RED}Error: Command '{command}' not found in skill '{skill_name}' tools.{Colors.ENDC}")
+            print(f"{Colors.YELLOW}Try running 'pai info {skill_name}' to see available commands.{Colors.ENDC}")
             sys.exit(1)
     else:
         # No command, show skill info
-        print(f"{Colors.BOLD}{Colors.CYAN}Skill: {skill_name}{Colors.ENDC}")
-        skill_md = os.path.join(skill_path, "SKILL.md")
-        if os.path.exists(skill_md):
-            with open(skill_md, 'r') as f:
-                print(f.read())
-        else:
-            print("No SKILL.md found.")
+        show_skill_info(skill_name, skill_path)
 
 def emit_event(skill, command, args):
     import time
