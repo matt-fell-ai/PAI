@@ -56,9 +56,10 @@ cd ~/PAI
 ```
 
 **2. Conversational Onboarding**
-Run our intelligent setup guide. It will walk you through identity setup and secure your API keys.
+Run our intelligent setup guide. It will walk you through identity setup, secure your API keys, and configure your shell.
 ```bash
 ./bin/pai-init
+source ~/.bashrc  # Or ~/.zshrc, depending on your shell
 ```
 
 **3. Load the Soul**

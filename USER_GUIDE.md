@@ -14,7 +14,10 @@ Your PAI isn't just a chatbot; it's a organized set of files. It has a **Constit
 
 ### 2. The Universal Bridge (`pai`)
 You can use your PAI with any AI you like—Claude, Droid, Gemini, or ChatGPT. You talk to your system using the `pai` command. 
+*   Example: `pai list`
 *   Example: `pai run Memory search "Where is my OAuth key?"`
+
+(Note: If `pai` command is not found, ensure you ran `./bin/pai-init` and restarted your terminal or sourced your profile.)
 
 ### 3. The Second Brain (Memory & Librarian)
 The PAI has a long-term memory. It stores facts about you and your projects. When you ask it a question, it uses the **Librarian** to search through months of your past work to find the answer.

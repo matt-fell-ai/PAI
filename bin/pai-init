@@ -29,9 +29,32 @@ def setup_identity():
     # Update settings.json if it exists
     settings_path = os.path.join(PAI_ROOT, ".claude", "settings.json")
     if os.path.exists(settings_path):
-        print(f"Updating identity to '{da_name}' in settings.json...")
-        # (Simplified update logic for now)
+        import json
+        try:
+            with open(settings_path, 'r') as f:
+                data = json.load(f)
+            if "env" not in data: data["env"] = {}
+            data["env"]["DA"] = da_name
+            with open(settings_path, 'w') as f:
+                json.dump(data, f, indent=2)
+            print(f"Updating identity to '{da_name}' in settings.json...")
+        except Exception as e:
+            print(f"Warning: Could not update settings.json: {e}")
     
+    # Update CORE/SKILL.md as well
+    core_skill_path = os.path.join(PAI_ROOT, "skills", "CORE", "SKILL.md")
+    if os.path.exists(core_skill_path):
+        try:
+            with open(core_skill_path, 'r') as f:
+                content = f.read()
+            # Simple replacement
+            if "- Name: PAI" in content:
+                content = content.replace("- Name: PAI", f"- Name: {da_name}")
+                with open(core_skill_path, 'w') as f:
+                    f.write(content)
+        except:
+            pass
+
     print(f"Identity confirmed. Welcome, {user_name}. I am {da_name}.")
     return user_name, da_name
 
@@ -63,14 +86,38 @@ Talk to me via: {PAI_ROOT}/bin/pai run <Skill> <cmd>
         f.write(content)
     print("Bridge instructions generated.")
 
+def setup_shell():
+    print("\n--- Phase 4: Shell Integration ---")
+    shell_profile = None
+    home = os.path.expanduser("~")
+    
+    if os.path.exists(os.path.join(home, ".zshrc")):
+        shell_profile = os.path.join(home, ".zshrc")
+    elif os.path.exists(os.path.join(home, ".bashrc")):
+        shell_profile = os.path.join(home, ".bashrc")
+        
+    if shell_profile:
+        add_alias = get_input(f"Should I add the 'pai' alias to your {os.path.basename(shell_profile)}?", "Y").lower()
+        if add_alias == 'y':
+            alias_line = f"\nalias pai='{PAI_ROOT}/bin/pai'\n"
+            with open(shell_profile, "a") as f:
+                f.write(alias_line)
+            print(f"Alias added. Please run 'source {shell_profile}' to activate it.")
+        else:
+            print("Skipping shell integration.")
+    else:
+        print("Could not find .bashrc or .zshrc. Please add the following to your profile manually:")
+        print(f"alias pai='{PAI_ROOT}/bin/pai'")
+
 def main():
     print_banner()
     user_name, da_name = setup_identity()
     setup_vault()
     setup_bridge()
+    setup_shell()
     
     print("\n--- Setup Complete ---")
-    print(f"You're all set! Run '{PAI_ROOT}/bin/pai list' to see your new skills.")
+    print(f"You're all set! Run 'pai list' (after sourcing your profile) to see your new skills.")
     print("TIP: Try 'pai run Manual help' for a guided walkthrough.")
 
 if __name__ == "__main__":
