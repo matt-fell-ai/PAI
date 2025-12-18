@@ -49,6 +49,10 @@ def main():
         ("UFC (scaffold)", [PAI_BIN, "run", "UFC", "scaffold", "Test Project"]),
         ("Proxy (represent)", [PAI_BIN, "run", "Proxy", "represent", "--topic", "AI"]),
         ("Augment (api)", [PAI_BIN, "run", "Augment", "api", "--url", "http://test.com"]),
+        ("Neural (search)", [PAI_BIN, "run", "Neural", "search", "state"]),
+        ("Engine (validate)", [PAI_BIN, "run", "Engine", "validate", "bin/pai"]),
+        ("Sanctum (run)", [PAI_BIN, "run", "Sanctum", "run", "bin/pai"]),
+        ("Blueprint (launch)", [PAI_BIN, "run", "Blueprint", "launch", "Test Business"]),
     ]
 
     passed = 0

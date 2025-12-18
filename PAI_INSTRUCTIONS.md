@@ -40,3 +40,7 @@ Use the `pai` command to execute skills: `/project/workspace/bin/pai run <SkillN
 - UFC (Unified Filesystem-based Context)
 - Proxy (The Digital Representative)
 - Augment (The API-ification Layer)
+- Neural (Semantic Concept Memory)
+- Engine (Deterministic Validation Pipeline)
+- Sanctum (Isolated Execution Sandbox)
+- Blueprint (Infrastructure-as-Code for Ideas)

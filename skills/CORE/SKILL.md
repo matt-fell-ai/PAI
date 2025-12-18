@@ -39,6 +39,10 @@ bin/pai run SkillName CommandName [args]
 | **UFC** | "scaffold project", "enforce structure" | Use `UFC` skill |
 | **Proxy** | "speak for me", "represent user" | Use `Proxy` skill |
 | **Augment** | "turn into API", "wrap url" | Use `Augment` skill |
+| **Neural** | "concept search", "pattern search" | Use `Neural` skill |
+| **Engine** | "validate code", "run gates" | Use `Engine` skill |
+| **Sanctum** | "run isolated", "sandbox" | Use `Sanctum` skill |
+| **Blueprint** | "launch project", "business setup" | Use `Blueprint` skill |
 
 ## Examples
 

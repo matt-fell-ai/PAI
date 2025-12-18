@@ -36,6 +36,13 @@ This is the "Soul" of the PAI—the part that turns information into a personal 
 *   **Proxy** learns your voice so it can write emails or PR comments for you.
 *   **Augment** turns any website into your own personal data stream (API).
 
+### 7. The Meta-Capability Suite (Neural, Engine, Sanctum, Blueprint)
+These skills make the PAI "Self-Correction" and "High-Speed" infrastructure.
+*   **Neural** gives the PAI semantic memory—it searches for *ideas*, not just words.
+*   **Engine** ensures every piece of code is safe and tested before you see it.
+*   **Sanctum** runs dangerous or new code in a safe "sandbox" to protect you.
+*   **Blueprint** builds the entire folder structure for a new business idea in seconds.
+
 ---
 
 ## How to Get Started (The Easy Way)
