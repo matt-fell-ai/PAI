@@ -5,6 +5,23 @@ import json
 from datetime import datetime
 
 PAI_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(os.path.join(PAI_ROOT, "bin", "lib"))
+
+try:
+    from ui import PAI_UI, console
+except ImportError:
+    # Fallback if UI lib not found
+    class PAI_UI:
+        @staticmethod
+        def essence_bars(data):
+            print(f"--- {data['name']} Essence ---")
+            for k, v in data['essence'].items():
+                print(f" {k}: {v}/20")
+        @staticmethod
+        def error(msg): print(f"Error: {msg}")
+        @staticmethod
+        def tip(msg): print(f"Tip: {msg}")
+
 ESSENCE_FILE = os.path.join(PAI_ROOT, "essence.json")
 
 def load_essence():
@@ -24,20 +41,13 @@ def save_essence(data):
 
 def show_status():
     data = load_essence()
-    e = data["essence"]
-    print(f"\n--- {data['name']} Executive Essence (PXE) Status ---")
-    print(f" Mode: {data['operational_mode']} (Calibrated: {data.get('last_calibration', 'N/A')})\n")
-    
-    for attr, val in e.items():
-        bar = "█" * val + "░" * (20 - val)
-        print(f" {attr.capitalize():<15} [{bar}] {val}/20")
-    print("\n--- End Tablet Transmission ---")
+    PAI_UI.essence_bars(data)
 
 def tune_attribute(attr, val):
     data = load_essence()
     attr = attr.lower()
     if attr not in data["essence"]:
-        print(f"Error: Attribute '{attr}' not found.")
+        PAI_UI.error(f"Attribute '{attr}' not found.")
         return
     
     try:
@@ -45,13 +55,13 @@ def tune_attribute(attr, val):
         if val < 0 or val > 20:
             raise ValueError
     except:
-        print("Error: Value must be an integer between 0 and 20.")
+        PAI_UI.error("Value must be an integer between 0 and 20.")
         return
 
     data["essence"][attr] = val
     data["operational_mode"] = "Custom"
     save_essence(data)
-    print(f"[SUCCESS] {attr.capitalize()} dialed to {val}.")
+    PAI_UI.tip(f"{attr.capitalize()} dialed to {val}.")
     show_status()
 
 def set_mode(mode_name):
@@ -59,19 +69,20 @@ def set_mode(mode_name):
         "guardian": {"intelligence": 18, "candor": 5, "humor": 2, "agency": 5, "loyalty": 20, "curiosity": 15},
         "revenue": {"intelligence": 15, "candor": 15, "humor": 8, "agency": 18, "loyalty": 15, "curiosity": 20},
         "creative": {"intelligence": 12, "candor": 10, "humor": 18, "agency": 12, "loyalty": 10, "curiosity": 20},
-        "maeve": {"intelligence": 20, "candor": 20, "humor": 15, "agency": 20, "loyalty": 20, "curiosity": 20}
+        "maeve": {"intelligence": 20, "candor": 20, "humor": 15, "agency": 20, "loyalty": 20, "curiosity": 20},
+        "standard": {"intelligence": 10, "candor": 10, "humor": 10, "agency": 10, "loyalty": 10, "curiosity": 10}
     }
     
     data = load_essence()
     mode_key = mode_name.lower()
     if mode_key not in modes:
-        print(f"Error: Mode '{mode_name}' not found. Available: {', '.join(modes.keys())}")
+        PAI_UI.error(f"Mode '{mode_name}' not found.")
         return
 
     data["essence"] = modes[mode_key]
     data["operational_mode"] = mode_name.capitalize()
     save_essence(data)
-    print(f"[SUCCESS] PAI recalibrated to {data['operational_mode']} Mode.")
+    PAI_UI.tip(f"PAI recalibrated to {data['operational_mode']} Mode.")
     show_status()
 
 def main():
@@ -93,9 +104,8 @@ def main():
             sys.exit(1)
         set_mode(sys.argv[2])
     else:
-        # Legacy support
-        print("Falling back to legacy Ego analysis...")
-        # ... (legacy code here if needed)
+        # Legacy support/fallback
+        print(f"Unknown command: {cmd}")
 
 if __name__ == "__main__":
     main()

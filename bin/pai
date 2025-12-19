@@ -4,97 +4,125 @@ import sys
 import subprocess
 import json
 
-# Colors
-class Colors:
-    HEADER = '\033[95m'
-    BLUE = '\033[94m'
-    CYAN = '\033[96m'
-    GREEN = '\033[92m'
-    YELLOW = '\033[93m'
-    RED = '\033[91m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    ENDC = '\033[0m'
-
+# Add lib to path
 PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(PAI_ROOT, "bin", "lib"))
+
+from ui import PAI_UI, console
+from rich.markdown import Markdown
+
 SKILLS_DIR = os.path.join(PAI_ROOT, "skills")
 
-def print_logo():
-    print(f"""{Colors.CYAN}{Colors.BOLD}
-    ██████╗  █████╗ ██╗
-    ██╔══██╗██╔══██╗██║
-    ██████╔╝███████║██║
-    ██╔═══╝ ██╔══██║██║
-    ██║     ██║  ██║██║
-    ╚═╝     ╚═╝  ╚═╝╚═╝{Colors.ENDC}
-    {Colors.BLUE}Universal Infrastructure CLI{Colors.ENDC}
-    """)
+def load_descriptions_from_agents_md():
+    descs = {}
+    agents_md_path = os.path.join(SKILLS_DIR, "agents.md")
+    if os.path.exists(agents_md_path):
+        with open(agents_md_path, 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                if line.startswith("| **"):
+                    parts = line.split("|")
+                    if len(parts) > 2:
+                        name = parts[1].replace("**", "").strip()
+                        desc = parts[2].strip()
+                        descs[name] = desc
+    return descs
+
+def get_skill_description(name, path, agent_descs):
+    # Try agents.md first
+    if name in agent_descs:
+        return agent_descs[name]
+    
+    # Try SKILL.md frontmatter
+    skill_md = os.path.join(path, "SKILL.md")
+    if os.path.exists(skill_md):
+        with open(skill_md, 'r', errors='ignore') as f:
+            lines = f.readlines()
+            for line in lines:
+                if line.startswith("description:"):
+                    desc = line.replace("description:", "").strip()
+                    if "USE WHEN" in desc:
+                        desc = desc.split("USE WHEN")[0].strip()
+                    if desc and desc != "---":
+                        return desc
+    return "-"
 
 def list_skills():
-    print(f"{Colors.BOLD}{Colors.GREEN}Available PAI Skills:{Colors.ENDC}")
-    skills = []
-    for item in sorted(os.listdir(SKILLS_DIR)):
-        if os.path.isdir(os.path.join(SKILLS_DIR, item)):
-            desc = ""
-            skill_md = os.path.join(SKILLS_DIR, item, "SKILL.md")
-            if os.path.exists(skill_md):
-                with open(skill_md, 'r') as f:
-                    for line in f:
-                        if line.startswith("description:"):
-                            desc = line.replace("description:", "").strip()
-                            if "USE WHEN" in desc:
-                                desc = desc.split("USE WHEN")[0].strip()
-                            break
-            skills.append((item, desc))
+    categories = {
+        "Core": ["CORE", "Memory", "Librarian", "Neural", "Manual", "Discovery", "UFC"],
+        "Revenue": ["Alpha", "Forge", "Closer", "Blueprint", "Wallet"],
+        "Cyber": ["Ghost", "Specter", "Bastion", "Armory", "Guardian", "Forensics", "Sanctum"],
+        "Economy": ["Protocol", "Market", "Sanctity", "Lighthouse"],
+        "Senses": ["Iris", "Echo", "Spatial", "Visionary", "Voice", "Art"],
+        "Autonomy": ["Swarm", "Oracle", "Shadow", "Coop", "Evolve", "Genesis", "Refactor", "Ego"],
+        "Sovereign": ["Sovereign", "Biosync", "Citadel", "Vault", "Sentinel", "Pulse", "Vibe", "Observability"]
+    }
     
-    for name, desc in skills:
-        print(f"  {Colors.BOLD}{Colors.YELLOW}{name:<15}{Colors.ENDC} {desc}")
+    all_skills = sorted([d for d in os.listdir(SKILLS_DIR) if os.path.isdir(os.path.join(SKILLS_DIR, d))])
+    agent_descs = load_descriptions_from_agents_md()
+    
+    rows = []
+    for cat, members in categories.items():
+        for skill in members:
+            if skill in all_skills:
+                desc = get_skill_description(skill, os.path.join(SKILLS_DIR, skill), agent_descs)
+                rows.append([f"[bold cyan]{cat}[/bold cyan]", f"[bold yellow]{skill}[/bold yellow]", desc])
+                all_skills.remove(skill)
+    
+    # Add leftovers
+    for skill in all_skills:
+        desc = get_skill_description(skill, os.path.join(SKILLS_DIR, skill), agent_descs)
+        rows.append(["[dim]Misc[/dim]", f"[bold yellow]{skill}[/bold yellow]", desc])
+
+    PAI_UI.table("PAI Universal Skill Manifest", ["Category", "Skill", "Strategic Purpose"], rows, style="blue")
 
 def get_skill_path(skill_name):
-    # Case insensitive search
     for item in os.listdir(SKILLS_DIR):
         if item.lower() == skill_name.lower() and os.path.isdir(os.path.join(SKILLS_DIR, item)):
             return os.path.join(SKILLS_DIR, item)
     return None
 
 def show_help():
-    print_logo()
-    print(f"{Colors.BOLD}USAGE:{Colors.ENDC}")
-    print(f"  pai <skill> <command> [args]")
-    print(f"  pai <command> [args]\n")
-    print(f"{Colors.BOLD}COMMANDS:{Colors.ENDC}")
-    print(f"  {Colors.GREEN}list{Colors.ENDC}              List all available skills")
-    print(f"  {Colors.GREEN}info <skill>{Colors.ENDC}      Show detailed information for a skill")
-    print(f"  {Colors.GREEN}run <skill> <cmd>{Colors.ENDC}  Run a specific skill command")
-    print(f"  {Colors.GREEN}check{Colors.ENDC}             Run a health check on your environment")
-    print(f"  {Colors.GREEN}init{Colors.ENDC}              Launch the onboarding wizard\n")
-    print(f"{Colors.BOLD}EXAMPLES:{Colors.ENDC}")
-    print(f"  pai run Memory search 'Gemini 3.0'")
-    print(f"  pai check")
-    print(f"  pai Manual help\n")
+    PAI_UI.print_logo()
+    
+    help_text = """
+[bold yellow]USAGE:[/bold yellow]
+  pai <skill> <command> [args]
+  pai <command> [args]
+
+[bold yellow]COMMANDS:[/bold yellow]
+  [green]list[/green]              List all available skills (Categorized)
+  [green]info <skill>[/green]      Show detailed information for a skill
+  [green]run <skill> <cmd>[/green]  Run a specific skill command
+  [green]check[/green]             Run a health check on your environment
+  [green]init[/green]              Launch the onboarding wizard
+
+[bold yellow]EXAMPLES:[/bold yellow]
+  pai run Memory search 'Gemini 3.0'
+  pai check
+  pai Ego status
+"""
+    console.print(help_text)
     list_skills()
 
 def show_skill_info(skill_name, skill_path):
-    print(f"{Colors.BOLD}{Colors.CYAN}Skill: {skill_name}{Colors.ENDC}")
-    skill_md = os.path.join(skill_path, "SKILL.md")
-    if os.path.exists(skill_md):
-        with open(skill_md, 'r') as f:
-            print(f.read())
+    skill_md_path = os.path.join(skill_path, "SKILL.md")
+    if os.path.exists(skill_md_path):
+        with open(skill_md_path, 'r', errors='ignore') as f:
+            PAI_UI.panel(Markdown(f.read()), title=f"Skill: {skill_name}", style="cyan")
     else:
-        print("No SKILL.md found.")
+        PAI_UI.error(f"No SKILL.md found for {skill_name}")
 
 def run_skill(skill_name, args):
     skill_path = get_skill_path(skill_name)
     if not skill_path:
-        print(f"{Colors.RED}Error: Skill '{skill_name}' not found.{Colors.ENDC}")
+        PAI_UI.error(f"Skill '{skill_name}' not found.")
         sys.exit(1)
     
-    # Check for a tool with the command name
     if args:
         command = args[0]
         cmd_args = args[1:]
         
-        # AMAZING: If the user is asking for help or info, just show it
         is_help = any(h in command.lower() for h in ["help", "info", "--help", "-h"])
         is_question = any(q in command.lower() for q in ["?", "what", "how", "why", "who", "where", "when"])
         
@@ -102,16 +130,13 @@ def run_skill(skill_name, args):
             show_skill_info(skill_name, skill_path)
             return
 
-        # Try skills/<skill>/tools/<command>
         tool_path = os.path.join(skill_path, "tools", command)
         if not os.path.exists(tool_path):
-            # Try skills/<skill>/tools/<command>.sh
             if os.path.exists(tool_path + ".sh"):
                 tool_path += ".sh"
             elif os.path.exists(tool_path + ".py"):
                 tool_path += ".py"
             else:
-                # Try skills/<skill>/tools/<skill_name>.py or .sh
                 skill_dir_name = os.path.basename(skill_path)
                 skill_tool_base = os.path.join(skill_path, "tools", skill_dir_name.lower())
                 if os.path.exists(skill_tool_base + ".py"):
@@ -131,16 +156,14 @@ def run_skill(skill_name, args):
                 else:
                     subprocess.run([tool_path] + cmd_args, check=True)
             except subprocess.CalledProcessError as e:
-                # If the tool fails, suggest checking info
-                print(f"\n{Colors.YELLOW}TIP: It looks like '{command}' might not be the right command for {skill_name}.{Colors.ENDC}")
-                print(f"{Colors.YELLOW}Try running 'pai info {skill_name}' to see available commands.{Colors.ENDC}")
+                PAI_UI.tip(f"It looks like '{command}' might not be the right command for {skill_name}.")
+                console.print(f"[dim]Try running 'pai info {skill_name}' to see available commands.[/dim]")
                 sys.exit(e.returncode)
         else:
-            print(f"{Colors.RED}Error: Command '{command}' not found in skill '{skill_name}' tools.{Colors.ENDC}")
-            print(f"{Colors.YELLOW}Try running 'pai info {skill_name}' to see available commands.{Colors.ENDC}")
+            PAI_UI.error(f"Command '{command}' not found in skill '{skill_name}' tools.")
+            PAI_UI.tip(f"Try running 'pai info {skill_name}' to see available commands.")
             sys.exit(1)
     else:
-        # No command, show skill info
         show_skill_info(skill_name, skill_path)
 
 def emit_event(skill, command, args):
@@ -184,12 +207,12 @@ def main():
         list_skills()
     elif cmd == "info":
         if len(sys.argv) < 3:
-            print(f"{Colors.RED}Usage: pai info <skill>{Colors.ENDC}")
+            PAI_UI.error("Usage: pai info <skill>")
             sys.exit(1)
         run_skill(sys.argv[2], [])
     elif cmd == "run":
         if len(sys.argv) < 3:
-            print(f"{Colors.RED}Usage: pai run <skill> <cmd> [args]{Colors.ENDC}")
+            PAI_UI.error("Usage: pai run <skill> <cmd> [args]")
             sys.exit(1)
         run_skill(sys.argv[2], sys.argv[3:])
     elif cmd == "check":
@@ -199,12 +222,11 @@ def main():
     elif cmd == "help" or cmd == "--help" or cmd == "-h":
         show_help()
     else:
-        # Default to run if command matches a skill
         if get_skill_path(cmd):
             run_skill(cmd, sys.argv[2:])
         else:
-            print(f"{Colors.RED}Unknown command or skill: {cmd}{Colors.ENDC}")
-            print(f"Try {Colors.BOLD}pai help{Colors.ENDC} for usage.")
+            PAI_UI.error(f"Unknown command or skill: {cmd}")
+            PAI_UI.tip("Try [bold]pai help[/bold] for usage.")
             sys.exit(1)
 
 if __name__ == "__main__":

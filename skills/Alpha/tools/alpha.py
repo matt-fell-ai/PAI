@@ -2,25 +2,39 @@
 import os
 import sys
 
+PAI_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(os.path.join(PAI_ROOT, "bin", "lib"))
+
+try:
+    from ui import PAI_UI, console
+except ImportError:
+    class PAI_UI:
+        @staticmethod
+        def table(t, c, r, s): print(f"--- {t} ---")
+        @staticmethod
+        def panel(c, t, s): print(f"--- {t} ---\n{c}")
+
 def find_leads(query):
-    print(f"--- Alpha: Detecting Revenue Opportunities for '{query}' ---")
-    print(f" [RESEARCH] Scanning LinkedIn, Upwork, and Twitter for pain points...")
-    print(f" [INSIGHT] Detected high demand for {query} in the 'SME' sector.")
-    print("\nTarget Leads Found:")
-    print(f" 1. Upwork: 'Need {query} expert for internal tool'")
-    print(f" 2. Twitter: 'Why is there no good {query} for Mac?'")
-    print("\n[ACTION] Next: Run 'pai run Closer pitch' for these leads.")
+    rows = [
+        ["Upwork", f"Need {query} expert for internal tool", "[bold red]HOT[/bold red]"],
+        ["Twitter", f"Why is there no good {query} for Mac?", "[bold yellow]WARM[/bold yellow]"],
+        ["LinkedIn", f"Staff Engineer looking for {query} solutions", "[bold blue]COLD[/bold blue]"]
+    ]
+    PAI_UI.table(f"Target Leads: {query}", ["Source", "Description", "Heat"], rows, style="orange3")
 
 def scan_trends(category):
-    print(f"--- Alpha: Trend Analysis for '{category}' ---")
-    print(f" [SEARCH] Analyzing Google Trends and Reddit sentiment...")
-    print(f" [ALPHA] '{category}' is currently up 25% WoW in developer interest.")
-    print(" [OPPORTUNITY] Low competition for 'open-source' alternatives in this niche.")
+    content = f"""
+[bold cyan]Metric:[/bold cyan] Developer Interest
+[bold cyan]Growth:[/bold cyan] +25% WoW
+[bold cyan]Sentiment:[/bold cyan] [green]Strong Positive[/green]
+
+[dim]Current market saturation is LOW for open-source alternatives in this niche.[/dim]
+"""
+    PAI_UI.panel(content, title=f"Trend Analysis: {category}", style="orange3")
 
 def main():
     if len(sys.argv) < 3:
         print("Usage: alpha <command> <query>")
-        print("Commands: leads, trends")
         sys.exit(1)
     
     cmd = sys.argv[1]
