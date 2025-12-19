@@ -53,10 +53,11 @@ def list_skills():
         "Revenue": ["Alpha", "Forge", "Closer", "Blueprint", "Wallet"],
         "Cyber": ["Ghost", "Specter", "Bastion", "Armory", "Guardian", "Forensics", "Sanctum", "Counsel"],
         "Economy": ["Protocol", "Market", "Sanctity", "Lighthouse", "Story"],
-        "Senses": ["Iris", "Echo", "Spatial", "Visionary", "Voice", "Art"],
+        "Senses": ["Iris", "Echo", "Voice"],
         "Autonomy": ["Swarm", "Oracle", "Shadow", "Coop", "Evolve", "Genesis", "Refactor", "Ego", "Empathy", "Hive"],
         "Sovereign": ["Sovereign", "Biosync", "Citadel", "Vault", "Sentinel", "Pulse", "Vibe", "Observability"],
         "Strategy": ["Graph", "Fold", "Bargain"],
+        "Spatial": ["Architect", "Spatial", "Visionary", "Art"],
         "Physical": ["Actuate", "Fabricate"]
     }
     

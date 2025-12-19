@@ -10,6 +10,7 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Actuate** | Interfaces with the physical world through IoT devices, HomeAssistant, or webhooks. USE WHEN you need to control hardware, check environmental sensors, or trigger physical actions. |
 | **Alpha** | Scans for high-value opportunities, market gaps, and revenue-generating "Alpha". USE WHEN you want to find new projects, freelance gigs, or trending market niches. |
 | **Arbiter** | Detects deepfakes, misinformation, and "slop" in ingested data. USE WHEN you are researching high-stakes topics or consuming external media. |
+| **Architect** | Spatial design engine. Manages virtual Dojo reconfiguration via SpacetimeDB world-state transactions. |
 | **Armory** | Manages the downloading, installation, and execution of external cyber, OSINT, and pentesting tools. USE WHEN you need to install a specific program (e.g., Sherlock, Nuclei) or execute a tool from the PAI's toolkit. |
 | **Art** | Complete visual content system for PAI. Tron-meets-Excalidraw aesthetic. |
 | **Augment** | Transforms static websites and data sources into personal APIs and CLI tools. USE WHEN you need to extract structured data from a source that doesn't have an official API. |

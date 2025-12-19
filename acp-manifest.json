@@ -341,6 +341,11 @@
       "skill": "[bold yellow]Fold[/bold yellow]",
       "tool": "compress",
       "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Architect[/bold yellow]",
+      "tool": "design",
+      "price": "0.001 MOR/req"
     }
   ]
 }

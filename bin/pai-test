@@ -83,6 +83,7 @@ def main():
         ("Fabricate (blueprint)", [PAI_BIN, "run", "Fabricate", "blueprint", "test"]),
         ("Empathy (sync)", [PAI_BIN, "run", "Empathy", "sync"]),
         ("Immune (garden)", [PAI_BIN, "run", "Immune", "garden"]),
+        ("Architect (design)", [PAI_BIN, "run", "Architect", "design", "zen_library"]),
         ("Graph (map)", [PAI_BIN, "run", "Graph", "map", "Test Node"]),
         ("Story (register)", [PAI_BIN, "run", "Story", "register", "README.md"]),
         ("Bargain (negotiate)", [PAI_BIN, "run", "Bargain", "negotiate", "100", "50"]),
