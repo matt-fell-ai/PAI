@@ -1,7 +1,7 @@
 # Shadow Skill
 
 ## Purpose
-A PAI modular skill.
+A PAI modular skill for shadow.
 
 ## Components
 - `SKILL.md`: Main instructions and triggers.

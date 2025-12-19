@@ -1,7 +1,7 @@
 # Sovereign Skill
 
 ## Purpose
-A PAI modular skill.
+Performs privacy audits and data sovereignty checks.
 
 ## Components
 - `SKILL.md`: Main instructions and triggers.
