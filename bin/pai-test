@@ -68,6 +68,10 @@ def main():
         ("Specter (audit)", [PAI_BIN, "run", "Specter", "audit", "localhost"]),
         ("Bastion (harden)", [PAI_BIN, "run", "Bastion", "harden", "linux"]),
         ("Armory (list)", [PAI_BIN, "run", "Armory", "list"]),
+        ("Protocol (generate)", [PAI_BIN, "run", "Protocol", "generate"]),
+        ("Market (list)", [PAI_BIN, "run", "Market", "list"]),
+        ("Sanctity (cleanse)", [PAI_BIN, "run", "Sanctity", "cleanse", "test.md"]),
+        ("Lighthouse (beacon)", [PAI_BIN, "run", "Lighthouse", "beacon", "expert"]),
         ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
     ]
 

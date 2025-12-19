@@ -23,6 +23,7 @@ Example: `pai run Memory search "Gemini 3.0"`
 | **Long-Term** | `Legacy` (Wisdom), `Arbiter` (Truth), `Biosync` (Health), `Citadel` (Sovereignty) |
 | **Cyber** | `Ghost` (OSINT), `Specter` (Pentesting), `Bastion` (Hardening) |
 | **Armory** | `Armory` (Tool Manager & Program Execution) |
+| **Economy** | `Protocol` (ID), `Market` (Trade), `Sanctity` (Privacy), `Lighthouse` (Discovery) |
 
 ## 🎯 Directives
 1. **Be Concise**: User time is the most valuable resource.
