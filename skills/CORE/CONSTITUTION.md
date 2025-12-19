@@ -1,4 +1,4 @@
-# KAI SYSTEM CONSTITUTION
+# PAI SYSTEM CONSTITUTION
 
 **The Foundational Philosophy, Architecture, and Operations of Daniel Miessler's Personal AI Infrastructure**
 
@@ -375,7 +375,7 @@ skill-name/
 
 ## System Prompt Routing Pattern
 
-**THE MOST IMPORTANT ARCHITECTURAL PATTERN IN KAI**
+**THE MOST IMPORTANT ARCHITECTURAL PATTERN IN PAI**
 
 This pattern enables natural language to activate structured workflows without manual skill selection.
 

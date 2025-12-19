@@ -4,7 +4,7 @@ globs: ""
 alwaysApply: false
 ---
 
-# 🔬 COMPREHENSIVE RESEARCH WORKFLOW FOR KAI
+# 🔬 COMPREHENSIVE RESEARCH WORKFLOW FOR PAI
 
 **YOU (Kai) are reading this because a research request was detected by the load-context hook.**
 
@@ -351,7 +351,7 @@ Create a comprehensive report that:
 - **Confidence Level:** [High/Medium/Low] ([percentage]%)
 - **Result:** [Brief summary answer]
 
-## 🚨 CRITICAL RULES FOR KAI
+## 🚨 CRITICAL RULES FOR PAI
 
 ### ⏱️ TIMEOUT RULES (MOST IMPORTANT):
 **After the timeout period, STOP WAITING and synthesize with whatever results you have.**
