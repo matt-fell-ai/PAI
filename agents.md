@@ -8,12 +8,12 @@ To provide a sovereign, self-evolving infrastructure that empowers users to beco
 
 ## Repository Structure
 - **`bin/`**: The Universal CLI Bridge and system utility scripts.
-- **`skills/`**: 51+ modular capabilities (Memory, Revenue, Cyber, Economy, Senses).
-- **`agents/`**: Specialized AI personality definitions for task delegation.
-- **`History/`**: Centralized event logging, decision tracking, and learning memory.
-- **`voice-server/`**: The auditory layer for real-time voice interaction.
+- **`skills/`**: 69+ modular capabilities across 10 strategic pillars.
+- **`Agents/`**: Specialized AI personality definitions for task delegation.
+- **`History/`**: Centralized event logging, decision tracking, and knowledge graph.
+- **`DOJO_ARCHITECTURE.md`**: Documentation for the Spatial Interface (Unreal Engine 5).
 
 ## Key Principles
 1. **Sovereignty**: Your data and logic remain under your absolute control.
 2. **Agency**: PAI doesn't just chat; it executes, installs, and builds.
-3. **Evolution**: The system is designed to grow in wisdom and capability over a 5-year horizon.
+3. **Presence**: PAI is an embodied partner, living and designing within a persistent shared reality.

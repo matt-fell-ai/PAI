@@ -63,18 +63,8 @@
       "price": "0.001 MOR/req"
     },
     {
-      "skill": "[bold yellow]SelfRefine[/bold yellow]",
-      "tool": "selfrefine",
-      "price": "0.001 MOR/req"
-    },
-    {
       "skill": "[bold yellow]Discovery[/bold yellow]",
       "tool": "discovery",
-      "price": "0.001 MOR/req"
-    },
-    {
-      "skill": "[bold yellow]Swarm[/bold yellow]",
-      "tool": "swarm",
       "price": "0.001 MOR/req"
     },
     {
@@ -200,11 +190,6 @@
     {
       "skill": "[bold yellow]Blueprint[/bold yellow]",
       "tool": "blueprint",
-      "price": "0.001 MOR/req"
-    },
-    {
-      "skill": "[bold yellow]Manual[/bold yellow]",
-      "tool": "manual",
       "price": "0.001 MOR/req"
     },
     {

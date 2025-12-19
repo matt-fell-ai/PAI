@@ -24,7 +24,6 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Connector** | Interface for external services (Slack, Google Calendar, GitHub, etc.). USE WHEN you need to pull data from or push actions to external platforms. |
 | **Coop** | A PAI modular skill for coop. |
 | **Counsel** | Autonomous risk and compliance auditor. Analyzes documents and code for legal risks, privacy leaks, and contractual pitfalls. |
-| **CreateSkill** | MANDATORY skill creation framework for ALL skill creation requests. |
 | **Discovery** | Explores the environment, network, and available APIs to identify new integration opportunities. USE WHEN you are in a new environment or need to find a tool to solve a problem. |
 | **Echo** | Processes native audio recordings to extract structured context, tasks, and "User Truths". USE WHEN you have meeting recordings, verbal notes, or voice messages to ingest into the PAI. |
 | **Ego** | Analyzes user interaction history and feedback to evolve the PAI's identity, tone, and preferences. USE WHEN you want to review how your partnership has evolved or update the PAI's core personality. |
@@ -46,7 +45,6 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Legacy** | Manages the long-term preservation of values, decisions, and ethical frameworks. USE WHEN you want to ensure the PAI is acting according to your 10-year vision or "North Star." |
 | **Librarian** | Deep search and retrieval across the entire PAI knowledge base (History, Skills, Memory). USE WHEN you need to find past solutions, conceptually related code, or project context. |
 | **Lighthouse** | Broadcasts your PAI's capabilities and discovers trusted peers using the Agent Name Service (ANS). USE WHEN you need to find a specialized agent or register your PAI in the discovery network. |
-| **Manual** | Provides dynamic, up-to-date documentation and "How-To" guides for the PAI. USE WHEN you need help using a skill, setting up a workflow, or understanding the system. |
 | **Market** | Handles agent-to-agent negotiations, commerce, and micro-payments using the Agentic Commerce Protocol (ACP). USE WHEN you want to hire other agents or trade resources/data for value. |
 | **Memory** | Long-term persistent storage for user preferences, facts, and session context. USE WHEN you need to remember something for future sessions or retrieve previously stored information. |
 | **Neural** | Advanced semantic retrieval and concept matching across PAI history. USE WHEN you need to find conceptually related solutions or patterns, even if keywords don't match. |
@@ -54,7 +52,6 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Nodes** | Manages the PAI's relationship with the global compute economy. Benchmarks hardware and interfaces with decentralized compute networks. |
 | **Observability** | Real-time monitoring dashboard for PAI multi-agent activity. |
 | **Oracle** | Proactively analyzes the current state of the project and history to suggest the next logical steps or warn about potential issues. USE WHEN starting a session or finishing a major task. |
-| **Prompting** | Prompt engineering standards and context engineering principles for AI agents based on Anthropic best practices. Covers clarity, structure, progressive discovery, and optimization for signal-to-noise ratio. |
 | **Protocol** | Manages the PAI's Verified Agent Identity (VAI) and Decentralized Identifiers (DIDs). USE WHEN you need to authenticate with other PAIs or services using cryptographic proof of authorization. |
 | **Proxy** | Generates responses and content that perfectly mimic the user's voice, tone, and technical expertise. USE WHEN you need the AI to "speak for you" in PRs, Slack, or public content. |
 | **Pulse** | A PAI modular skill for pulse. |
@@ -63,7 +60,6 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Research** | Comprehensive research, analysis, and content extraction system. Multi-source parallel research using available researcher agents. Deep content analysis with extended thinking. Intelligent retrieval for difficult sites. Fabric pattern selection for 242+ specialized prompts. |
 | **Sanctity** | Uses Zero-Knowledge Proofs (ZKP) to share insights with other agents without revealing raw sensitive data. USE WHEN you need to collaborate while protecting your "Soul" or private history. |
 | **Sanctum** | Executes untrusted or experimental code in an isolated environment. USE WHEN you want to test a new script, run a high-risk scraper, or experiment with third-party code. |
-| **SelfRefine** | Analyzes the PAI's own skills and tools to suggest or implement improvements. USE WHEN you want to optimize a tool, refactor a skill, or improve the PAI's internal efficiency. |
 | **Sentinel** | Manages multimodal costs, token limits, and reasoning depth. USE WHEN you are running expensive Vision/Audio tasks or need to optimize performance vs. cost. |
 | **Shadow** | A PAI modular skill for shadow. |
 | **Sideload** | Compresses and outputs the core context of any PAI skill for injection into other LLM sessions. USE WHEN you need to teach a new AI agent about a specific PAI skill quickly. |
@@ -71,7 +67,6 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Spatial** | Maps visual sketches and diagrams directly to project infrastructure and code. USE WHEN you have a whiteboard photo, a hand-drawn diagram, or a digital mock-up. |
 | **Story** | IP-native identity and rights management. Registers digital assets as Programmable IP via the Story Protocol. |
 | **Specter** | Orchestrates automated vulnerability scanning and security audits. USE WHEN you need to test a system for weaknesses, run a security scan, or research exploit payloads. |
-| **Swarm** | Coordinates multiple specialized agents to solve complex, parallelizable tasks. USE WHEN a task can be broken into independent sub-tasks or requires multiple perspectives (e.g., Code + Security). |
 | **Synthesis** | Analyzes the PAI History and Memory to generate periodic reports and insights. USE WHEN you need a summary of recent work, a daily briefing, or a "Delta" of what has changed. |
 | **UFC** | Enforces a hierarchical single source of truth for projects. USE WHEN starting a new project, restructuring existing ones, or ensuring context alignment across agents. |
 | **Vault** | A PAI modular skill for vault. |

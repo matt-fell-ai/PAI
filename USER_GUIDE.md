@@ -55,9 +55,15 @@ This gives your PAI "Eyes" and "Ears" to understand the real world.
 
 ### 9. The Omni Gateway (PAI-Omni MCP)
 This is the ultimate connection layer. It allows your PAI to connect to other AI tools like Claude Desktop or Cursor.
-*   **Token Efficiency**: It reduces the "Token Tax" by up to 98% using dynamic context loading.
+*   **Token Efficiency**: It reduces the "Token Tax" by up to 98.7% using dynamic context loading.
 *   **Sequence Execution**: It can run multiple steps in a single round-trip, making it lightning-fast.
 *   **Hive Blackboard**: All agents in your system share a single "Blackboard" so they always know what the others are doing.
+
+### 10. The Spatial Interface (The Dojo)
+You can now visit your PAI in a photorealistic virtual dojo built in Unreal Engine 5.
+*   **Embodied Interaction**: PAI design the world around you via the **Architect** skill and **SpacetimeDB**.
+*   **Local Voice**: PAI speaks to you locally with sub-second latency via the **Voice Service**.
+*   **Persistent Reality**: The dojo is a persistent living room for you and your AI partner.
 
 ---
 

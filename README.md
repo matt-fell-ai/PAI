@@ -21,7 +21,7 @@
 
 <br/>
 
-[**User Guide**](USER_GUIDE.md) · [**Instructions**](PAI_INSTRUCTIONS.md) · [**Test Suite**](#-verification)
+[**User Guide**](USER_GUIDE.md) · [**Dojo Architecture**](DOJO_ARCHITECTURE.md) · [**Test Suite**](#-verification)
 
 ---
 
@@ -42,7 +42,7 @@ It remembers your work, builds its own tools, proactively suggests your next ste
 PAI is platform-agnostic. Use the `bin/pai` CLI or the **PAI-Omni MCP Gateway** to interact with your system from any AI environment (Claude Desktop, Cursor, Droid).
 
 ```bash
-./bin/pai list                     # See all 65+ amazing skills
+./bin/pai list                     # See all 69+ amazing skills
 ./bin/pai run Memory search "X"    # Search your Second Brain
 ./bin/pai run Hive orchestrate     # Launch a parallel agent hive
 ./bin/pai-omni                     # Launch the high-efficiency MCP Gateway
@@ -77,7 +77,8 @@ Provide `PAI_INSTRUCTIONS.md` to your AI agent's system prompt. Now any AI you u
 | **Economic** | `Nodes`, `Protocol`, `Wallet` | Self-funding infrastructure: Identity -> Compute Arbitrage -> Credits. |
 | **Synthesis** | `Counsel`, `Fabricate`, `Empathy` | Protects your interests: Risk Audit -> Physical Creation -> Emotional Sync. |
 | **Orchestrator** | `Hive`, `Regen`, `Sanctum` | Massive agency: Blackboard Swarm -> Self-Optimization -> Isolated Execution. |
-| **Memory** | `Neural`, `Librarian` | A semantic "Second Brain" that understands ideas, not just words. |
+| **Strategy** | `Graph`, `Fold`, `Bargain` | Long-horizon planning: Knowledge Graphs -> Context Compression -> Negotiation. |
+| **Spatial** | `Architect`, `Art`, `Iris` | Embodied interaction: Dojo Design -> Visual Synthesis -> Vision Perception. |
 | **Revenue** | `Alpha`, `Forge`, `Closer` | A profit-generating machine: Finds leads -> Builds products -> Closes deals. |
 
 <br/>
@@ -105,7 +106,7 @@ Run the visual heartbeat of your PAI to see your system thinking in real-time.
 
 ## ✅ Verification
 
-Run the robust test suite to ensure all 62+ modules are 100% operational in your environment.
+Run the robust test suite to ensure all 67+ modules are 100% operational in your environment.
 ```bash
 ./bin/pai-test
 ```
