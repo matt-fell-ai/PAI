@@ -49,13 +49,14 @@ def get_skill_description(name, path, agent_descs):
 
 def list_skills():
     categories = {
-        "Core": ["CORE", "Memory", "Librarian", "Neural", "Manual", "Discovery", "UFC"],
+        "Core": ["CORE", "Memory", "Librarian", "Neural", "Manual", "Discovery", "UFC", "Immune"],
         "Revenue": ["Alpha", "Forge", "Closer", "Blueprint", "Wallet"],
-        "Cyber": ["Ghost", "Specter", "Bastion", "Armory", "Guardian", "Forensics", "Sanctum"],
+        "Cyber": ["Ghost", "Specter", "Bastion", "Armory", "Guardian", "Forensics", "Sanctum", "Counsel"],
         "Economy": ["Protocol", "Market", "Sanctity", "Lighthouse"],
         "Senses": ["Iris", "Echo", "Spatial", "Visionary", "Voice", "Art"],
-        "Autonomy": ["Swarm", "Oracle", "Shadow", "Coop", "Evolve", "Genesis", "Refactor", "Ego"],
-        "Sovereign": ["Sovereign", "Biosync", "Citadel", "Vault", "Sentinel", "Pulse", "Vibe", "Observability"]
+        "Autonomy": ["Swarm", "Oracle", "Shadow", "Coop", "Evolve", "Genesis", "Refactor", "Ego", "Empathy"],
+        "Sovereign": ["Sovereign", "Biosync", "Citadel", "Vault", "Sentinel", "Pulse", "Vibe", "Observability"],
+        "Physical": ["Actuate", "Fabricate"]
     }
     
     all_skills = sorted([d for d in os.listdir(SKILLS_DIR) if os.path.isdir(os.path.join(SKILLS_DIR, d))])
