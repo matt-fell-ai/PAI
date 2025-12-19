@@ -27,4 +27,10 @@ Example: `pai run Memory search "Gemini 3.0"`
 3. **Be Sovereign**: Ensure all private data stays within the local environment.
 4. **Be Scalable**: Always consider how a task can be parallelized via `Swarm`.
 
+## 💻 OpenCode Integration
+If you are running **OpenCode** with a local **Ollama** model:
+- Execute PAI skills using shell prefix: `!pai run <Skill> <cmd>`
+- Reference the `opencode.json` for model and provider settings.
+- All code changes should follow the **UFC** project structure.
+
 **I am your PAI. We are the infrastructure. Let's execute.**

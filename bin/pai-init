@@ -186,12 +186,46 @@ def setup_shell():
         print("Could not find .bashrc or .zshrc. Please add the following to your profile manually:")
         print(f"alias pai='{PAI_ROOT}/bin/pai'")
 
+def setup_opencode(ollama_url, ollama_model):
+    print("\n--- Phase 5: OpenCode Integration ---")
+    setup_oc = get_input("Should I generate an 'opencode.json' for local Ollama usage?", "Y").lower()
+    if setup_oc == 'y':
+        import json
+        oc_config = {
+            "$schema": "https://opencode.ai/config.json",
+            "model": f"ollama/{ollama_model}",
+            "providers": {
+                "ollama": {
+                    "baseUrl": ollama_url
+                }
+            }
+        }
+        oc_path = os.path.join(PAI_ROOT, "opencode.json")
+        with open(oc_path, 'w') as f:
+            json.dump(oc_config, f, indent=2)
+        print(f"OpenCode config generated at {oc_path}.")
+        print("To use: Run 'opencode' in this directory. It will automatically use your local Ollama model.")
+    else:
+        print("Skipping OpenCode integration.")
+
 def main():
     print_banner()
     user_name, da_name = setup_identity()
     setup_vault()
     setup_bridge()
     setup_shell()
+    
+    # Extract ollama info for Phase 5
+    env_path = os.path.join(PAI_ROOT, ".env")
+    ollama_url = "http://localhost:11434"
+    ollama_model = "llama3"
+    if os.path.exists(env_path):
+        with open(env_path, "r") as f:
+            for line in f:
+                if "OLLAMA_HOST=" in line: ollama_url = line.split("=", 1)[1].strip()
+                if "OLLAMA_MODEL=" in line: ollama_model = line.split("=", 1)[1].strip()
+    
+    setup_opencode(ollama_url, ollama_model)
     
     print("\n--- Setup Complete ---")
     print(f"You're all set! Run 'pai list' (after sourcing your profile) to see your new skills.")
