@@ -1,2 +1,0 @@
-# Methodology
-Project: Test Project
