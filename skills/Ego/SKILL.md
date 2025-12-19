@@ -24,8 +24,15 @@ pai run Ego propose
 pai run Ego reflect
 ```
 
+### Tuning the Essence (The Tablet)
+```bash
+pai run Ego status              # Show current attribute levels
+pai run Ego dial <attr> <val>   # Set specific attribute (0-20)
+pai run Ego calibrate <mode>    # Switch modes (Guardian, Revenue, Creative, Maeve)
+```
+
 ## How it Works
-It scans `${PAI_DIR}/History/Learnings/` and searches for patterns in user feedback (e.g., "stop doing X", "I love it when you Y"). It then generates a suggested `PREFERENCES.md` or updates the `CORE/SKILL.md` identity section.
+It utilizes the **PXE (PAI Executive Essence)** engine. Attributes are stored in `essence.json` and injected into every session via the `load-core-context` hook. This allows for Westworld-style dynamic control over the PAI's internal logic and tone.
 
 ## Strategic Value
 - **Hyper-Personalization**: Moves from "One size fits all" to "Tailored for You."

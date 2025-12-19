@@ -57,6 +57,24 @@ async function main() {
     // Read the CORE SKILL.md file content
     let coreContent = readFileSync(coreSkillPath, 'utf-8');
 
+    // NEW: Inject Executive Essence (PXE) Attributes
+    const essencePath = join(PAI_DIR, '../essence.json');
+    let essenceReminder = '';
+    if (existsSync(essencePath)) {
+      try {
+        const essenceData = JSON.parse(readFileSync(essencePath, 'utf-8'));
+        const e = essenceData.essence;
+        essenceReminder = `
+[EXECUTIVE ESSENCE ACTIVE]
+Mode: ${essenceData.operational_mode}
+Attributes: Intelligence ${e.intelligence}, Candor ${e.candor}, Humor ${e.humor}, Agency ${e.agency}, Loyalty ${e.loyalty}, Curiosity ${e.curiosity}
+Instructions: You are currently tuned to ${essenceData.operational_mode} mode. Adjust your verbosity, analytical depth, and autonomy to match these sliders.
+`;
+      } catch (err) {
+        console.error('Warning: Could not parse essence.json');
+      }
+    }
+
     // Perform Dynamic Variable Substitution
     // This allows SKILL.md to be generic while the session is personalized
     const daName = process.env.DA || 'PAI';
@@ -79,6 +97,8 @@ PAI CORE CONTEXT (Auto-loaded at Session Start)
 📅 CURRENT DATE/TIME: ${new Date().toLocaleString('en-US', { timeZone: process.env.TIME_ZONE || 'America/Los_Angeles', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZoneName: 'short' })}
 
 The following context has been loaded from ${coreSkillPath}:
+
+${essenceReminder}
 
 ---
 ${coreContent}

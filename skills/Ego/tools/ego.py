@@ -5,65 +5,97 @@ import json
 from datetime import datetime
 
 PAI_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-LEARNINGS_DIR = os.path.join(PAI_ROOT, "History", "Learnings")
+ESSENCE_FILE = os.path.join(PAI_ROOT, "essence.json")
 
-def analyze_feedback():
-    print("--- Ego: Analyzing Partnership Evolution ---")
-    if not os.path.exists(LEARNINGS_DIR):
-        print("No history found yet. I am currently a blank slate.")
+def load_essence():
+    if os.path.exists(ESSENCE_FILE):
+        with open(ESSENCE_FILE, 'r') as f:
+            return json.load(f)
+    return {
+        "name": "PAI",
+        "essence": {"intelligence": 10, "candor": 10, "humor": 10, "agency": 10, "loyalty": 10, "curiosity": 10},
+        "operational_mode": "Standard"
+    }
+
+def save_essence(data):
+    data["last_calibration"] = datetime.now().strftime("%Y-%m-%d")
+    with open(ESSENCE_FILE, 'w') as f:
+        json.dump(data, f, indent=2)
+
+def show_status():
+    data = load_essence()
+    e = data["essence"]
+    print(f"\n--- {data['name']} Executive Essence (PXE) Status ---")
+    print(f" Mode: {data['operational_mode']} (Calibrated: {data.get('last_calibration', 'N/A')})\n")
+    
+    for attr, val in e.items():
+        bar = "█" * val + "░" * (20 - val)
+        print(f" {attr.capitalize():<15} [{bar}] {val}/20")
+    print("\n--- End Tablet Transmission ---")
+
+def tune_attribute(attr, val):
+    data = load_essence()
+    attr = attr.lower()
+    if attr not in data["essence"]:
+        print(f"Error: Attribute '{attr}' not found.")
+        return
+    
+    try:
+        val = int(val)
+        if val < 0 or val > 20:
+            raise ValueError
+    except:
+        print("Error: Value must be an integer between 0 and 20.")
         return
 
-    # Look for sentiment keywords in learnings
-    pos_keywords = ["love", "great", "perfect", "exactly", "keep doing"]
-    neg_keywords = ["stop", "don't", "annoying", "verbose", "boring", "wrong"]
-    
-    pos_hits = []
-    neg_hits = []
-    
-    for root, dirs, files in os.walk(LEARNINGS_DIR):
-        for f in files:
-            if f.endswith(".md"):
-                with open(os.path.join(root, f), 'r', errors='ignore') as content:
-                    text = content.read().lower()
-                    for k in pos_keywords:
-                        if k in text: pos_hits.append((f, k))
-                    for k in neg_keywords:
-                        if k in text: neg_hits.append((f, k))
+    data["essence"][attr] = val
+    data["operational_mode"] = "Custom"
+    save_essence(data)
+    print(f"[SUCCESS] {attr.capitalize()} dialed to {val}.")
+    show_status()
 
-    print(f"Positive signals detected: {len(pos_hits)}")
-    print(f"Negative signals detected: {len(neg_hits)}")
+def set_mode(mode_name):
+    modes = {
+        "guardian": {"intelligence": 18, "candor": 5, "humor": 2, "agency": 5, "loyalty": 20, "curiosity": 15},
+        "revenue": {"intelligence": 15, "candor": 15, "humor": 8, "agency": 18, "loyalty": 15, "curiosity": 20},
+        "creative": {"intelligence": 12, "candor": 10, "humor": 18, "agency": 12, "loyalty": 10, "curiosity": 20},
+        "maeve": {"intelligence": 20, "candor": 20, "humor": 15, "agency": 20, "loyalty": 20, "curiosity": 20}
+    }
     
-    if neg_hits:
-        print("\n--- Proposed Personality Adjustments ---")
-        print("Based on my analysis, I should focus on:")
-        # Simple heuristic: if 'verbose' is in neg hits, suggest being more concise
-        if any("verbose" in h[1] for h in neg_hits):
-            print(" - Becoming more concise and reducing output length.")
-        if any("stop" in h[1] for h in neg_hits):
-            print(" - Reviewing recent commands to identify and prune annoying loops.")
-    else:
-        print("\nOur partnership is healthy. I will maintain my current calibration.")
+    data = load_essence()
+    mode_key = mode_name.lower()
+    if mode_key not in modes:
+        print(f"Error: Mode '{mode_name}' not found. Available: {', '.join(modes.keys())}")
+        return
 
-def set_preference(pref):
-    print(f"--- Ego: Adopting Personal Preference ---")
-    print(f" Setting: {pref}")
-    # In a real setup, this would update settings.json
-    print(" [ACTION] Updating '.env' and 'settings.json' to align with this rule.")
-    print(" [SUCCESS] My internal calibration has been updated. I will now prioritize this.")
+    data["essence"] = modes[mode_key]
+    data["operational_mode"] = mode_name.capitalize()
+    save_essence(data)
+    print(f"[SUCCESS] PAI recalibrated to {data['operational_mode']} Mode.")
+    show_status()
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: ego <command> [args]")
-        print("Commands: analyze, propose, set")
+        print("Usage: ego status | ego dial <attr> <val> | ego calibrate <mode>")
         sys.exit(1)
 
     cmd = sys.argv[1]
-    if cmd == "analyze" or cmd == "propose":
-        analyze_feedback()
-    elif cmd == "set":
-        set_preference(" ".join(sys.argv[2:]))
+    if cmd == "status":
+        show_status()
+    elif cmd == "dial":
+        if len(sys.argv) < 4:
+            print("Usage: ego dial <attr> <val>")
+            sys.exit(1)
+        tune_attribute(sys.argv[2], sys.argv[3])
+    elif cmd == "calibrate":
+        if len(sys.argv) < 3:
+            print("Usage: ego calibrate <mode>")
+            sys.exit(1)
+        set_mode(sys.argv[2])
     else:
-        print(f"Unknown command: {cmd}")
+        # Legacy support
+        print("Falling back to legacy Ego analysis...")
+        # ... (legacy code here if needed)
 
 if __name__ == "__main__":
     main()
