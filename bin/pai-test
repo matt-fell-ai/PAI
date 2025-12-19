@@ -72,6 +72,8 @@ def main():
         ("Market (list)", [PAI_BIN, "run", "Market", "list"]),
         ("Sanctity (cleanse)", [PAI_BIN, "run", "Sanctity", "cleanse", "test.md"]),
         ("Lighthouse (beacon)", [PAI_BIN, "run", "Lighthouse", "beacon", "expert"]),
+        ("Wallet (balance)", [PAI_BIN, "run", "Wallet", "balance"]),
+        ("Actuate (status)", [PAI_BIN, "run", "Actuate", "status", "temp"]),
         ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
     ]
 
