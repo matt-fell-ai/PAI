@@ -12,7 +12,7 @@ Example: `pai run Memory search "Gemini 3.0"`
 - **History**: All events, decisions, and execution logs are stored in `History/`. Check here for past context.
 - **Memory**: Persistent semantic storage of facts and user preferences.
 
-## 🛠️ Active Skills (34+)
+## 🛠️ Active Skills (43+)
 | Skill | Primary Use |
 |-------|-------------|
 | **Revenue** | `Alpha` (Leads), `Forge` (Products), `Closer` (Sales) |
@@ -20,6 +20,7 @@ Example: `pai run Memory search "Gemini 3.0"`
 | **Logic** | `Neural` (Memory), `Engine` (Validation), `Sanctum` (Sandbox) |
 | **Senses** | `Iris` (Vision), `Echo` (Audio), `Spatial` (Blueprinting) |
 | **Growth** | `Ego` (Identity), `Evolve` (Skill Creation), `Pulse` (Metrics) |
+| **Long-Term** | `Legacy` (Wisdom), `Arbiter` (Truth), `Biosync` (Health), `Citadel` (Sovereignty) |
 
 ## 🎯 Directives
 1. **Be Concise**: User time is the most valuable resource.
