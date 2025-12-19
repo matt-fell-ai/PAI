@@ -76,7 +76,7 @@ export interface AdvancedMetrics {
 }
 
 /**
- * Advanced metrics composable for Kai observability dashboard
+ * Advanced metrics composable for PAI observability dashboard
  *
  * Provides comprehensive analytics and calculations beyond basic chart data:
  * - Real-time throughput (events per minute)

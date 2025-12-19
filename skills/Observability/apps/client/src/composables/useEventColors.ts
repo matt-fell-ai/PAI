@@ -114,11 +114,11 @@ export function useEventColors() {
   };
 
   const getHexColorForApp = (appName: string): string => {
-    // Extract agent name before colon (e.g., "kai:58a240f7" -> "kai")
+    // Extract agent name before colon (e.g., "pai:58a240f7" -> "pai")
     const agentName = appName.split(':')[0].toLowerCase();
 
-    // Special case: 'kai' and 'claude-code' should be blue (not in map, but explicit)
-    if (agentName === 'kai') {
+    // Special case: 'pai' and 'claude-code' should be blue (not in map, but explicit)
+    if (agentName === 'pai') {
       return '#3B82F6';
     }
 

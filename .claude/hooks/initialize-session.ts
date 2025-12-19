@@ -14,7 +14,7 @@
  *
  * Setup:
  * 1. Set environment variables in settings.json:
- *    - DA: Your AI's name (e.g., "Kai", "Nova", "Assistant")
+ *    - DA: Your AI's name (e.g., "PAI", "Nova", "Assistant")
  *    - DA_VOICE_ID: Your ElevenLabs voice ID (if using voice system)
  *    - PAI_DIR: Path to your PAI directory (defaults to $HOME/.claude)
  * 2. Ensure load-core-context.ts exists in hooks/ directory

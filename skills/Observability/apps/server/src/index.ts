@@ -298,7 +298,7 @@ const server = Bun.serve({
             if (!title) continue;
 
             activities.push({
-              agent: 'kai',
+              agent: 'pai',
               activity: title,
               timestamp: new Date().toISOString()
             });

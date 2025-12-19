@@ -13,8 +13,8 @@ import { useAdvancedMetrics } from '../useAdvancedMetrics';
 const createMockEvents = (): HookEvent[] => [
   {
     id: 1,
-    source_app: 'kai',
-    agent_name: 'kai',
+    source_app: 'pai',
+    agent_name: 'pai',
     session_id: 'session-001',
     hook_event_type: 'PostToolUse',
     payload: {
@@ -25,7 +25,7 @@ const createMockEvents = (): HookEvent[] => [
   },
   {
     id: 2,
-    source_app: 'kai',
+    source_app: 'pai',
     agent_name: 'engineer',
     session_id: 'session-002',
     hook_event_type: 'PostToolUse',
@@ -37,8 +37,8 @@ const createMockEvents = (): HookEvent[] => [
   },
   {
     id: 3,
-    source_app: 'kai',
-    agent_name: 'kai',
+    source_app: 'pai',
+    agent_name: 'pai',
     session_id: 'session-001',
     hook_event_type: 'PreToolUse',
     payload: { tool_name: 'Read' },
@@ -46,7 +46,7 @@ const createMockEvents = (): HookEvent[] => [
   },
   {
     id: 4,
-    source_app: 'kai',
+    source_app: 'pai',
     agent_name: 'engineer',
     session_id: 'session-002',
     hook_event_type: 'error',
@@ -61,14 +61,14 @@ const createMockDataPoints = (): ChartDataPoint[] => [
     count: 10,
     eventTypes: { 'PostToolUse': 6, 'PreToolUse': 4 },
     sessions: { 'session-001': 7, 'session-002': 3 },
-    apps: { 'kai': 10 }
+    apps: { 'pai': 10 }
   },
   {
     timestamp: Date.now() - 30000,
     count: 15,
     eventTypes: { 'PostToolUse': 8, 'PreToolUse': 5, 'error': 2 },
     sessions: { 'session-001': 8, 'session-002': 7 },
-    apps: { 'kai': 12, 'engineer': 3 }
+    apps: { 'pai': 12, 'engineer': 3 }
   }
 ];
 
@@ -110,7 +110,7 @@ export function exampleUsage() {
 
   console.log('Agent Activity:', metrics.agentActivity.value);
   // Expected: [
-  //   { agent: 'kai', count: 2, percentage: 50 },
+  //   { agent: 'pai', count: 2, percentage: 50 },
   //   { agent: 'engineer', count: 2, percentage: 50 }
   // ]
 

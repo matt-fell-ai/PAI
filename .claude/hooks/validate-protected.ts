@@ -2,7 +2,7 @@
 /**
  * PAI Protected Files Validator
  *
- * Ensures PAI-specific files haven't been overwritten with Kai content.
+ * Ensures PAI-specific files haven't been overwritten with PAI content.
  * Run before committing changes to PAI repository.
  *
  * Usage:
@@ -113,17 +113,17 @@ function checkFileContent(filePath: string, manifest: ProtectedManifest): {
       }
     }
 
-    // Must not contain private Kai data (skip if exception file)
-    if (category.validation.includes('private Kai data') && !isException) {
+    // Must not contain private PAI data (skip if exception file)
+    if (category.validation.includes('private PAI data') && !isException) {
       const privatePatterns = [
         /\/Users\/daniel\/\.claude\/skills\/personal/,
         /daemon\.plist/,
-        /Kai \(Personal AI Infrastructure\)/,
+        /PAI \(Personal AI Infrastructure\)/,
       ];
 
       for (const pattern of privatePatterns) {
         if (pattern.test(content)) {
-          violations.push(`Contains private Kai reference: ${pattern.source}`);
+          violations.push(`Contains private PAI reference: ${pattern.source}`);
         }
       }
     }
@@ -210,8 +210,8 @@ async function main() {
     console.log('\n' + YELLOW + 'Common fixes:' + RESET);
     console.log('  1. Remove API keys and secrets');
     console.log('  2. Remove personal email addresses');
-    console.log('  3. Remove references to private Kai data');
-    console.log('  4. Ensure PAI-specific files reference "PAI" not "Kai"');
+    console.log('  3. Remove references to private PAI data');
+    console.log('  4. Ensure PAI-specific files reference "PAI" not "PAI"');
     console.log('\n📖 See .pai-protected.json for details\n');
     process.exit(1);
   } else {

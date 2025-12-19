@@ -1,10 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft-07/schema#",
-  "description": "PAI Protected Files - Files that must NOT be overwritten with Kai content",
+  "description": "PAI Protected Files - Files that must NOT be overwritten with PAI content",
   "version": "1.0",
   "protected": {
     "core_documents": {
-      "description": "Core PAI documentation that differs from Kai",
+      "description": "Core PAI documentation that differs from PAI",
       "files": [
         "README.md",
         "PAI_CONTRACT.md",
@@ -19,7 +19,7 @@
         ".claude/hooks/self-test.ts",
         ".pai-protected.json"
       ],
-      "validation": "Must not contain references to private Kai data"
+      "validation": "Must not contain references to private PAI data"
     },
     "sanitized_config": {
       "description": "Configuration files that must remain sanitized",
@@ -48,11 +48,11 @@
       ]
     }
   },
-  "kai_to_pai_workflow": {
-    "description": "How to safely sync Kai improvements to PAI",
+  "pai_to_pai_workflow": {
+    "description": "How to safely sync PAI improvements to PAI",
     "steps": [
-      "1. Make changes in Kai (${PAI_DIR}/)",
-      "2. Test thoroughly in Kai environment",
+      "1. Make changes in PAI (${PAI_DIR}/)",
+      "2. Test thoroughly in PAI environment",
       "3. Identify which changes should go to public PAI",
       "4. Copy changes to PAI repo (${PAI_REPO}/)",
       "5. SKIP protected files (they stay PAI-specific)",

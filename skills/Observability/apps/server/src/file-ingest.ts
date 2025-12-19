@@ -185,8 +185,8 @@ function enrichEventWithAgentName(event: HookEvent): HookEvent {
     };
   }
 
-  // Default to 'kai' for main agent sessions (not 'unknown')
-  const agentName = agentSessions.get(event.session_id) || 'kai';
+  // Default to 'pai' for main agent sessions (not 'unknown')
+  const agentName = agentSessions.get(event.session_id) || 'pai';
   return {
     ...event,
     agent_name: agentName

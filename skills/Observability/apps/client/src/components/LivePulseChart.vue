@@ -155,10 +155,10 @@
             {{ getAgentInstanceCount(appName) }}
           </span>
         </button>
-        <!-- Grayed out placeholder agents when none active: User and Kai -->
+        <!-- Grayed out placeholder agents when none active: User and PAI -->
         <template v-if="stableAgentNames.length === 0">
           <div
-            v-for="placeholderAgent in ['User', 'Kai']"
+            v-for="placeholderAgent in ['User', 'PAI']"
             :key="placeholderAgent"
             class="agent-pill-top flex-1 min-w-0 text-xs font-medium px-3 py-1.5 rounded-lg transition-all duration-200 flex items-center gap-2 justify-center bg-[#565f89]/20"
           >
@@ -219,7 +219,7 @@ import {
   Settings2, Workflow, Hammer
 } from 'lucide-vue-next';
 import StatBadge from './stats/StatBadge.vue';
-import { useKaiContext } from '../composables/useKaiContext';
+import { usePaiContext } from '../composables/usePaiContext';
 
 const props = defineProps<{
   events: HookEvent[];
@@ -472,8 +472,8 @@ const processedEventIds = new Set<string>();
 const { formatEventTypeLabel } = useEventEmojis();
 const { getHexColorForSession, getHexColorForApp } = useEventColors();
 
-// Kai context (learnings, active skill, session duration)
-const { context: kaiContext, formatDuration } = useKaiContext();
+// PAI context (learnings, active skill, session duration)
+const { context: paiContext, formatDuration } = usePaiContext();
 
 const hasData = computed(() => dataPoints.value.some(dp => dp.count > 0));
 

@@ -126,7 +126,7 @@ capture_type: SESSION
 timestamp: ${new Date().toISOString()}
 session_id: ${data.conversation_id}
 duration_minutes: ${info.duration}
-executor: kai
+executor: pai
 ---
 
 # Session: ${info.focus}

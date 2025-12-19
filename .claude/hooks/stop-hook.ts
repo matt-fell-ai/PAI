@@ -381,9 +381,9 @@ async function main() {
   // Generate the announcement
   let message = '';
   let voiceConfig = VOICE_CONFIG.voices.main; // Default to main voice config
-  let kaiHasCustomCompleted = false;
+  let paiHasCustomCompleted = false;
 
-  // ALWAYS check Kai's response FIRST (even when agents are used)
+  // ALWAYS check PAI's response FIRST (even when agents are used)
   const lastResponse = lines[lines.length - 1];
   try {
     const entry = JSON.parse(lastResponse);
@@ -404,7 +404,7 @@ async function main() {
         const wordCount = customText.split(/\s+/).length;
         if (customText && wordCount <= 8) {
           message = customText;
-          kaiHasCustomCompleted = true;
+          paiHasCustomCompleted = true;
           console.error(`🗣️ MAIN CUSTOM VOICE: ${message}`);
         } else {
           // Custom completed too long, fall back to regular COMPLETED
@@ -437,7 +437,7 @@ async function main() {
     console.error('⚠️ Error parsing assistant response:', e);
   }
 
-  // If Kai didn't provide a CUSTOM COMPLETED and an agent was used, check agent's response
+  // If PAI didn't provide a CUSTOM COMPLETED and an agent was used, check agent's response
   if (!message && isAgentTask && taskResult) {
     // First, try to find CUSTOM COMPLETED line in agent response
     const customCompletedMatch = taskResult.match(/🗣️\s*CUSTOM\s+COMPLETED:\s*(.+?)(?:\n|$)/im);

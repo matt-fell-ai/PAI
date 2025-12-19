@@ -332,7 +332,7 @@ export class ChartRenderer {
               'grok-researcher': '#EAB308',
               'qatester': '#EAB308',
               'main': '#3B82F6',      // Generic main agent
-              'kai': '#3B82F6',       // Kai instance
+              'pai': '#3B82F6',       // PAI instance
               'pai': '#3B82F6',       // PAI instance
               'claude-code': '#3B82F6',
             };

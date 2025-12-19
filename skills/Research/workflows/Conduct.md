@@ -1,12 +1,12 @@
 ---
-description: Comprehensive multi-source research - Kai loads and invokes researcher commands
+description: Comprehensive multi-source research - PAI loads and invokes researcher commands
 globs: ""
 alwaysApply: false
 ---
 
 # 🔬 COMPREHENSIVE RESEARCH WORKFLOW FOR PAI
 
-**YOU (Kai) are reading this because a research request was detected by the load-context hook.**
+**YOU (PAI) are reading this because a research request was detected by the load-context hook.**
 
 This command provides instructions for YOU to orchestrate comprehensive multi-source research by directly invoking researcher commands (NOT spawning new Claude Code sessions).
 

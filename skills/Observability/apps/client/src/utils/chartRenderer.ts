@@ -331,7 +331,7 @@ export class ChartRenderer {
               'gemini-researcher': '#EAB308',
               'grok-researcher': '#EAB308',
               'qatester': '#EAB308',
-              'kai': '#3B82F6',
+              'pai': '#3B82F6',
               'claude-code': '#3B82F6',
             };
 

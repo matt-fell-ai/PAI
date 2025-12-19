@@ -3,7 +3,7 @@
 **The Foundational Philosophy, Architecture, and Operations of Daniel Miessler's Personal AI Infrastructure**
 
 **Last Updated:** 2025-11-17
-**Status:** Active - This is the canonical reference for all Kai architectural decisions
+**Status:** Active - This is the canonical reference for all PAI architectural decisions
 
 ---
 
@@ -33,9 +33,9 @@
 
 ## Core Philosophy
 
-**Kai is scaffolding for AI, not a replacement for human intelligence.**
+**PAI is scaffolding for AI, not a replacement for human intelligence.**
 
-The system is designed on the principle that **AI systems need structure to be reliable**. Like physical scaffolding supports construction work, Kai provides the architectural framework that makes AI assistance dependable, maintainable, and effective.
+The system is designed on the principle that **AI systems need structure to be reliable**. Like physical scaffolding supports construction work, PAI provides the architectural framework that makes AI assistance dependable, maintainable, and effective.
 
 ### The Central Insight
 
@@ -48,7 +48,7 @@ When you can predict what will happen, you can:
 - Scale it
 - Fix it when it breaks
 
-This is why Kai emphasizes:
+This is why PAI emphasizes:
 - CLI tools over ad-hoc prompting
 - Code before prompts
 - Specifications before implementation
@@ -62,7 +62,7 @@ This is why Kai emphasizes:
 
 **The system architecture matters more than the underlying AI model.**
 
-A well-structured system with good scaffolding will outperform a more powerful model with poor structure. Kai's value comes from:
+A well-structured system with good scaffolding will outperform a more powerful model with poor structure. PAI's value comes from:
 
 - Organized workflows that guide AI execution
 - Routing systems that activate the right context
@@ -184,7 +184,7 @@ Add AI Prompting (make it easy to use)
 
 **The system should be able to improve itself.**
 
-Kai can:
+PAI can:
 - Update its own documentation
 - Modify skill files
 - Add new workflows
@@ -262,7 +262,7 @@ The most important pattern for token efficiency and cognitive clarity.
 ---
 name: CORE
 description: |
-  Kai core identity and infrastructure. Loaded at session start.
+  PAI core identity and infrastructure. Loaded at session start.
   Essential context: identity, contacts, stack prefs, security, voice routing
   Deep references: CONSTITUTION.md, security-protocols.md, etc.
 ---
@@ -365,7 +365,7 @@ skill-name/
 ✅ Progressive loading pattern
 ✅ Package workflows and knowledge
 
-**Kai's Extensions:**
+**PAI's Extensions:**
 ➕ Skills contain Commands as internal organization
 ➕ Natural language auto-selection via system prompt
 ➕ Skills as meta-containers for all primitives
@@ -472,7 +472,7 @@ Execution
 
 ## The Four Primitives
 
-**The building blocks of Kai's architecture.**
+**The building blocks of PAI's architecture.**
 
 ### 1. Skills: Meta-Containers for Domain Expertise
 
@@ -560,7 +560,7 @@ Body:
 - External servers providing tools via Model Context Protocol
 - Anthropic's standard for tool integration
 - Running servers Claude Code connects to
-- Profile-based configuration in Kai
+- Profile-based configuration in PAI
 
 **When to Use:**
 - Need external API access
@@ -568,7 +568,7 @@ Body:
 - Integrate third-party services
 - Extend Claude Code capabilities
 
-**See [Two-Tier MCP Strategy](#two-tier-mcp-strategy) for Kai's approach to MCPs.**
+**See [Two-Tier MCP Strategy](#two-tier-mcp-strategy) for PAI's approach to MCPs.**
 
 ---
 
@@ -846,7 +846,7 @@ Every API CLI tool must have:
 - [ ] Located in ${PAI_DIR}/bin/toolname/
 - [ ] Executable with shebang (#!/usr/bin/env bun)
 
-#### Examples in Kai
+#### Examples in PAI
 
 Current CLI API tools:
 - **llcli** - Limitless.ai API (`${PAI_DIR}/bin/llcli/`)
@@ -953,7 +953,7 @@ This follows the CLI-First principle: Build deterministic tools, wrap with AI or
 
 **THE VOICE FEEDBACK ARCHITECTURE**
 
-Kai uses mandatory structured output format that integrates with voice server for spoken feedback.
+PAI uses mandatory structured output format that integrates with voice server for spoken feedback.
 
 **The Format (MANDATORY):**
 ```markdown
@@ -976,7 +976,7 @@ Kai uses mandatory structured output format that integrates with voice server fo
 
 **Voice Integration Flow:**
 
-1. **Kai/Agent completes task**
+1. **PAI/Agent completes task**
    ```markdown
    🎯 COMPLETED: Blog post published and verified live on production
    ```
@@ -984,7 +984,7 @@ Kai uses mandatory structured output format that integrates with voice server fo
 2. **Stop hook fires** (`${PAI_DIR}/hooks/stop-hook.ts`)
    - Reads transcript after response
    - Extracts COMPLETED line text
-   - Determines entity (Kai vs specific agent)
+   - Determines entity (PAI vs specific agent)
 
 3. **Voice request sent** to server
    ```bash
@@ -993,7 +993,7 @@ Kai uses mandatory structured output format that integrates with voice server fo
      -d '{
        "message": "Blog post published and verified live on production",
        "voice_id": "s3TPKV1kjDlVtZbl4Ksh",
-       "title": "Kai"
+       "title": "PAI"
      }'
    ```
 
@@ -1079,7 +1079,7 @@ ${PAI_DIR}/history/
    - `tool-hook.ts` - Logs tool usage
    - All events → `raw-outputs/YYYY-MM/YYYY-MM-DD_all-events.jsonl`
 
-2. **Manual (by Kai)**
+2. **Manual (by PAI)**
    - Research completed → save to `research/`
    - Learning captured → save to `learnings/`
    - Work summary → save to `sessions/`
@@ -1143,11 +1143,11 @@ ${PAI_DIR}/history/
 
 **MULTI-AGENT ORCHESTRATION**
 
-**Kai's 12+ Specialized Agents:**
+**PAI's 12+ Specialized Agents:**
 
 | Agent | Purpose | Voice ID |
 |-------|---------|----------|
-| kai | Main orchestrator, delegates tasks | s3TPKV1kjDlVtZbl4Ksh |
+| pai | Main orchestrator, delegates tasks | s3TPKV1kjDlVtZbl4Ksh |
 | intern | High-agency genius generalist | d3MFdIuCfbAIwiu7jC4a |
 | engineer | TDD implementation with spec-driven dev | fATgBRI8wg5KkDFg8vBd |
 | principal-engineer | Strategic architecture + planning | iLVmqjzCGGvqtMCk6vVQ |
@@ -1164,22 +1164,22 @@ ${PAI_DIR}/history/
 
 **Sequential Delegation:**
 ```
-Kai → Engineer → Implementation complete
+PAI → Engineer → Implementation complete
 ```
 
 **Parallel Delegation:**
 ```
-Kai → [Intern1, Intern2, Intern3] → All complete → Kai synthesizes
+PAI → [Intern1, Intern2, Intern3] → All complete → PAI synthesizes
 ```
 
 **Nested Delegation:**
 ```
-Kai → Architect (designs) → Engineer (implements) → Kai verifies
+PAI → Architect (designs) → Engineer (implements) → PAI verifies
 ```
 
 **Spotcheck Pattern:**
 ```
-Kai → [10 Interns update files] → Spotcheck Intern (verifies all 10)
+PAI → [10 Interns update files] → Spotcheck Intern (verifies all 10)
 ```
 
 **Reference:**
@@ -1229,8 +1229,8 @@ ${PAI_DIR}/MCPs/swap-mcp chrome-enabled
 ${PAI_DIR}/
 │
 ├── skills/                           # Domain expertise packages
-│   ├── CORE/                        # Kai identity + infrastructure
-│   │   ├── SKILL.md                 # Main Kai skill (Tier 2)
+│   ├── CORE/                        # PAI identity + infrastructure
+│   │   ├── SKILL.md                 # Main PAI skill (Tier 2)
 │   │   ├── CONSTITUTION.md          # This file
 │   │   ├── MY_DEFINITIONS.md        # Canonical definitions
 │   │   ├── *.md                     # Reference files (Tier 3)
@@ -1239,7 +1239,7 @@ ${PAI_DIR}/
 │   └── [30+ domain skills]/         # Research, development, business, etc.
 │
 ├── agents/                          # Specialized agent configs
-│   ├── kai.md
+│   ├── pai.md
 │   ├── intern.md
 │   ├── engineer.md
 │   └── [10+ more agents].md
@@ -1447,7 +1447,7 @@ voice_id: [ElevenLabs voice ID]
 
 ## Architectural Principles Summary
 
-### The Ten Commandments of Kai Architecture
+### The Ten Commandments of PAI Architecture
 
 1. **Command Line First** - Build CLI tools before AI wrappers
 2. **Deterministic Code First** - Same input always produces same output
@@ -1460,7 +1460,7 @@ voice_id: [ElevenLabs voice ID]
 9. **Test-Driven Development** - All tools tested independently before AI integration
 10. **Quality Gates** - Never skip validation steps before declaring completion
 
-### When Building New Kai Systems
+### When Building New PAI Systems
 
 **Always ask:**
 1. Can this be a CLI tool? (If yes → build CLI first)
@@ -1488,7 +1488,7 @@ voice_id: [ElevenLabs voice ID]
 - As Deterministic as Possible
 - Code Before Prompts
 
-**These are non-negotiable foundations that ensure Kai remains dependable, maintainable, and effective.**
+**These are non-negotiable foundations that ensure PAI remains dependable, maintainable, and effective.**
 
 ---
 
@@ -1508,4 +1508,4 @@ voice_id: [ElevenLabs voice ID]
 
 **END OF CONSTITUTION**
 
-**This document defines what Kai is and how Kai works at the most fundamental level.**
+**This document defines what PAI is and how PAI works at the most fundamental level.**

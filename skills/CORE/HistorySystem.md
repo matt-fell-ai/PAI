@@ -134,7 +134,7 @@ New fields available in SubagentStop hooks:
 
 ### 5. SessionStart Hook
 **Triggers:** Session initialization (when you start Claude Code)
-**Implementation:** `${PAI_DIR}/hooks/initialize-kai-session.ts`
+**Implementation:** `${PAI_DIR}/hooks/initialize-pai-session.ts`
 **Purpose:** Load core context and prepare session environment
 
 ---
@@ -204,7 +204,7 @@ duration_minutes: 45
 
 # Context
 project: dashboard
-executor: kai|architect|engineer|designer|researcher
+executor: pai|architect|engineer|designer|researcher
 session_id: uuid
 
 # Development tracking (when applicable)
@@ -370,7 +370,7 @@ find ${PAI_DIR}/History/Decisions -name "*.md" | \
 - ✅ Stop (stop-hook.ts)
 - ✅ SubagentStop (subagent-stop-hook.ts)
 - ✅ SessionEnd (capture-session-summary.ts)
-- ✅ SessionStart (initialize-kai-session.ts)
+- ✅ SessionStart (initialize-pai-session.ts)
 
 **Commands:** ✅ All 4 slash commands available
 **Integration:** ✅ Spec-Kit, Agent workflows

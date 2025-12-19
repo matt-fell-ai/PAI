@@ -1,6 +1,6 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
-export interface KaiContext {
+export interface PAIContext {
   activeSkill: string | null;
   currentProject: {
     name: string;
@@ -15,8 +15,8 @@ export interface KaiContext {
   lastUpdate: string | null;
 }
 
-export function useKaiContext() {
-  const context = ref<KaiContext | null>(null);
+export function usePaiContext() {
+  const context = ref<PAIContext | null>(null);
   const loading = ref(true);
   const error = ref<string | null>(null);
 
@@ -24,7 +24,7 @@ export function useKaiContext() {
 
   const fetchContext = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/kai/context');
+      const response = await fetch('http://localhost:4000/api/pai/context');
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }

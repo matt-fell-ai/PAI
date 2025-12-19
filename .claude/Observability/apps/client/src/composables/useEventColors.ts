@@ -119,7 +119,7 @@ export function useEventColors() {
 
     // Special case: main agent and 'claude-code' should be blue (primary agent color)
     // The main agent name comes from settings.json DA env var
-    if (agentName === 'main' || agentName === 'kai' || agentName === 'pai') {
+    if (agentName === 'main' || agentName === 'pai' || agentName === 'pai') {
       return '#3B82F6';
     }
 
