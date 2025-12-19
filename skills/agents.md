@@ -46,6 +46,7 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Memory** | Long-term persistent storage for user preferences, facts, and session context. USE WHEN you need to remember something for future sessions or retrieve previously stored information. |
 | **Neural** | Advanced semantic retrieval and concept matching across PAI history. USE WHEN you need to find conceptually related solutions or patterns, even if keywords don't match. |
 | **Nexus** | Integrates the PAI with external life systems like Calendar, Email, Slack, and automation webhooks. USE WHEN you need to manage your time, communicate outside the terminal, or trigger real-world automations. |
+| **Nodes** | Manages the PAI's relationship with the global compute economy. Benchmarks hardware and interfaces with decentralized compute networks. |
 | **Observability** | Real-time monitoring dashboard for PAI multi-agent activity. |
 | **Oracle** | Proactively analyzes the current state of the project and history to suggest the next logical steps or warn about potential issues. USE WHEN starting a session or finishing a major task. |
 | **Prompting** | Prompt engineering standards and context engineering principles for AI agents based on Anthropic best practices. Covers clarity, structure, progressive discovery, and optimization for signal-to-noise ratio. |
