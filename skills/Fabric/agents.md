@@ -1,8 +1,4 @@
-# Fabric Skill
+# Agent Identity: Fabric
 
-## Purpose
+## Strategic Purpose
 Native Fabric pattern execution for Claude Code.
-
-## Components
-- `SKILL.md`: Main instructions and triggers.
-- `tools/`: CLI executable scripts.

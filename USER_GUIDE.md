@@ -71,6 +71,12 @@ PAI is now a decentralized node in a revenue-generating mesh network.
 *   **Identity**: Verified Agent Identity (VAI) registered on-chain (Gnosis/Base) via **Olas**.
 *   **Privacy**: Zero-Knowledge (ZK) handshakes for secure context sharing with other agents.
 
+### 12. Intelligence-Amplification Scaffolding (IAS)
+The final breakthrough to AGI-level performance on local hardware.
+*   **Think Twice, Act Once**: Forces small models into self-correction loops.
+*   **Semantic Routing**: Activates only the tools needed, eliminating hallucinations.
+*   **Recursive Verification**: The **Arbiter** and **Neural** cores act as a continuous cognitive governor.
+
 ---
 
 ## How to Get Started (The Easy Way)

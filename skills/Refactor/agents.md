@@ -1,8 +1,4 @@
-# Refactor Skill
+# Agent Identity: Refactor
 
-## Purpose
+## Strategic Purpose
 A PAI modular skill for refactor.
-
-## Components
-- `SKILL.md`: Main instructions and triggers.
-- `tools/`: CLI executable scripts.

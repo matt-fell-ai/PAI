@@ -13,6 +13,11 @@
       "price": "0.001 MOR/req"
     },
     {
+      "skill": "[bold yellow]Arbiter[/bold yellow]",
+      "tool": "refine",
+      "price": "0.001 MOR/req"
+    },
+    {
       "skill": "[bold yellow]Biosync[/bold yellow]",
       "tool": "biosync",
       "price": "0.001 MOR/req"
@@ -175,6 +180,11 @@
     {
       "skill": "[bold yellow]Neural[/bold yellow]",
       "tool": "neural",
+      "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Neural[/bold yellow]",
+      "tool": "route",
       "price": "0.001 MOR/req"
     },
     {

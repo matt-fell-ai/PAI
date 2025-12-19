@@ -86,6 +86,8 @@ def main():
         ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
         ("Nodes (setup)", [PAI_BIN, "run", "Nodes", "setup_engine"]),
         ("Protocol (register)", [PAI_BIN, "run", "Protocol", "register"]),
+        ("Arbiter (refine)", [PAI_BIN, "run", "Arbiter", "refine", "Test content", "Test constraint"]),
+        ("Neural (route)", [PAI_BIN, "run", "Neural", "route", "I want to search memory"]),
     ]
 
     passed = 0

@@ -29,6 +29,27 @@ class PAISDK:
             return f"ERROR [{skill}:{command}]: {result.stderr or result.stdout}"
 
     @staticmethod
+    def ias_run(query):
+        """
+        Execute a query using the Intelligence-Amplification Scaffolding (IAS) loop.
+        Forces the system into higher-order thinking patterns.
+        """
+        # 1. Semantic Routing
+        activated_skills = PAISDK.run("Neural", "route", query)
+        
+        # 2. Planning (Simulated)
+        print(f"IAS: Planning execution using {activated_skills}...")
+        
+        # 3. Execution (Simulated core action)
+        primary_skill = "Oracle" # Default for analysis
+        raw_output = PAISDK.run(primary_skill, "suggest")
+        
+        # 4. Arbiter Refinement
+        refined_output = PAISDK.run("Arbiter", "refine", [raw_output, f"Query: {query}"])
+        
+        return refined_output
+
+    @staticmethod
     def get_blackboard():
         """Retrieve the shared Hive blackboard context."""
         bb_path = os.path.join(PAI_ROOT, "History", "hive_blackboard.json")

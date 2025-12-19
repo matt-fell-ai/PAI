@@ -1,8 +1,4 @@
-# Neural Skill
+# Agent Identity: Neural
 
-## Purpose
+## Strategic Purpose
 Advanced semantic retrieval and concept matching across PAI history. USE WHEN you need to find conceptually related solutions or patterns, even if keywords don't match.
-
-## Components
-- `SKILL.md`: Main instructions and triggers.
-- `tools/`: CLI executable scripts.
