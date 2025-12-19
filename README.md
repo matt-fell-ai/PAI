@@ -21,7 +21,7 @@
 
 <br/>
 
-[**User Guide**](USER_GUIDE.md) · [**Dojo Architecture**](DOJO_ARCHITECTURE.md) · [**Test Suite**](#-verification)
+[**User Guide**](USER_GUIDE.md) · [**Dojo Architecture**](DOJO_ARCHITECTURE.md) · [**Sovereign Mesh**](SOVEREIGN_MESH.md) · [**Test Suite**](#-verification)
 
 ---
 
@@ -106,7 +106,7 @@ Run the visual heartbeat of your PAI to see your system thinking in real-time.
 
 ## ✅ Verification
 
-Run the robust test suite to ensure all 67+ modules are 100% operational in your environment.
+Run the robust test suite to ensure all 69+ modules are 100% operational in your environment.
 ```bash
 ./bin/pai-test
 ```

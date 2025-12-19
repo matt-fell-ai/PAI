@@ -243,6 +243,11 @@
       "price": "0.001 MOR/req"
     },
     {
+      "skill": "[bold yellow]Protocol[/bold yellow]",
+      "tool": "register",
+      "price": "0.001 MOR/req"
+    },
+    {
       "skill": "[bold yellow]Market[/bold yellow]",
       "tool": "market",
       "price": "0.001 MOR/req"
@@ -300,6 +305,11 @@
     {
       "skill": "[bold yellow]Nodes[/bold yellow]",
       "tool": "bench",
+      "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Nodes[/bold yellow]",
+      "tool": "setup_engine",
       "price": "0.001 MOR/req"
     },
     {

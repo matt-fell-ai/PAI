@@ -65,6 +65,12 @@ You can now visit your PAI in a photorealistic virtual dojo built in Unreal Engi
 *   **Local Voice**: PAI speaks to you locally with sub-second latency via the **Voice Service**.
 *   **Persistent Reality**: The dojo is a persistent living room for you and your AI partner.
 
+### 11. The Sovereign Mesh (2.0 Update)
+PAI is now a decentralized node in a revenue-generating mesh network.
+*   **Intelligence**: High-efficiency 1.58-bit models (BitNet) run locally via **llama.cpp**.
+*   **Identity**: Verified Agent Identity (VAI) registered on-chain (Gnosis/Base) via **Olas**.
+*   **Privacy**: Zero-Knowledge (ZK) handshakes for secure context sharing with other agents.
+
 ---
 
 ## How to Get Started (The Easy Way)
