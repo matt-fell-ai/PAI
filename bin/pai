@@ -220,6 +220,8 @@ def main():
         subprocess.run([os.path.join(PAI_ROOT, "bin", "pai-check")])
     elif cmd == "init":
         subprocess.run([os.path.join(PAI_ROOT, "bin", "pai-init")])
+    elif cmd == "mcp":
+        subprocess.run([os.path.join(PAI_ROOT, "bin", "pai-omni")])
     elif cmd == "help" or cmd == "--help" or cmd == "-h":
         show_help()
     else:

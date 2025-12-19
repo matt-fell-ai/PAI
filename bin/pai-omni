@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+import os
+import sys
+import json
+import subprocess
+from fastmcp import FastMCP
+
+# Add lib to path
+PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.join(PAI_ROOT, "bin", "lib"))
+
+from sdk import PAISDK, pai
+
+mcp = FastMCP("PAI-Omni Gateway")
+
+@mcp.tool()
+async def capability_map():
+    """
+    Returns a high-level map of all 65+ PAI capabilities.
+    Use this to identify which skills to 'activate' for your task.
+    """
+    skills_file = os.path.join(PAI_ROOT, "skills", "agents.md")
+    if os.path.exists(skills_file):
+        with open(skills_file, 'r') as f:
+            return f.read()
+    return "PAI Skills: Memory, Cyber, Revenue, Economy, Senses, Autonomy, Sovereign, Physical."
+
+@mcp.tool()
+async def execute_sequence(plan: list):
+    """
+    Executes a sequence of PAI commands in a single round-trip.
+    EXTREMELY token efficient for multi-step tasks.
+    Example plan: [{"skill": "Ghost", "cmd": "recon", "args": "target.com"}, {"skill": "Alpha", "cmd": "leads"}]
+    """
+    results = []
+    for step in plan:
+        skill = step.get("skill")
+        cmd = step.get("cmd")
+        args = step.get("args", "")
+        res = PAISDK.run(skill, cmd, args)
+        results.append({f"{skill}:{cmd}": res})
+    return json.dumps(results, indent=2)
+
+@mcp.tool()
+async def hive_blackboard():
+    """Read the shared PAI Hive blackboard for parallel agent context."""
+    return json.dumps(PAISDK.get_blackboard(), indent=2)
+
+@mcp.tool()
+async def anp_discovery(query: str):
+    """Scout the Agent Network Protocol (ANP) for global agent collaboration."""
+    return PAISDK.scout_anp(query)
+
+@mcp.resource("pai://system/status")
+def system_status():
+    """Get the current health and essence of the PAI."""
+    essence_path = os.path.join(PAI_ROOT, "essence.json")
+    if os.path.exists(essence_path):
+        with open(essence_path, 'r') as f:
+            return f.read()
+    return '{"status": "Operational", "mode": "Standard"}'
+
+if __name__ == "__main__":
+    mcp.run()

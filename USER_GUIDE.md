@@ -53,6 +53,12 @@ This gives your PAI "Eyes" and "Ears" to understand the real world.
 *   **Spatial** turns your hand-drawn sketches into actual project code.
 *   **Sentinel** ensures you don't overspend on these high-powered multimodal models.
 
+### 9. The Omni Gateway (PAI-Omni MCP)
+This is the ultimate connection layer. It allows your PAI to connect to other AI tools like Claude Desktop or Cursor.
+*   **Token Efficiency**: It reduces the "Token Tax" by up to 98% using dynamic context loading.
+*   **Sequence Execution**: It can run multiple steps in a single round-trip, making it lightning-fast.
+*   **Hive Blackboard**: All agents in your system share a single "Blackboard" so they always know what the others are doing.
+
 ---
 
 ## How to Get Started (The Easy Way)
