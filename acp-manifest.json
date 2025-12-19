@@ -321,6 +321,26 @@
       "skill": "[bold yellow]Regen[/bold yellow]",
       "tool": "refine",
       "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Graph[/bold yellow]",
+      "tool": "map",
+      "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Story[/bold yellow]",
+      "tool": "register",
+      "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Bargain[/bold yellow]",
+      "tool": "negotiate",
+      "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Fold[/bold yellow]",
+      "tool": "compress",
+      "price": "0.001 MOR/req"
     }
   ]
 }

@@ -13,6 +13,7 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Armory** | Manages the downloading, installation, and execution of external cyber, OSINT, and pentesting tools. USE WHEN you need to install a specific program (e.g., Sherlock, Nuclei) or execute a tool from the PAI's toolkit. |
 | **Art** | Complete visual content system for PAI. Tron-meets-Excalidraw aesthetic. |
 | **Augment** | Transforms static websites and data sources into personal APIs and CLI tools. USE WHEN you need to extract structured data from a source that doesn't have an official API. |
+| **Bargain** | Game-Theoretic negotiation engine. Optimizes micro-pricing and service terms for agent-to-agent transactions. |
 | **Bastion** | Provides guidance and automation for hardening systems, configuring firewalls, and enforcing security policies. USE WHEN you need to protect a server, secure a network, or apply defensive configurations. |
 | **Biosync** | Integrates your biological data (sleep, nutrition, heart rate) with your PAI productivity. USE WHEN you want to optimize your work schedule based on your physical state. |
 | **Blueprint** | Generates the entire project structure and skill-suite for a new revenue idea. USE WHEN launching a new project, business, or complex technical experiment. |
@@ -31,9 +32,11 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Evolve** | A PAI modular skill for evolve. |
 | **Fabric** | Native Fabric pattern execution for Claude Code. |
 | **Fabricate** | Physical synthesis bridge. Generates blueprints (OpenSCAD, G-Code) for hardware creation (3D printing, CNC). |
+| **Fold** | Recursive context compression. Folds history into strategic summaries to prevent context saturation. |
 | **Forensics** | Deep analysis of system logs, session history, and execution failures. USE WHEN a task fails repeatedly, or you need to understand the underlying patterns of your work. |
 | **Forge** | Mass-produces digital assets, content, and "Lead Magnets" to capture market interest. USE WHEN you need to create products, social content, or technical proofs-of-concept for sale. |
 | **Genesis** | A PAI modular skill for genesis. |
+| **Graph** | Temporal knowledge graph and multi-hop reasoning engine. Maps decisions and entities to prevent context rot. |
 | **Hive** | Parallel orchestration engine. Uses a Blackboard architecture for multi-agent collaboration without bottlenecks. |
 | **Ghost** | Performs advanced OSINT, reconnaissance, and digital footprinting on individuals or domains. USE WHEN you need to gather intelligence from public sources or map a target's digital presence. |
 | **Guardian** | Automated security, linting, and alignment checks. USE WHEN you want to verify the health of the repository or ensure new code follows the PAI architecture. |
@@ -65,6 +68,7 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Sideload** | Compresses and outputs the core context of any PAI skill for injection into other LLM sessions. USE WHEN you need to teach a new AI agent about a specific PAI skill quickly. |
 | **Sovereign** | Performs privacy audits and data sovereignty checks. |
 | **Spatial** | Maps visual sketches and diagrams directly to project infrastructure and code. USE WHEN you have a whiteboard photo, a hand-drawn diagram, or a digital mock-up. |
+| **Story** | IP-native identity and rights management. Registers digital assets as Programmable IP via the Story Protocol. |
 | **Specter** | Orchestrates automated vulnerability scanning and security audits. USE WHEN you need to test a system for weaknesses, run a security scan, or research exploit payloads. |
 | **Swarm** | Coordinates multiple specialized agents to solve complex, parallelizable tasks. USE WHEN a task can be broken into independent sub-tasks or requires multiple perspectives (e.g., Code + Security). |
 | **Synthesis** | Analyzes the PAI History and Memory to generate periodic reports and insights. USE WHEN you need a summary of recent work, a daily briefing, or a "Delta" of what has changed. |
