@@ -49,12 +49,12 @@ def get_skill_description(name, path, agent_descs):
 
 def list_skills():
     categories = {
-        "Core": ["CORE", "Memory", "Librarian", "Neural", "Manual", "Discovery", "UFC", "Immune"],
+        "Core": ["CORE", "Memory", "Librarian", "Neural", "Manual", "Discovery", "UFC", "Immune", "Regen"],
         "Revenue": ["Alpha", "Forge", "Closer", "Blueprint", "Wallet"],
         "Cyber": ["Ghost", "Specter", "Bastion", "Armory", "Guardian", "Forensics", "Sanctum", "Counsel"],
         "Economy": ["Protocol", "Market", "Sanctity", "Lighthouse"],
         "Senses": ["Iris", "Echo", "Spatial", "Visionary", "Voice", "Art"],
-        "Autonomy": ["Swarm", "Oracle", "Shadow", "Coop", "Evolve", "Genesis", "Refactor", "Ego", "Empathy"],
+        "Autonomy": ["Swarm", "Oracle", "Shadow", "Coop", "Evolve", "Genesis", "Refactor", "Ego", "Empathy", "Hive"],
         "Sovereign": ["Sovereign", "Biosync", "Citadel", "Vault", "Sentinel", "Pulse", "Vibe", "Observability"],
         "Physical": ["Actuate", "Fabricate"]
     }

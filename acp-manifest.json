@@ -23,6 +23,11 @@
       "price": "0.001 MOR/req"
     },
     {
+      "skill": "[bold yellow]Hive[/bold yellow]",
+      "tool": "orchestrate",
+      "price": "0.001 MOR/req"
+    },
+    {
       "skill": "[bold yellow]Citadel[/bold yellow]",
       "tool": "citadel",
       "price": "0.001 MOR/req"
@@ -310,6 +315,11 @@
     {
       "skill": "[bold yellow]Nodes[/bold yellow]",
       "tool": "bench",
+      "price": "0.001 MOR/req"
+    },
+    {
+      "skill": "[bold yellow]Regen[/bold yellow]",
+      "tool": "refine",
       "price": "0.001 MOR/req"
     }
   ]

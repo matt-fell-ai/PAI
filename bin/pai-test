@@ -76,6 +76,8 @@ def main():
         ("Nodes (bench)", [PAI_BIN, "run", "Nodes", "bench"]),
         ("Protocol (generate)", [PAI_BIN, "run", "Protocol", "generate"]),
         ("Market (manifest)", [PAI_BIN, "run", "Market", "manifest"]),
+        ("Hive (orchestrate)", [PAI_BIN, "run", "Hive", "orchestrate", "Test task"]),
+        ("Regen (refine)", [PAI_BIN, "run", "Regen", "refine", "Memory", "store"]),
         ("Actuate (status)", [PAI_BIN, "run", "Actuate", "status", "temp"]),
         ("Counsel (audit)", [PAI_BIN, "run", "Counsel", "audit", "test.pdf"]),
         ("Fabricate (blueprint)", [PAI_BIN, "run", "Fabricate", "blueprint", "test"]),

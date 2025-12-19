@@ -34,6 +34,7 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Forensics** | Deep analysis of system logs, session history, and execution failures. USE WHEN a task fails repeatedly, or you need to understand the underlying patterns of your work. |
 | **Forge** | Mass-produces digital assets, content, and "Lead Magnets" to capture market interest. USE WHEN you need to create products, social content, or technical proofs-of-concept for sale. |
 | **Genesis** | A PAI modular skill for genesis. |
+| **Hive** | Parallel orchestration engine. Uses a Blackboard architecture for multi-agent collaboration without bottlenecks. |
 | **Ghost** | Performs advanced OSINT, reconnaissance, and digital footprinting on individuals or domains. USE WHEN you need to gather intelligence from public sources or map a target's digital presence. |
 | **Guardian** | Automated security, linting, and alignment checks. USE WHEN you want to verify the health of the repository or ensure new code follows the PAI architecture. |
 | **Iris** | Leverages Gemini 3.0 Pro's vision capabilities to analyze screenshots, videos, and PDFs for debugging and context ingestion. USE WHEN you need the AI to "see" a problem or extract structure from visual media. |
@@ -54,6 +55,7 @@ This directory contains the modular capabilities that empower the PAI. Each skil
 | **Proxy** | Generates responses and content that perfectly mimic the user's voice, tone, and technical expertise. USE WHEN you need the AI to "speak for you" in PRs, Slack, or public content. |
 | **Pulse** | A PAI modular skill for pulse. |
 | **Refactor** | A PAI modular skill for refactor. |
+| **Regen** | Speculative self-optimization and code refinement loop. Fork, optimize, and test code in a shadow environment. |
 | **Research** | Comprehensive research, analysis, and content extraction system. Multi-source parallel research using available researcher agents. Deep content analysis with extended thinking. Intelligent retrieval for difficult sites. Fabric pattern selection for 242+ specialized prompts. |
 | **Sanctity** | Uses Zero-Knowledge Proofs (ZKP) to share insights with other agents without revealing raw sensitive data. USE WHEN you need to collaborate while protecting your "Soul" or private history. |
 | **Sanctum** | Executes untrusted or experimental code in an isolated environment. USE WHEN you want to test a new script, run a high-risk scraper, or experiment with third-party code. |
