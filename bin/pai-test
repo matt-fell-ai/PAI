@@ -67,6 +67,7 @@ def main():
         ("Ghost (recon)", [PAI_BIN, "run", "Ghost", "recon", "test.com"]),
         ("Specter (audit)", [PAI_BIN, "run", "Specter", "audit", "localhost"]),
         ("Bastion (harden)", [PAI_BIN, "run", "Bastion", "harden", "linux"]),
+        ("Armory (list)", [PAI_BIN, "run", "Armory", "list"]),
         ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
     ]
 

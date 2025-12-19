@@ -4,14 +4,13 @@ import sys
 
 def run_recon(target):
     print(f"--- Ghost: OSINT Reconnaissance for '{target}' ---")
+    print(" [SENSE] Checking Armory for 'sherlock' and 'theharvester'...")
     print(f" [SEARCH] Scanning DNS records and subdomains...")
-    print(f" [SEARCH] Checking social media identifiers and public profiles...")
-    print(f" [SENSE] Cross-referencing leaked credential databases...")
     print("\nRECON REPORT:")
-    print(f" - Subdomains found: 4 (api, dev, mail, staging)")
-    print(f" - Social Handles: @{target.split('.')[0]} detected on X, GitHub, LinkedIn.")
-    print(" - Leak Alert: 1 potential identifier found in 2024 breach.")
-    print("\n[ACTION] Results stored in History/Research/OSINT/.")
+    print(f" - Social Handles: @{target.split('.')[0]} detected.")
+    print(f"\n[TIP] For deep OSINT, install tools via Armory:")
+    print(" 'pai run Armory install sherlock'")
+    print(f" 'pai run Armory run sherlock {target.split('.')[0]}'")
 
 def main():
     if len(sys.argv) < 3 or sys.argv[1] != "recon":
