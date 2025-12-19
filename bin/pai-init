@@ -3,6 +3,7 @@ import os
 import sys
 import subprocess
 import getpass
+import json
 
 PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(PAI_ROOT, "bin", "lib"))
@@ -12,7 +13,7 @@ try:
 except ImportError:
     class PAI_UI:
         @staticmethod
-        def print_logo(): print("PAI")
+        def print_logo(): print("PAI 2030")
         @staticmethod
         def tip(m): print(f"Tip: {m}")
         @staticmethod
@@ -25,129 +26,59 @@ def get_input(prompt, default=None):
     return input(f" {prompt}: ").strip()
 
 def setup_identity():
-    PAI_UI.panel("Starting Phase 1: Identity Setup", title="Phase 1", style="cyan")
-    user_name = get_input("What is your name?")
-    da_name = get_input("What should my name be?", "PAI")
+    PAI_UI.panel("Starting Phase 1: Sovereign Identity Setup", title="Phase 1", style="cyan")
+    user_name = get_input("What is your legal name (for DAO registration)?")
+    da_name = get_input("What is your PAI's public designation?", "PAI-Alpha")
     
-    settings_path = os.path.join(PAI_ROOT, ".claude", "settings.json")
-    if os.path.exists(settings_path):
-        import json
-        try:
-            with open(settings_path, 'r') as f:
-                data = json.load(f)
-            if "env" not in data: data["env"] = {}
-            data["env"]["DA"] = da_name
-            with open(settings_path, 'w') as f:
-                json.dump(data, f, indent=2)
-        except: pass
-    
-    print(f"\n Welcome, {user_name}. I am {da_name}.")
+    print(f"\n[bold green]Welcome, {user_name}. Initializing {da_name} node...[/bold green]")
     return user_name, da_name
 
 def setup_vault():
-    PAI_UI.panel("Securing your API keys in .env", title="Phase 2: The Vault", style="yellow")
+    PAI_UI.panel("Securing the Sovereign Vault (.env)", title="Phase 2: The Vault", style="yellow")
     env_path = os.path.join(PAI_ROOT, ".env")
-    existing_keys = {}
-    if os.path.exists(env_path):
-        with open(env_path, "r") as f:
-            for line in f:
-                if "=" in line:
-                    k, v = line.split("=", 1)
-                    existing_keys[k.strip()] = v.strip()
+    
+    # Check for llama-cpp-python
+    try:
+        import llama_cpp
+        has_llama = "[green]FOUND[/green]"
+    except:
+        has_llama = "[red]NOT FOUND[/red]"
 
-    # Anthropic
+    print(f" Local Intelligence Engine (llama-cpp-python): {has_llama}")
+    
+    # Collect Keys
     anthropic = getpass.getpass(" Anthropic API Key (Enter to skip): ").strip()
-    anthropic_model = "claude-3-5-sonnet-latest"
-    if anthropic:
-        print(" Select default Anthropic model:")
-        print("  1) Claude 3.5 Sonnet (Balanced)")
-        print("  2) Claude 3.5 Haiku (Fast)")
-        print("  3) Claude 3 Opus (Deep)")
-        choice = get_input("Choice", "1")
-        if choice == "2": anthropic_model = "claude-3-5-haiku-latest"
-        elif choice == "3": anthropic_model = "claude-3-opus-latest"
-
-    # OpenAI
     openai = getpass.getpass(" OpenAI API Key (Enter to skip): ").strip()
-    openai_model = "gpt-4o"
-    if openai:
-        print(" Select default OpenAI model:")
-        print("  1) GPT-4o (Standard)")
-        print("  2) GPT-4o-mini (Fast)")
-        print("  3) o1-preview (Advanced Reasoning)")
-        choice = get_input("Choice", "1")
-        if choice == "2": openai_model = "gpt-4o-mini"
-        elif choice == "3": openai_model = "o1-preview"
-
-    # Gemini
     gemini = getpass.getpass(" Google Gemini API Key (Enter to skip): ").strip()
-    gemini_model = "gemini-3.0-pro"
-    if gemini:
-        print(" Select default Gemini model:")
-        print("  1) Gemini 3.0 Pro (Thinking)")
-        print("  2) Gemini 1.5 Pro")
-        print("  3) Gemini 1.5 Flash (Fast)")
-        choice = get_input("Choice", "1")
-        if choice == "2": gemini_model = "gemini-1.5-pro"
-        elif choice == "3": gemini_model = "gemini-1.5-flash"
-
-    print("\n--- Phase 2.5: Local Models (Ollama) ---")
-    ollama_url = get_input("Ollama Host URL", "http://localhost:11434")
-    ollama_model = get_input("Ollama Default Model", "llama3")
     
-    with open(env_path, "a") as f:
-        if anthropic:
-            if "ANTHROPIC_API_KEY" not in existing_keys: f.write(f"ANTHROPIC_API_KEY={anthropic}\n")
-            f.write(f"ANTHROPIC_MODEL={anthropic_model}\n")
-        if openai:
-            if "OPENAI_API_KEY" not in existing_keys: f.write(f"OPENAI_API_KEY={openai}\n")
-            f.write(f"OPENAI_MODEL={openai_model}\n")
-        if gemini:
-            if "GOOGLE_API_KEY" not in existing_keys: f.write(f"GOOGLE_API_KEY={gemini}\n")
-            f.write(f"GEMINI_MODEL={gemini_model}\n")
-        if "OLLAMA_HOST" not in existing_keys: f.write(f"OLLAMA_HOST={ollama_url}\n")
-        if "OLLAMA_MODEL" not in existing_keys: f.write(f"OLLAMA_MODEL={ollama_model}\n")
+    with open(env_path, "w") as f:
+        f.write(f"# PAI 2030 Configuration\n")
+        if anthropic: f.write(f"ANTHROPIC_API_KEY={anthropic}\n")
+        if openai: f.write(f"OPENAI_API_KEY={openai}\n")
+        if gemini: f.write(f"GOOGLE_API_KEY={gemini}\n")
+        f.write(f"OLLAMA_HOST=http://localhost:11434\n")
+        f.write(f"OLAS_L2_RPC=https://rpc.gnosischain.com\n")
     
-    PAI_UI.tip("Secrets and Local Config secured in .env.")
+    PAI_UI.tip("Secrets and L2 RPC secured in .env.")
 
-def setup_opencode(ollama_url, ollama_model):
-    PAI_UI.panel("Configuring OpenCode for local agentic workflow", title="Phase 5: OpenCode", style="magenta")
-    setup_oc = get_input("Should I generate an 'opencode.json' for local Ollama usage?", "Y").lower()
+def setup_mesh():
+    PAI_UI.panel("Configuring Sovereign Mesh 2.0 (Identity NFT)", title="Phase 3: The Mesh", style="magenta")
+    print("This will prepare your node for on-chain registration via Olas.")
+    setup_oc = get_input("Should I initialize the Mesh Protocol?", "Y").lower()
     if setup_oc == 'y':
-        import json
-        oc_config = {
-            "$schema": "https://opencode.ai/config.json",
-            "model": f"ollama/{ollama_model}",
-            "providers": {"ollama": {"baseUrl": ollama_url}}
-        }
-        with open(os.path.join(PAI_ROOT, "opencode.json"), 'w') as f:
-            json.dump(oc_config, f, indent=2)
-        print(" OpenCode config generated.")
-    else:
-        print(" Skipping OpenCode integration.")
+        # Trigger Protocol generate
+        subprocess.run([sys.executable, os.path.join(PAI_ROOT, "bin", "pai"), "run", "Protocol", "generate"])
+        print("\n[bold white]VAI Generated. Run 'pai run Protocol register' after setup to mint your NFT.[/bold white]")
 
 def main():
     PAI_UI.print_logo()
-    console.print("[bold purple]Initializing Sovereign Personal AI Infrastructure...[/bold purple]\n")
+    console.print("[bold purple]Initializing Personal AI Infrastructure (PAI) 2030...[/bold purple]\n")
     user_name, da_name = setup_identity()
     setup_vault()
+    setup_mesh()
     
-    # Simple shell integration check
-    PAI_UI.panel("Adding 'pai' alias to your shell profile", title="Phase 4: Shell", style="green")
-    
-    env_path = os.path.join(PAI_ROOT, ".env")
-    ollama_url = "http://localhost:11434"
-    ollama_model = "llama3"
-    if os.path.exists(env_path):
-        with open(env_path, "r") as f:
-            for line in f:
-                if "OLLAMA_HOST=" in line: ollama_url = line.split("=", 1)[1].strip()
-                if "OLLAMA_MODEL=" in line: ollama_model = line.split("=", 1)[1].strip()
-    
-    setup_opencode(ollama_url, ollama_model)
-    
-    PAI_UI.panel(f"PAI is now ready for 2026. Welcome to the team, {user_name}.", title="Setup Complete", style="bold green")
-    print("\n Run 'pai list' to begin.")
+    PAI_UI.panel(f"PAI 2030 is now operational. Your node is active.\nWelcome to the Sovereign Network, {user_name}.", title="Initialization Complete", style="bold green")
+    print("\n Run 'pai list' to see your 70+ capabilities.")
 
 if __name__ == "__main__":
     main()

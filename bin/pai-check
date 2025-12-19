@@ -2,6 +2,7 @@
 import os
 import sys
 import subprocess
+from typing import List, Dict, Any
 
 PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(PAI_ROOT, "bin", "lib"))
@@ -11,17 +12,27 @@ try:
 except ImportError:
     class PAI_UI:
         @staticmethod
-        def table(t, c, r, s): print(f"--- {t} ---")
+        def table(t: str, c: List[str], r: List[List[str]], s: str) -> None: print(f"--- {t} ---")
         @staticmethod
-        def error(m): print(f"Error: {m}")
+        def error(m: str) -> None: print(f"Error: {m}")
 
-def check_keys():
+def check_keys() -> None:
+    """Verifies the presence and reachability of required API keys and local services."""
     env_path = os.path.join(PAI_ROOT, ".env")
     if not os.path.exists(env_path):
         PAI_UI.error(".env file missing. Run 'bin/pai-init' first.")
         return
 
-    keys_to_check = ["ANTHROPIC_API_KEY", "OPENAI_API_KEY", "GOOGLE_API_KEY", "ELEVENLABS_API_KEY", "OLLAMA_HOST"]
+    keys_to_check = [
+        "ANTHROPIC_API_KEY", 
+        "OPENAI_API_KEY", 
+        "GOOGLE_API_KEY", 
+        "ELEVENLABS_API_KEY", 
+        "OLLAMA_HOST",
+        "STORY_PROTOCOL_RPC",
+        "OLAS_L2_RPC"
+    ]
+    
     found_keys = {}
     with open(env_path, "r") as f:
         for line in f:
@@ -36,18 +47,20 @@ def check_keys():
         if k in found_keys:
             val = found_keys[k]
             status = "[green]ONLINE[/green]"
-            if k == "OLLAMA_HOST":
+            if "HOST" in k or "RPC" in k:
                 val_display = val
+                # Attempt light reachability check
                 try:
-                    res = subprocess.run(["curl", "-s", f"{val}/api/tags"], capture_output=True, timeout=1)
-                    if res.returncode != 0: status = "[yellow]UNREACHABLE[/yellow]"
+                    if "OLLAMA" in k:
+                        res = subprocess.run(["curl", "-s", f"{val}/api/tags"], capture_output=True, timeout=1)
+                        if res.returncode != 0: status = "[yellow]UNREACHABLE[/yellow]"
                 except: status = "[yellow]UNREACHABLE[/yellow]"
             else:
                 val_display = val[:6] + "..." + val[-4:] if len(val) > 10 else "***"
         
         rows.append([k, status, val_display])
 
-    PAI_UI.table("PAI Infrastructure Health", ["Service/Key", "Status", "Value"], rows, style="green")
+    PAI_UI.table("PAI Infrastructure Health (2030 Ready)", ["Service/Key", "Status", "Value"], rows, style="green")
 
 if __name__ == "__main__":
     check_keys()

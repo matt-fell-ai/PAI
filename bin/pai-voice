@@ -18,7 +18,7 @@ def start_voice_service():
     PAI_UI.panel("Initializing Local Auditory Bridge\nModel STT: [bold cyan]Faster-Whisper[/bold cyan]\nModel STS: [bold magenta]Piper-TTS[/bold magenta]", title="PAI-Voice: Auditory Service", style="purple")
     
     print(" • [cyan]Auditory Input:[/cyan] Subscribed to local mic stream.")
-    print(" • [cyan]Transcription Engine:[/cyan] ONLINE (Ready for 2026 sub-second latency).")
+    print(" • [cyan]Transcription Engine:[/cyan] ONLINE (Ready for 2030 sub-second latency).")
     print(" • [magenta]Synthesis Engine:[/magenta] ONLINE (Profile: Sovereign-V1).")
     
     # Simple simulated loop

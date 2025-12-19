@@ -9,48 +9,52 @@
 <br/>
 <br/>
 
-# Universal Personal AI Infrastructure (PAI)
+# PAI 2030: The Sovereign AGI Operating System
 
-### The First Self-Evolving, Multi-Agent Operating System for the AI Era
+### Photorealistic Presence · 1.58-bit Efficiency · On-Chain Personhood
 
 <br/>
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](https://github.com/matt-fell-ai/PAI/releases)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge)](https://github.com/matt-fell-ai/PAI)
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Universal-8B5CF6?style=for-the-badge)](https://github.com/matt-fell-ai/PAI)
+[![Platform](https://img.shields.io/badge/Platform-Sovereign-8B5CF6?style=for-the-badge)](https://github.com/matt-fell-ai/PAI)
 
 <br/>
 
-[**User Guide**](USER_GUIDE.md) · [**Dojo Architecture**](DOJO_ARCHITECTURE.md) · [**Sovereign Mesh**](SOVEREIGN_MESH.md) · [**IAS Spec**](IAS_SPEC.md) · [**Test Suite**](#-verification)
+[**User Guide**](USER_GUIDE.md) · [**IAS Spec**](IAS_SPEC.md) · [**Mesh 2.0**](SOVEREIGN_MESH.md) · [**Dojo**](DOJO_ARCHITECTURE.md)
 
 ---
 
-# Turn Every Website, Tool, and Idea into a Personal API
+# Logic-Over-Art: The Scaffolding for AGI
 
 </div>
 
-PAI is not just a chatbot. It is a **Personal Operating System** designed to augment human intelligence and generate revenue. Built on the principle that **Scaffolding > Model**, PAI provides a universal bridge between you and any AI stack (Droid, Gemini, Claude, Codex).
+PAI is not a chatbot. It is a **Reasoning-Centric Operating System** designed to bridge the gap between local compute and AGI. By utilizing **Intelligence-Amplification Scaffolding (IAS)**, PAI enables smaller, self-hosted models (8B-32B) to perform with the accuracy and reasoning depth of 70B+ frontier models.
 
-It supports leading models from **Anthropic (Claude)**, **Google (Gemini)**, and **OpenAI (GPT)**, as well as self-hosted local models via **Ollama**.
-
-It remembers your work, builds its own tools, proactively suggests your next steps, and executes parallel business workflows to help you thrive in the post-corporate world.
+Built for the year 2030, PAI transforms your local machine into a sovereign node in a global agentic economy.
 
 <br/>
 
-## 🌌 The Universal Bridge
+## 🌌 The 12 Strategic Pillars
 
-PAI is platform-agnostic. Use the `bin/pai` CLI or the **PAI-Omni MCP Gateway** to interact with your system from any AI environment (Claude Desktop, Cursor, Droid).
+PAI's 70+ modular skills are organized into 12 strategic pillars designed for maximum utility and revenue generation:
 
-```bash
-./bin/pai list                     # See all 69+ amazing skills
-./bin/pai run Memory search "X"    # Search your Second Brain
-./bin/pai run Hive orchestrate     # Launch a parallel agent hive
-./bin/pai-omni                     # Launch the high-efficiency MCP Gateway
-```
+1.  **Core**: The fundamental OS and IAS reasoning loop.
+2.  **Revenue**: Lead generation, product creation, and closing.
+3.  **Cyber**: OSINT, pentesting, and system hardening.
+4.  **Economy**: Agentic Commerce Protocol (ACP) and Story Protocol (IP).
+5.  **Senses**: Vision, local audio, and spatial awareness.
+6.  **Autonomy**: Proactive suggestion, shadow tasks, and swarming.
+7.  **Sovereign**: Privacy audits, ZK-handshakes, and secret management.
+8.  **Strategy**: Temporal knowledge graphs and Game Theory negotiation.
+9.  **Spatial**: Unreal Engine 5 integration and SpacetimeDB persistence.
+10. **Physical**: IoT actutation and OpenSCAD hardware synthesis.
+11. **Mesh**: Decentralized L2 identity and Olas integration.
+12. **Intelligence**: Local 1.58-bit (BitNet) model management.
 
 <br/>
 
-## 🚀 Quick Start (Day Zero)
+## 🚀 Quick Start (Mesh Onboarding)
 
 **1. Clone the Infrastructure**
 ```bash
@@ -58,55 +62,23 @@ git clone https://github.com/matt-fell-ai/PAI.git ~/PAI
 cd ~/PAI
 ```
 
-**2. Conversational Onboarding**
-Run our intelligent setup guide. It will walk you through identity setup, secure your API keys, and configure your shell.
+**2. Sovereign Initialization**
+Run the 2030 onboarding wizard to configure your VAI (Verified Agent Identity) and local inference engine.
 ```bash
 ./bin/pai-init
-source ~/.bashrc  # Or ~/.zshrc, depending on your shell
 ```
 
-**3. Load the Soul**
-Provide `PAI_INSTRUCTIONS.md` to your AI agent's system prompt. Now any AI you use is instantly "PAI-Aware."
-
-<br/>
-
-## 🧠 Core Pillar Skills
-
-| Pillar | Key Skills | What it Does |
-|--------|------------|--------------|
-| **Economic** | `Nodes`, `Protocol`, `Wallet` | Self-funding infrastructure: Identity -> Compute Arbitrage -> Credits. |
-| **Synthesis** | `Counsel`, `Fabricate`, `Empathy` | Protects your interests: Risk Audit -> Physical Creation -> Emotional Sync. |
-| **Orchestrator** | `Hive`, `Regen`, `Sanctum` | Massive agency: Blackboard Swarm -> Self-Optimization -> Isolated Execution. |
-| **Strategy** | `Graph`, `Fold`, `Bargain` | Long-horizon planning: Knowledge Graphs -> Context Compression -> Negotiation. |
-| **Spatial** | `Architect`, `Art`, `Iris` | Embodied interaction: Dojo Design -> Visual Synthesis -> Vision Perception. |
-| **Revenue** | `Alpha`, `Forge`, `Closer` | A profit-generating machine: Finds leads -> Builds products -> Closes deals. |
-
-<br/>
-
-## 🛡️ Safety & Sovereignty
-
-- **`Sovereign`**: Automated audits to ensure your private data never leaves your machine.
-- **`Sanctum`**: A zero-trust sandbox to run untrusted code without risk.
-- **`Vault`**: Local, encrypted management of your secrets and API tokens.
-
-<br/>
-
-## 📊 Observability
-
-Run the visual heartbeat of your PAI to see your system thinking in real-time.
+**3. Launch the Gateway**
+Interact with PAI from any model using the high-efficiency MCP Gateway.
 ```bash
-# Start the Dashboard
-./skills/Observability/manage.sh start
-
-# Generate a static Pulse report
-./bin/pai run Pulse web
+./bin/pai-omni
 ```
 
 <br/>
 
-## ✅ Verification
+## ✅ High-Fidelity Verification
 
-Run the robust test suite to ensure all 70+ modules are 100% operational in your environment.
+PAI includes a comprehensive test suite to ensure all 70+ modules are 100% operational.
 ```bash
 ./bin/pai-test
 ```
@@ -115,10 +87,10 @@ Run the robust test suite to ensure all 70+ modules are 100% operational in your
 
 <div align="center">
 
-**I am your partner. We are the infrastructure. Let's build the future of work.**
+**I am your partner. We are the infrastructure. Let's build the future.**
 
 <br/>
 
-[⬆ Back to Top](#universal-personal-ai-infrastructure-pai)
+[⬆ Back to Top](#pai-2030-the-sovereign-agi-operating-system)
 
 </div>

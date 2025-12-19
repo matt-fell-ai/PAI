@@ -3,6 +3,7 @@ import os
 import sys
 import subprocess
 import json
+from typing import List, Dict, Optional, Any
 
 # Add lib to path
 PAI_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,7 +14,13 @@ from rich.markdown import Markdown
 
 SKILLS_DIR = os.path.join(PAI_ROOT, "skills")
 
-def load_descriptions_from_agents_md():
+def load_descriptions_from_agents_md() -> Dict[str, str]:
+    """
+    Parses the centralized agents.md to extract strategic purposes for all skills.
+    
+    Returns:
+        A mapping of skill names to their descriptions.
+    """
     descs = {}
     agents_md_path = os.path.join(SKILLS_DIR, "agents.md")
     if os.path.exists(agents_md_path):
@@ -28,12 +35,13 @@ def load_descriptions_from_agents_md():
                         descs[name] = desc
     return descs
 
-def get_skill_description(name, path, agent_descs):
-    # Try agents.md first
+def get_skill_description(name: str, path: str, agent_descs: Dict[str, str]) -> str:
+    """
+    Retrieves a description for a specific skill from metadata or frontmatter.
+    """
     if name in agent_descs:
         return agent_descs[name]
     
-    # Try SKILL.md frontmatter
     skill_md = os.path.join(path, "SKILL.md")
     if os.path.exists(skill_md):
         with open(skill_md, 'r', errors='ignore') as f:
@@ -47,7 +55,8 @@ def get_skill_description(name, path, agent_descs):
                         return desc
     return "-"
 
-def list_skills():
+def list_skills() -> None:
+    """Displays the categorized manifest of all 70+ PAI capabilities."""
     categories = {
         "Core": ["CORE", "Memory", "Librarian", "Neural", "Discovery", "UFC", "Immune", "Regen"],
         "Revenue": ["Alpha", "Forge", "Closer", "Blueprint", "Wallet"],
@@ -72,20 +81,21 @@ def list_skills():
                 rows.append([f"[bold cyan]{cat}[/bold cyan]", f"[bold yellow]{skill}[/bold yellow]", desc])
                 all_skills.remove(skill)
     
-    # Add leftovers
     for skill in all_skills:
         desc = get_skill_description(skill, os.path.join(SKILLS_DIR, skill), agent_descs)
         rows.append(["[dim]Misc[/dim]", f"[bold yellow]{skill}[/bold yellow]", desc])
 
     PAI_UI.table("PAI Universal Skill Manifest", ["Category", "Skill", "Strategic Purpose"], rows, style="blue")
 
-def get_skill_path(skill_name):
+def get_skill_path(skill_name: str) -> Optional[str]:
+    """Locates the directory path for a given skill name."""
     for item in os.listdir(SKILLS_DIR):
         if item.lower() == skill_name.lower() and os.path.isdir(os.path.join(SKILLS_DIR, item)):
             return os.path.join(SKILLS_DIR, item)
     return None
 
-def show_help():
+def show_help() -> None:
+    """Displays system usage and available top-level commands."""
     PAI_UI.print_logo()
     
     help_text = """
@@ -99,6 +109,7 @@ def show_help():
   [green]run <skill> <cmd>[/green]  Run a specific skill command
   [green]check[/green]             Run a health check on your environment
   [green]init[/green]              Launch the onboarding wizard
+  [green]mcp[/green]               Start the PAI-Omni MCP Server
 
 [bold yellow]EXAMPLES:[/bold yellow]
   pai run Memory search 'Gemini 3.0'
@@ -108,7 +119,8 @@ def show_help():
     console.print(help_text)
     list_skills()
 
-def show_skill_info(skill_name, skill_path):
+def show_skill_info(skill_name: str, skill_path: str) -> None:
+    """Displays the markdown documentation for a specific skill."""
     skill_md_path = os.path.join(skill_path, "SKILL.md")
     if os.path.exists(skill_md_path):
         with open(skill_md_path, 'r', errors='ignore') as f:
@@ -116,7 +128,14 @@ def show_skill_info(skill_name, skill_path):
     else:
         PAI_UI.error(f"No SKILL.md found for {skill_name}")
 
-def run_skill(skill_name, args):
+def run_skill(skill_name: str, args: List[str]) -> None:
+    """
+    Routes a command to a specific skill's toolset.
+    
+    Args:
+        skill_name: The target skill.
+        args: Command and arguments for the tool.
+    """
     skill_path = get_skill_path(skill_name)
     if not skill_path:
         PAI_UI.error(f"Skill '{skill_name}' not found.")
@@ -169,7 +188,8 @@ def run_skill(skill_name, args):
     else:
         show_skill_info(skill_name, skill_path)
 
-def emit_event(skill, command, args):
+def emit_event(skill: str, command: str, args: List[str]) -> None:
+    """Logs system events to the History directory for longitudinal learning."""
     import time
     from datetime import datetime
     
@@ -200,13 +220,14 @@ def emit_event(skill, command, args):
     except:
         pass
 
-def main():
+def main() -> None:
+    """The entry point for the Universal PAI CLI Bridge."""
     if len(sys.argv) < 2:
         show_help()
         sys.exit(0)
 
     cmd = sys.argv[1]
-    if cmd == "list" or cmd == "--list" or cmd == "-l":
+    if cmd in ["list", "--list", "-l"]:
         list_skills()
     elif cmd == "info":
         if len(sys.argv) < 3:
@@ -224,7 +245,7 @@ def main():
         subprocess.run([os.path.join(PAI_ROOT, "bin", "pai-init")])
     elif cmd == "mcp":
         subprocess.run([os.path.join(PAI_ROOT, "bin", "pai-omni")])
-    elif cmd == "help" or cmd == "--help" or cmd == "-h":
+    elif cmd in ["help", "--help", "-h"]:
         show_help()
     else:
         if get_skill_path(cmd):
