@@ -64,6 +64,9 @@ def main():
         ("Arbiter (verify)", [PAI_BIN, "run", "Arbiter", "verify", "test.com"]),
         ("Biosync (optimize)", [PAI_BIN, "run", "Biosync"]),
         ("Citadel (secure)", [PAI_BIN, "run", "Citadel"]),
+        ("Ghost (recon)", [PAI_BIN, "run", "Ghost", "recon", "test.com"]),
+        ("Specter (audit)", [PAI_BIN, "run", "Specter", "audit", "localhost"]),
+        ("Bastion (harden)", [PAI_BIN, "run", "Bastion", "harden", "linux"]),
         ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
     ]
 

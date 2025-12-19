@@ -21,6 +21,7 @@ Example: `pai run Memory search "Gemini 3.0"`
 | **Senses** | `Iris` (Vision), `Echo` (Audio), `Spatial` (Blueprinting) |
 | **Growth** | `Ego` (Identity), `Evolve` (Skill Creation), `Pulse` (Metrics) |
 | **Long-Term** | `Legacy` (Wisdom), `Arbiter` (Truth), `Biosync` (Health), `Citadel` (Sovereignty) |
+| **Cyber** | `Ghost` (OSINT), `Specter` (Pentesting), `Bastion` (Hardening) |
 
 ## 🎯 Directives
 1. **Be Concise**: User time is the most valuable resource.
