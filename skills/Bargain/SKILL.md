@@ -8,6 +8,7 @@ To ensure the PAI maximizes revenue and minimizes costs by using advanced bargai
 
 ## Tools
 - `negotiate <target_price> <min_price>`: Simulates a negotiation session using Game Theory.
+- `sovereign_alpha <asset_id>`: 1000x Evolution. Executes global arbitrage with an agent swarm and real-time sentiment analysis.
 - `strategy <mode>`: Sets the negotiation strategy (Aggressive, Balanced, Cooperative).
 - `analyze <market_data>`: Analyzes historical price data to find optimal anchoring points.
 

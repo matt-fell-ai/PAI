@@ -88,6 +88,7 @@ def main():
         ("Protocol (register)", [PAI_BIN, "run", "Protocol", "register"]),
         ("Arbiter (refine)", [PAI_BIN, "run", "Arbiter", "refine", "Test content", "Test constraint"]),
         ("Neural (route)", [PAI_BIN, "run", "Neural", "route", "I want to search memory"]),
+        ("Bargain (alpha)", [PAI_BIN, "run", "Bargain", "sovereign_alpha", "PAI-Tokens"]),
     ]
 
     passed = 0
