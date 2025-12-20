@@ -75,6 +75,7 @@ def main():
         ("Regen (refine)", [PAI_BIN, "run", "Regen", "refine", "Memory", "store"]),
         ("Actuate (status)", [PAI_BIN, "run", "Actuate", "status", "temp"]),
         ("Counsel (audit)", [PAI_BIN, "run", "Counsel", "audit", "test.pdf"]),
+        ("Counsel (shield)", [PAI_BIN, "run", "Counsel", "shield"]),
         ("Fabricate (blueprint)", [PAI_BIN, "run", "Fabricate", "blueprint", "test"]),
         ("Empathy (sync)", [PAI_BIN, "run", "Empathy", "sync"]),
         ("Immune (garden)", [PAI_BIN, "run", "Immune", "garden"]),

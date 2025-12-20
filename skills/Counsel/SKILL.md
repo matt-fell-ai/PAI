@@ -8,6 +8,7 @@ To protect the user's sovereign interests by providing high-speed risk assessmen
 
 ## Tools
 - `audit <target>`: Analyzes a file, directory, or text for risk indicators (liabilities, privacy leaks, predatory terms).
+- `shield`: 1000x Evolution. Continuous autonomous audit of business event streams with proactive clause remediation.
 - `tos <url>`: Scans a URL for Terms of Service traps.
 - `comply <project_path>`: Audits a project for license compliance.
 

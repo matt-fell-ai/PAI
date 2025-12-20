@@ -2,17 +2,17 @@
   "@context": [
     "https://www.w3.org/ns/did/v1"
   ],
-  "id": "did:pai:9fc580d871d2bcd2",
+  "id": "did:pai:1d5c324516a741f1",
   "verificationMethod": [
     {
-      "id": "did:pai:9fc580d871d2bcd2#key-1",
+      "id": "did:pai:1d5c324516a741f1#key-1",
       "type": "Ed25519VerificationKey2020",
-      "controller": "did:pai:9fc580d871d2bcd2",
-      "publicKeyMultibase": "9fc580d871d2bcd28cd240293d866118846c9e26ca3567c1051e3c8a3a774b0e"
+      "controller": "did:pai:1d5c324516a741f1",
+      "publicKeyMultibase": "1d5c324516a741f1bc637132bfd4ab91831a92a5782e2f987d1223685625ea9f"
     }
   ],
   "authentication": [
-    "did:pai:9fc580d871d2bcd2#key-1"
+    "did:pai:1d5c324516a741f1#key-1"
   ],
   "service": [
     {

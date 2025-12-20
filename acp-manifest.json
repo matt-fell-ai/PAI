@@ -308,6 +308,11 @@
       "price": "0.001 MOR/req"
     },
     {
+      "skill": "[bold yellow]Counsel[/bold yellow]",
+      "tool": "shield",
+      "price": "0.001 MOR/req"
+    },
+    {
       "skill": "[bold yellow]Fabricate[/bold yellow]",
       "tool": "blueprint",
       "price": "0.001 MOR/req"
