@@ -84,6 +84,7 @@ def main():
         ("Bargain (negotiate)", [PAI_BIN, "run", "Bargain", "negotiate", "100", "50"]),
         ("Fold (compress)", [PAI_BIN, "run", "Fold", "compress", "History/knowledge_graph.json"]),
         ("Ego (set)", [PAI_BIN, "run", "Ego", "set", "Be direct"]),
+        ("Ego (recalibrate)", [PAI_BIN, "run", "Ego", "recalibrate", "negotiation"]),
         ("Nodes (setup)", [PAI_BIN, "run", "Nodes", "setup_engine"]),
         ("Protocol (register)", [PAI_BIN, "run", "Protocol", "register"]),
         ("Arbiter (refine)", [PAI_BIN, "run", "Arbiter", "refine", "Test content", "Test constraint"]),

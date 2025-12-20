@@ -24,6 +24,11 @@ pai run Ego propose
 pai run Ego reflect
 ```
 
+### Autonomous Recalibration (Ego-Stream)
+```bash
+pai run Ego recalibrate <context> # Contexts: negotiation, brainstorming, emergency, social, research
+```
+
 ### Tuning the Essence (The Tablet)
 ```bash
 pai run Ego status              # Show current attribute levels

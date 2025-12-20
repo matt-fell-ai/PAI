@@ -88,6 +88,11 @@
       "price": "0.001 MOR/req"
     },
     {
+      "skill": "[bold yellow]Ego[/bold yellow]",
+      "tool": "recalibrate",
+      "price": "0.001 MOR/req"
+    },
+    {
       "skill": "[bold yellow]Oracle[/bold yellow]",
       "tool": "oracle",
       "price": "0.001 MOR/req"
