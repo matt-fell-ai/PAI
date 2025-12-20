@@ -1,0 +1,24 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1"
+  ],
+  "id": "did:pai:25dc17b9a769e3dc",
+  "verificationMethod": [
+    {
+      "id": "did:pai:25dc17b9a769e3dc#key-1",
+      "type": "Ed25519VerificationKey2020",
+      "controller": "did:pai:25dc17b9a769e3dc",
+      "publicKeyMultibase": "25dc17b9a769e3dc1d6ca701834c6f8d4e75fdd033472c0049ff3d8a82d3321a"
+    }
+  ],
+  "authentication": [
+    "did:pai:25dc17b9a769e3dc#key-1"
+  ],
+  "service": [
+    {
+      "id": "#pai-bridge",
+      "type": "PAIUniversalBridge",
+      "serviceEndpoint": "local://bin/pai"
+    }
+  ]
+}

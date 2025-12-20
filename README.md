@@ -21,7 +21,7 @@
 
 <br/>
 
-[**User Guide**](USER_GUIDE.md) · [**IAS Spec**](IAS_SPEC.md) · [**Mesh 2.0**](SOVEREIGN_MESH.md) · [**Dojo**](DOJO_ARCHITECTURE.md)
+[**User Guide**](USER_GUIDE.md) · [**IAS Spec**](IAS_SPEC.md) · [**Mesh 2.0**](SOVEREIGN_MESH.md) · [**Dojo Architecture**](DOJO_ARCHITECTURE.md)
 
 ---
 
@@ -37,24 +37,24 @@ Built for the year 2030, PAI transforms your local machine into a sovereign node
 
 ## 🌌 The 12 Strategic Pillars
 
-PAI's 70+ modular skills are organized into 12 strategic pillars designed for maximum utility and revenue generation:
+PAI's 70+ modular skills are organized into 12 strategic pillars designed for maximum autonomy, privacy, and revenue:
 
-1.  **Core**: The fundamental OS and IAS reasoning loop.
-2.  **Revenue**: Lead generation, product creation, and closing.
-3.  **Cyber**: OSINT, pentesting, and system hardening.
-4.  **Economy**: Agentic Commerce Protocol (ACP) and Story Protocol (IP).
-5.  **Senses**: Vision, local audio, and spatial awareness.
-6.  **Autonomy**: Proactive suggestion, shadow tasks, and swarming.
-7.  **Sovereign**: Privacy audits, ZK-handshakes, and secret management.
-8.  **Strategy**: Temporal knowledge graphs and Game Theory negotiation.
-9.  **Spatial**: Unreal Engine 5 integration and SpacetimeDB persistence.
-10. **Physical**: IoT actutation and OpenSCAD hardware synthesis.
-11. **Mesh**: Decentralized L2 identity and Olas integration.
-12. **Intelligence**: Local 1.58-bit (BitNet) model management.
+1.  **Core**: The fundamental OS and IAS reasoning loop (Think Twice, Act Once).
+2.  **Revenue**: Lead qualification via `Alpha predator` and closing via `Closer`.
+3.  **Cyber**: OSINT (`Ghost`), scanning (`Specter`), and hardening (`Bastion`).
+4.  **Economy**: `Bargain` global arbitrage and `Story` IP registration.
+5.  **Senses**: Vision (`Iris`), local audio (`Voice`), and environmental ingestion (`Echo`).
+6.  **Autonomy**: Proactive `Oracle` suggestions and `Hive` parallel orchestration.
+7.  **Sovereign**: Privacy audits (`Sovereign`) and `Sanctum` isolated execution.
+8.  **Strategy**: Temporal knowledge `Graph` and recursive `Fold` compression.
+9.  **Spatial**: Unreal Engine 5 `Dojo` and `Architect` world-state management.
+10. **Physical**: IoT `Actuate` and `Fabricate` hardware synthesis.
+11. **Mesh**: Decentralized L2 identity (`Protocol`) and `Wallet` arbitrage.
+12. **Intelligence**: Local 1.58-bit (BitNet) management via `Nodes setup`.
 
 <br/>
 
-## 🚀 Quick Start (Mesh Onboarding)
+## 🚀 Quick Start (Sovereign Onboarding)
 
 **1. Clone the Infrastructure**
 ```bash
@@ -62,14 +62,14 @@ git clone https://github.com/matt-fell-ai/PAI.git ~/PAI
 cd ~/PAI
 ```
 
-**2. Sovereign Initialization**
+**2. Initialize the Node**
 Run the 2030 onboarding wizard to configure your VAI (Verified Agent Identity) and local inference engine.
 ```bash
 ./bin/pai-init
 ```
 
 **3. Launch the Gateway**
-Interact with PAI from any model using the high-efficiency MCP Gateway.
+Interact with PAI from any model (Claude Desktop, Cursor, Droid) via the high-efficiency MCP Gateway.
 ```bash
 ./bin/pai-omni
 ```
@@ -78,7 +78,7 @@ Interact with PAI from any model using the high-efficiency MCP Gateway.
 
 ## ✅ High-Fidelity Verification
 
-PAI includes a comprehensive test suite to ensure all 70+ modules are 100% operational.
+PAI includes a comprehensive test suite to ensure all 70+ modules are 100% operational in your environment.
 ```bash
 ./bin/pai-test
 ```

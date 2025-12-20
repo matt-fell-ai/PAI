@@ -5,10 +5,10 @@ IAS is a "Reasoning-Centric" scaffolding layer designed to make smaller, self-ho
 
 ## The IAS Loop (Think Twice, Act Once)
 
-1.  **Semantic Routing**: Instead of seeing 70+ tools, the `Neural:route` skill narrows the context down to the top 5 most relevant skills. This reduces noise and eliminates "Tool Hallucination."
+1.  **Semantic Routing**: Instead of seeing 70+ tools, the `Neural route` tool narrows the context down to the top 5 most relevant skills. This reduces noise and eliminates "Tool Hallucination."
 2.  **Constraint-Based Drafting**: Before execution, the system requests a **Formal Plan**. This plan is checked against grammar constraints in `sdk.py` to ensure tool inputs are valid.
 3.  **Shadow Reasoning**: The model is prompted to "critique its own plan" before it executes.
-4.  **Arbiter Verification**: After execution, the `Arbiter:refine` skill checks the output against the user's original intent and performs iterative self-correction if necessary.
+4.  **Arbiter Verification**: After execution, the `Arbiter refine` tool checks the output against the user's original intent and performs iterative self-correction if necessary.
 
 ## Components
 
