@@ -65,8 +65,16 @@ credentials/
 # PAI Local Memory & History
 History/
 memory.json
+identity.json
+essence.json
+acp-manifest.json
 *.html
 .claude/agent-sessions.json
+
+# Test Artifacts
+Test_Business/
+Test_Project/
+Test_*/
 
 # PAI Update System (sideloading)
 .claude/pai_updates/
