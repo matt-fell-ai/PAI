@@ -103,6 +103,11 @@
       "price": "0.001 MOR/req"
     },
     {
+      "skill": "[bold yellow]Alpha[/bold yellow]",
+      "tool": "predator",
+      "price": "0.001 MOR/req"
+    },
+    {
       "skill": "[bold yellow]Forge[/bold yellow]",
       "tool": "forge",
       "price": "0.001 MOR/req"

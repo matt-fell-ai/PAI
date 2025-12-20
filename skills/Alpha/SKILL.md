@@ -9,9 +9,9 @@ Profit is found in information asymmetry. **Alpha** uses the PAI's research capa
 
 ## Usage
 
-### Find Freelance Leads
+### Find Qualified Leads (Alpha-Stream)
 ```bash
-pai run Alpha leads "Python automation"
+pai run Alpha predator "AI-Automation"
 ```
 
 ### Scan Trending Niches

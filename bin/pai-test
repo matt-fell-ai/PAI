@@ -38,7 +38,7 @@ def main():
         ("Ego (analyze)", [PAI_BIN, "run", "Ego", "analyze"]),
         ("Oracle (suggest)", [PAI_BIN, "run", "Oracle", "suggest"]),
         ("Nexus (focus)", [PAI_BIN, "run", "Nexus", "focus"]),
-        ("Alpha (leads)", [PAI_BIN, "run", "Alpha", "leads", "AI"]),
+        ("Alpha (predator)", [PAI_BIN, "run", "Alpha", "predator", "AI"]),
         ("Forge (magnet)", [PAI_BIN, "run", "Forge", "magnet", "AI PDF"]),
         ("Closer (pitch)", [PAI_BIN, "run", "Closer", "pitch", "--lead", "John", "--product", "Bot"]),
         ("Vibe (generate)", [PAI_BIN, "run", "Vibe", "generate", "Test Vibe"]),
