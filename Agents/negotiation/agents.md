@@ -1,1 +1,2 @@
-# Agent Component: Negotiation Personas\nSpecialized profiles for high-stakes deal making.
+# Agent Component: Negotiation Personas
+Specialized profiles for high-stakes deal making.
